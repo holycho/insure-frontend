@@ -1,0 +1,286 @@
+.credit-card-form-00 {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-top: 40px;
+
+  @include rwd($medium-screen) {
+    display: block;
+    margin-top: 16px;
+    padding-top: 0;
+  }
+
+  &__form {
+    flex: none;
+    margin-top: 40px;
+  }
+
+  &__card {
+    flex-basis: 295px;
+    margin-left: auto;
+    height: 186px;
+
+    @include rwd($medium-screen) {
+      height: 197px;
+      max-width: 311px;
+      width: 100%;
+      margin-left: 0;
+
+    }
+
+  }
+}
+
+.credit-card-form-00-form {
+  &__title-tag {
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+    margin-bottom: 4px;
+    color: $gs008;
+  }
+
+  &__section+&__section {
+    margin-top: 40px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    display: inline-flex;
+  }
+
+  &__cell {
+    flex-basis: 96px;
+    width: 96px;
+    flex-shrink: 1;
+
+    @include rwd($medium-screen) {
+      flex-basis: 70px;
+      width: 70px;
+
+      input {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+
+    @include rwd($medium-small-screen) {
+      width: auto;
+      flex-grow: 1;
+
+
+      input {
+        padding-left: 16px;
+        padding-right: 5px;
+      }
+    }
+
+    &--mobile-no-grow {
+      @include rwd($medium-small-screen) {
+        width: auto;
+        flex-grow: 0;
+
+      }
+
+    }
+
+
+    &--auto {
+      flex-basis: auto;
+      width: auto;
+    }
+
+
+  }
+
+  &__value-text {
+    @include Body201-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs007;
+
+    &--highlight {
+      @include Body202-Bold1-Light2-Default-Color1-Left-Aligned();
+      color: $CI02;
+    }
+  }
+
+  &__slash {
+    margin: 0 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.4000000059604645px;
+  }
+
+  &__cell+&__cell {
+    margin-left: 8px;
+  }
+}
+
+.credit-card-form-00-card {
+  position: relative;
+  transition: 0.5s;
+
+  &__front,
+  &__back {
+    background-image: $CI-gradient-02;
+    border-radius: 12px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    transition: opacity 500ms;
+
+  }
+
+  &__visa {
+    width: 63px;
+  }
+
+  &__card-number-section {
+    margin-top: 33px;
+
+    @include rwd($medium-screen) {
+      margin-top: 40px;
+    }
+  }
+
+  &__front {
+    padding: 24px;
+    z-index: 3;
+    opacity: 1;
+  }
+
+  &__back {
+    z-index: 2;
+    transform: rotateY(180deg);
+    opacity: 0;
+
+    &:after {
+      content: '';
+      display: block;
+      margin-top: 12.2%;
+      height: 32px;
+      background-color: $gs009;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  &.active {
+    transform: rotateY(180deg);
+  }
+
+  &.active &__back {
+    z-index: 4;
+    transform: rotateY(180deg);
+    opacity: 1;
+  }
+
+  &.active &__front {
+    z-index: 3;
+    opacity: 0;
+  }
+
+  &__card-number {
+    width: 47px;
+    position: relative;
+    height: 28px;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 9px;
+      top: 50%;
+      position: absolute;
+      transform: translateY(-50%);
+      border-radius: 999px;
+      background-color: transparentize($gs000, 0.5);
+    }
+
+    &--typing {
+      @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+      color: $gs000;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  &__ex-date-section {
+    margin-top: 16px;
+  }
+
+  &__ex-date {
+    width: 19px;
+    position: relative;
+    height: 22px;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 7px;
+      top: 50%;
+      position: absolute;
+      transform: translateY(-50%);
+      border-radius: 999px;
+      background-color: transparentize($gs000, 0.5);
+    }
+
+    &--typing {
+      @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+      color: $gs000;
+
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  &__ex-date-title {
+    @include Caption131-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs000;
+  }
+
+  &__slash {
+    @include Caption131-Regular1-Light2-Default-Color1-Left-Aligned();
+    margin: 0 4px;
+    color: $gs000;
+    line-height: 22px;
+  }
+
+  &__card-number+&__card-number {
+    margin-left: 12px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+  }
+
+  &__safe-code {
+    width: 89px;
+    padding-top: 8px;
+    padding-left: 12px;
+    padding-bottom: 10px;
+    background: $gs000;
+    border-radius: 4px;
+    height: 40px;
+    @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__safe-code-section {
+    position: absolute;
+    top: 92px;
+    right: 24px;
+
+  }
+
+  &__safe-code-title {
+    @include Caption131-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs000;
+  }
+}

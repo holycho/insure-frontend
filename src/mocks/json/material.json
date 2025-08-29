@@ -1,0 +1,22 @@
+[
+  {
+    "paramOrder": "1",
+    "paramValue": "STEEL_CONCRETE",
+    "paramText": "鋼骨混擬土(水泥)造"
+  },
+  {
+    "paramOrder": "2",
+    "paramValue": "STEEL_REINFORCED_CONCRETE",
+    "paramText": "鋼骨鋼筋混擬土(水泥)造"
+  },
+  {
+    "paramOrder": "4",
+    "paramValue": "REINFORCED_CONCRETE",
+    "paramText": "鋼筋混擬土(水泥)造"
+  },
+  {
+    "paramOrder": "5",
+    "paramValue": "OTHER",
+    "paramText": "其他"
+  }
+]

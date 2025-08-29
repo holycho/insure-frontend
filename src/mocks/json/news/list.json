@@ -1,0 +1,20 @@
+[
+  {
+    "sn": 1,
+    "subject": "投保最暖心",
+    "subSubject": "透過本公司網路投保專區，投保任一保險產品，每筆保單費達300元(含)以上，有機會抽中Panasonic奈米水離子吹風機",
+    "imgName": "news-photo.png",
+    "startTime": "114/03/21",
+    "endTime": "114/04/30",
+    "linkUrl": "/activity/news/detail"
+  },
+  {
+    "sn": 2,
+    "subject": "蓮花入厝趴",
+    "subSubject": "蓮花保險台中分公司喬遷『入厝趴』與客戶分享喜悅",
+    "imgName": "news-photo.png",
+    "startTime": "114/05/01",
+    "endTime": "114/05/31",
+    "linkUrl": "/activity/news/detail"
+  }
+]

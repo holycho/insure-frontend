@@ -1,0 +1,217 @@
+.photo-card-05 {
+  background-color: $gs000;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+
+  &__head {}
+
+  &__content {}
+
+}
+
+.photo-card-05-head {
+  padding: 32px;
+  padding-top: 24px;
+  padding-right: 24px;
+  display: flex;
+  align-items: flex-end;
+
+  @include rwd($medium-screen-2) {
+    padding-left: 24px;
+    padding-top: 32px;
+    padding-right: 24px;
+    padding-bottom: 26px;
+    display: block;
+  }
+
+  &__former {}
+
+  &__title-block {}
+
+  &__descrp {
+    margin-top: 24px;
+  }
+
+
+
+  &__descrp-text {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs007;
+  }
+
+  &__latter {
+    margin-left: auto;
+
+
+  }
+
+  &__btn {
+    width: 180px;
+    height: 44px;
+
+    @include rwd($medium-screen-2) {
+      width: 152px;
+      height: 40px;
+      position: relative;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      display: flex;
+      margin-top: 32px;
+    }
+  }
+}
+
+.photo-card-05-photo-block {
+  display: flex;
+  align-items: center;
+
+  &__former {}
+
+  &__photo {
+    width: 144px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    font-size: 0;
+
+
+    >* {
+      border-radius: 10px;
+    }
+
+    @include rwd($medium-screen-2) {
+      display: none;
+    }
+  }
+
+  &__latter {
+    margin-left: 24px;
+
+    @include rwd($medium-screen-2) {
+      margin-left: 0;
+    }
+  }
+}
+
+.photo-card-05-title-block {
+  display: flex;
+  align-items: center;
+
+  &__photo {
+    display: none;
+    width: 49px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    font-size: 0;
+
+    >* {
+      border-radius: 4px;
+    }
+
+    @include rwd($medium-screen-2) {
+      display: block;
+    }
+  }
+
+  &__content {
+    @include rwd($medium-screen-2) {
+      margin-left: 12px;
+    }
+  }
+
+  &__tag {
+    @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-screen-2) {
+      @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    color: $CI02;
+  }
+
+  &__title {
+    @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+    margin-top: 4px;
+
+    @include rwd($medium-screen-2) {
+      @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+      margin-top: 0;
+    }
+  }
+
+
+
+
+}
+
+.photo-card-05-content {
+
+  &__title {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    border-top: 1px solid $gs002;
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      display: block;
+      border: none;
+      width: 8px;
+      height: 8px;
+      transform: translateY(-50%) rotate(-45deg);
+      transform-origin: 50% 50%;
+      border-left: 2px solid $CI01;
+      border-bottom: 2px solid $CI01;
+      transition: 500ms;
+      margin-left: 4px;
+    }
+
+    &--show {
+      &:after {
+        transform: translateY(0%) rotate(135deg);
+      }
+
+    }
+  }
+
+  &__content {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-top: 4px;
+    padding-bottom: 32px;
+    display: none;
+
+    @include rwd($medium-screen-2) {
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 32px;
+      padding-top: 0;
+    }
+
+  }
+
+}
+
+.photo-card-05-content-paragraph {
+  &__ul {
+    list-style: decimal;
+    padding-left: 1em;
+  }
+
+  &__li {
+    color: $gs007;
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__li+&__li {
+    margin-top: 8px;
+  }
+
+  &__text {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs007;
+  }
+}

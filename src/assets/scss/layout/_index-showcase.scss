@@ -1,0 +1,12 @@
+.index-showcase {
+  position: relative;
+  z-index: 1;
+  background-color: $gsc001;
+  margin-top: 89px;
+
+  &__former {}
+
+  @include rwd($medium-desktop-screen) {
+    margin-top: 35px;
+  }
+}

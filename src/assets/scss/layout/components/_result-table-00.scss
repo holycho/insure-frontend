@@ -1,0 +1,67 @@
+.result-table-00 {
+
+  background-color: $gs000;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid $gs003;
+
+  &__inner {}
+
+  &__head {
+    display: flex;
+    padding: 32px 64px 32px 64px;
+
+    @include rwd($medium-small-screen) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  &__title {
+    @include rwd($medium-small-screen) {
+      margin-top: 5px;
+    }
+  }
+
+  &__text {
+    @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-small-screen) {
+      @include Tilte182-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    color: $CI02;
+
+    &--prefixed {
+      display: flex;
+      align-items: flex-end;
+      @include Tilte282-Bold1-Light2-Default-Color1-Left-Aligned();
+
+      @include rwd($medium-small-screen) {
+        @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+      }
+
+      &:before {
+        content: attr(data-prefix);
+        margin-right: 2px;
+        display: block;
+        @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+        line-height: 1.93;
+
+        @include rwd($medium-small-screen) {
+          @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+        }
+      }
+    }
+  }
+
+  &__foot {
+    padding: 16px 20px 16px 20px;
+    background-color: transparentize($CI02, 0.5);
+    color: $gs000;
+  }
+
+  &__footage {
+    @include Tilte162-Bold1-Light2-Default-Color2-Center-Aligned();
+  }
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "sn": "1",
+    "bankCode": "004",
+    "bankName": "臺灣銀行"
+  },
+  {
+    "sn": "2",
+    "bankCode": "005",
+    "bankName": "土地銀行"
+  },
+  {
+    "sn": "3",
+    "bankCode": "006",
+    "bankName": "合庫商銀"
+  },
+  {
+    "sn": "4",
+    "bankCode": "007",
+    "bankName": "第一銀行"
+  },
+  {
+    "sn": "5",
+    "bankCode": "008",
+    "bankName": "華南銀行"
+  }
+]

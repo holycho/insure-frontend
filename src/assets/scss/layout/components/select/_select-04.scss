@@ -1,0 +1,21 @@
+.select-04 {
+  @include nxjq-select( //
+    $select-type:'borderRadius',
+    $border-color:$gs004,
+    $text-position:'left',
+    $main-text-color:$gs006,
+    $select-height:48px,
+    $main-bg:$gs000 //
+  );
+
+  cursor: pointer;
+
+  @include nxjq-customize-select-base-01();
+
+  &.init:not(#{&}--disabled) {
+    .select-header {
+      color: $gs008;
+    }
+  }
+
+}

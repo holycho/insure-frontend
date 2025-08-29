@@ -1,0 +1,135 @@
+/// @example dialog樣式
+/// @param {Numbers}  $dialog-width [300px] - 參數請填dialog寬度大小
+/// @param {Numbers}  $dialog-radius [5px] - 參數請填dialog圓角大小
+/// @param {Strings}  $dialog-position ['top'] - 參數請填dialog位置top/center
+/// @param {Strings}  $dialog-effect-type ['fade'] - 參數請填dialog彈出時效果fade/scale
+/// @param {Numbers}  $dialog-border-width [0] - 參數請填dialog邊框寬度
+/// @param {Colors}   $dialog-border-color [transparent] - 參數請填dialog邊框顏色
+/// @param {Boolean}  $dialog-shadow [true] - 參數請填dialog是否需要陰影
+/// @param {Colors}   $dialog-background-color [$white] - 參數請填dialog背景顏色
+/// @param {Colors}   $dialog-backdrop-color [rgba(0, 0, 0, 0.5)] - 參數請填dialog backdrop背景顏色
+
+@mixin nxjq-dialog($dialog-width: 300px,
+  $dialog-radius: 5px,
+  $dialog-position: 'top',
+  $dialog-effect-type: 'fade',
+  $dialog-border-width: 0,
+  $dialog-border-color: transparent,
+  $dialog-shadow: true,
+  $dialog-background-color: $white,
+  $dialog-backdrop-color: rgba(0, 0, 0, 0.5)) {
+
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  .dialog {
+    &__backdrop {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $dialog-backdrop-color;
+      transition: opacity .15s linear;
+      opacity: 0;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
+    &__wrapper {
+      display: flex;
+      align-items: if($dialog-position=='center', center, flex-start);
+      position: relative;
+      z-index: 1001;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 100%;
+      pointer-events: auto;
+
+      @media screen and (-ms-high-contrast: active),
+      (-ms-high-contrast: none) {
+        &:before {
+          content: "";
+          display: block; // IE10
+          height: 100vh;
+        }
+      }
+    }
+
+    //主要dialog
+    &__content {
+      display: none;
+      position: relative;
+      width: 100%;
+      max-width: $dialog-width;
+      margin: 15px auto;
+      padding: 50px 30px;
+      border-radius: $dialog-radius;
+      border: $dialog-border-width solid $dialog-border-color;
+      background-color: $dialog-background-color;
+      outline: 0;
+
+      @if $dialog-shadow {
+        box-shadow: 0 3px 10px $dialog-backdrop-color;
+      }
+
+      @if $dialog-effect-type=='fade' {
+        transition: transform 0.3s ease-out;
+        // transform: translate(0, -50px);
+        transform: translate(0, -50%);
+        top: 50%;
+      }
+
+      @else if $dialog-effect-type=='scale' {
+        transition: transform .25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        transform: scale(0);
+      }
+
+      &.show {
+        @if $dialog-effect-type=='fade' {
+          transform: none;
+        }
+
+        @else if $dialog-effect-type=='scale' {
+          transform: scale(1);
+        }
+      }
+    }
+
+    &__close {
+      cursor: pointer;
+      pointer-events: auto;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      background-color: #9f9f9d;
+
+      &::after {
+        content: '\FF0B';
+        display: block;
+        margin: 0 auto;
+        line-height: 30px;
+        text-align: center;
+        font-size: pxToRem(25px);
+        color: #f5f5f5;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}

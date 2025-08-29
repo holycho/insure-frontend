@@ -1,0 +1,17 @@
+.sliding-tab-00 {
+  @include nxjq-sliding-tab( //
+    $type:'toggle',
+    $shell-border-radius:0px,
+    $shell-background-color:$gs002,
+    $nav-item-active-border-radius: 6px,
+    $nav-item-padding:11px,
+    $shell-gap:5px,
+    $main-color:$gs000,
+    $toggle-mode-gap-border-color:transparent,
+    $nav-item-text-color:$gs008,
+    $nav-item-active-text-color:$CI01);
+
+  .nxjq-sliding-tab-botline .nxjq-sliding-tab-botline__inner {
+    transition: 750ms;
+  }
+}

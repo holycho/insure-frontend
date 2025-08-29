@@ -1,0 +1,636 @@
+//新增tab mixin
+/// @example tab分頁樣式-11種樣式
+/// @param {Strings}  $tab-type ['nx-tab-001'] - 參數請填tab類型名稱nx-tab-001~nx-tab-012
+/// @param {Numbers}  $underLine-height [3px] - 參數請填tab底線高度
+/// @param {Numbers}  $border-radius [25px] - 參數請填外框圓角
+/// @param {Colors}   $tab-text-active [#ffffff] - 參數請填被點選tab之文字顏色
+/// @param {Colors}   $main-color [#1e88e5] - 參數請填tab主色
+/// @param {Colors}   $secondary-color [#f2f2f2] - 參數請填tab副色
+@mixin slide-mode {
+  &--slide-mode {
+    display: inline-flex;
+    justify-content: flex-start;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 100%;
+
+    >.nxjq-tab-nav__item {
+      width: auto;
+      flex-shrink: 0;
+    }
+  }
+}
+
+@mixin nxjq-tab($tab-type: 'nx-tab-001',
+  $underLine-height: 3px,
+  $border-radius: 25px,
+  $tab-text-active: #ffffff,
+  $main-color: #1e88e5,
+  $secondary-color: #f2f2f2) {
+
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 0;
+
+  @if $tab-type=='nx-tab-001' {
+    .nxjq-tab-nav {
+      display: flex;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid $main-color;
+
+      >.nxjq-tab-nav__item {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 20px;
+        color: #000000;
+        cursor: pointer;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          height: $underLine-height;
+          background: $main-color;
+          bottom: 0px;
+          left: 0;
+          width: 100%;
+          -webkit-transform: scaleX(0);
+          -ms-transform: scaleX(0);
+          transform: scaleX(0);
+          -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+          -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+          transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        &:hover {
+          &:after {
+            transform: scaleX(1);
+            background: $main-color;
+          }
+        }
+
+        &--active {
+          color: $main-color;
+
+          &:after {
+            -webkit-transform: scaleX(1);
+            -ms-transform: scaleX(1);
+            transform: scaleX(1);
+          }
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-002' {
+    .nxjq-tab-nav {
+      display: flex;
+      justify-content: center;
+
+      >.nxjq-tab-nav__item {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        margin: 0 10px;
+        border: 1px solid $secondary-color;
+        border-radius: $border-radius;
+        background: $secondary-color;
+        cursor: pointer;
+        transition: 0.3s ease;
+
+        &:hover {
+          border-color: transparent;
+          background: lighten($main-color, 10%);
+          color: $tab-text-active;
+        }
+
+        &--active {
+          border-color: transparent;
+          background: $main-color;
+          color: $tab-text-active;
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-003' {
+    .nxjq-tab-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+
+      >.nxjq-tab-nav__item {
+        width: 21%;
+        text-align: center;
+        border-radius: $border-radius;
+        border: 1px solid $secondary-color;
+        background: $secondary-color;
+        padding: 30px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.5s ease-in-out;
+
+        &:hover {
+          border-color: transparent;
+          background: lighten($main-color, 10%);
+          color: $tab-text-active;
+        }
+
+        &--active {
+          border-color: transparent;
+          color: $tab-text-active;
+          background: $main-color;
+          position: relative;
+          border: none;
+          min-height: 115px;
+
+          &:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            bottom: -13px;
+            z-index: -1;
+            @include squareArrow($background: $main-color);
+
+            &:hover {
+              background: lighten($main-color, 10%);
+            }
+          }
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-004' {
+    .nxjq-tab-nav {
+      display: flex;
+      justify-content: center;
+
+      >.nxjq-tab-nav__item {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        border: 1px solid $main-color;
+        background: $secondary-color;
+        padding: 10px 20px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.5s ease;
+
+        &:nth-child(1n + 1) {
+          border-left: transparent;
+          border-right: transparent;
+          border-radius: 0 0 0 0;
+        }
+
+        &:first-child {
+          border-left: 1px solid $main-color;
+          border-right: transparent;
+          border-radius: 20px 0 0 20px;
+        }
+
+        &:last-child {
+          border-left: transparent;
+          border-right: 1px solid $main-color;
+          border-radius: 0 20px 20px 0;
+        }
+
+        &--active {
+          border-radius: 20px 20px 20px 20px;
+          background: $main-color;
+          color: $tab-text-active;
+          z-index: 1;
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-005' {
+    .nxjq-tab-nav {
+      display: inline-flex;
+      width: 100%;
+      max-width: 100%;
+      font-size: 0;
+
+      >.nxjq-tab-nav__item {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        color: #000000;
+        background: $secondary-color;
+        margin-right: 1px;
+        padding: 15px;
+        transition: 0.5s ease;
+
+        &::after {
+          content: "";
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          -webkit-transition-property: height;
+          transition-property: height;
+          -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+          background-color: $secondary-color;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          &::after {
+            background: $main-color;
+            height: 4px;
+          }
+        }
+
+        &--active {
+          color: $main-color;
+
+          &::after {
+            background: $main-color;
+            height: 4px;
+          }
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-006' {
+    .nxjq-tab-nav {
+      display: inline-flex;
+      width: 100%;
+      max-width: 100%;
+      font-size: 0;
+
+      >.nxjq-tab-nav__item {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        color: #000000;
+        background: $secondary-color;
+        margin-right: 1px;
+        transition: 0.5s ease;
+
+        &:hover {
+          background: lighten($main-color, 15%);
+          color: $tab-text-active;
+        }
+
+        &--active {
+          background: $main-color;
+          color: $tab-text-active;
+
+          &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            bottom: -7px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            @include squareArrow($width: 14px, $height: 14px, $border-radius: 0, $background: $main-color);
+          }
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-007' {
+    .nxjq-tab-nav {
+      display: inline-flex;
+      width: 100%;
+      max-width: 100%;
+      font-size: 0;
+
+      >.nxjq-tab-nav__item {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        color: #000000;
+        background: $secondary-color;
+        padding: 15px;
+        margin-right: 1px;
+        transition: 0.5s ease;
+
+        &:first-child {
+          border-top-left-radius: 100px;
+          border-bottom-left-radius: 100px;
+        }
+
+        &:last-child {
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 100px;
+        }
+
+        &:hover {
+          background: lighten($main-color, 15%);
+          color: $tab-text-active;
+        }
+
+        &--active {
+          color: $tab-text-active;
+          background: $main-color;
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-008' {
+    .nxjq-tab-nav {
+      display: inline-flex;
+      width: 100%;
+      max-width: 100%;
+      font-size: 0;
+
+      >.nxjq-tab-nav__item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        color: #000000;
+        background: $secondary-color;
+        padding: 15px;
+        margin-right: 1px;
+        transition: 0.5s ease;
+
+        &:hover {
+          background: lighten($main-color, 15%);
+          color: $tab-text-active;
+        }
+
+        &--active {
+          background: $main-color;
+          color: $tab-text-active;
+
+          &::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            @include gen-triangle($arrow_width: 9px, $arrow_size: 8px, $arrow_color: #ffffff);
+          }
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-009' {
+    .nxjq-tab-nav {
+      display: flex;
+      justify-content: center;
+      border: 1px solid $main-color;
+      align-items: stretch;
+
+      >.nxjq-tab-nav__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 15px;
+        color: #000000;
+        cursor: pointer;
+        position: relative;
+        background: $secondary-color;
+        transition: 0.5s ease;
+
+        &::after {
+          position: absolute;
+          content: "";
+          height: 3px;
+          background: $main-color;
+          width: 100%;
+          max-width: 0;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: all 0.5s ease-in-out;
+        }
+
+        &:hover {
+          &::after {
+            max-width: 77px;
+          }
+        }
+
+        &--active {
+          background: $secondary-color;
+
+          &::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            @include gen-triangle($arrow_width: 9px, $arrow_size: 8px, $arrow_color: $main-color);
+          }
+
+          &::after {
+            max-width: 77px;
+          }
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='nx-tab-010' {
+    .nxjq-tab-nav {
+      width: 100%;
+      max-width: 400px;
+      margin: 0;
+      text-align: left;
+      cursor: pointer;
+
+      >.nxjq-tab-nav__item {
+        background: $secondary-color;
+        color: #160b27;
+        font-size: 16px;
+        padding: 15px 30px;
+        line-height: 1.5;
+        overflow: hidden;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: baseline;
+        position: relative;
+        margin-bottom: 1px;
+        transition: 0.5s ease;
+
+        &:hover {
+          background: lighten($main-color, 15%);
+          color: $tab-text-active;
+        }
+
+        &--active {
+          background: $main-color;
+          color: $tab-text-active;
+
+          &:before {
+            content: "";
+            @include gen-triangle($arrow_color: #ffffff, $orientation: "left");
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+
+  @else if $tab-type=='nx-tab-011' {
+    .nxjq-tab-nav {
+      border-left: 1px solid $secondary-color;
+      text-align: left;
+
+      >.nxjq-tab-nav__item {
+        cursor: pointer;
+        position: relative;
+        padding-left: 20px;
+        padding-bottom: 10px;
+        transition: 0.5s ease;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -3px;
+          width: 6px;
+          height: 0;
+          background: $main-color;
+          transition: 0.5s ease-in-out;
+        }
+
+        &:hover {
+          &::before {
+            height: 100%;
+            background: lighten($main-color, 10%);
+          }
+        }
+
+        &--active {
+          color: $main-color;
+
+          &::before {
+            height: 100%;
+            background: $main-color;
+          }
+        }
+      }
+    }
+  }
+
+  @else if $tab-type=='nx-tab-012' {
+    .nxjq-tab-nav {
+      display: inline-flex;
+      width: 100%;
+      max-width: 100%;
+      font-size: 0;
+      padding: 5px;
+      background: $secondary-color;
+      border-radius: $border-radius;
+
+      >.nxjq-tab-nav__item {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        margin-right: 1px;
+        padding: 10px;
+        transition: 0.5s ease;
+        background: $secondary-color;
+        border-radius: $border-radius;
+
+        &:hover {
+          background: $main-color;
+          color: $tab-text-active;
+          border-radius: $border-radius;
+        }
+
+        &--active {
+          background: $main-color;
+          color: $tab-text-active;
+          box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.04), 0 3px 8px 0 rgba(0, 0, 0, 0.12);
+          border-radius: $border-radius;
+        }
+      }
+
+      @include slide-mode;
+    }
+  }
+
+  @else if $tab-type=='prototype' {
+    // prototype means NO style for nav
+  }
+
+  @else {
+    @error "填寫的$tab-type參數並沒有在tab類型裡面";
+  }
+
+  .nxjq-tab-container {
+    &__pane {
+      display: none;
+
+      &--active {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+// 有打勾的 checkbox
+.checkbox-02 {
+  @include nxjq-checkbox( //
+    $unchecked-bgColor:transparent,
+    $checkItem-size:26px,
+    $unchecked-borderColor:transparent,
+    $checked-color:transparent //
+  );
+  position: relative;
+  padding-left: 0;
+
+  input[type="checkbox"]:checked+label .text {
+    color: $CI01;
+    font-weight: bold;
+  }
+
+  input[type="checkbox"]:checked+label span:after {
+    border-color: $CI01;
+    width: 8px;
+    height: 13px;
+    top: 37%;
+  }
+
+  label {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0;
+
+    span {
+      flex-shrink: 0;
+
+    }
+
+    .text {
+      flex-shrink: 1;
+      word-break: break-all;
+      min-width: 0;
+      margin-right: 4px;
+    }
+
+  }
+
+  input[type="checkbox"]+label {
+    span {
+      border-width: 1px;
+      margin-top: 0;
+    }
+  }
+
+  input[disabled]+label {
+    span {
+      border: 1px solid $gs004;
+      background-color: transparentize($gs003, 0.5);
+    }
+
+    .text {
+      color: $gs005
+    }
+  }
+
+  .text {
+    color: $gs008;
+    @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-small-screen) {
+      @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    }
+  }
+
+  & {
+    padding-top: 16px;
+  }
+}

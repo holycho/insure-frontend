@@ -1,0 +1,60 @@
+.pagination-00 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__prev {
+    transform: rotate(-180deg);
+  }
+
+  &__prev,
+  &__next {
+    cursor: pointer;
+    display: block;
+    width: 15px;
+    height: 15px;
+    transform-origin: 50% 50%;
+    background-size: cover;
+    background-image: url(../../../img/pagination-btn.svg);
+
+    &--disabled {
+      background-image: url(../../../img/pagination-btn-disable.svg);
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__pages {
+    display: flex;
+    margin: 0 48px;
+
+    >*+* {
+      margin-left: 16px;
+    }
+  }
+
+  &__page {
+    @include Body161-Regular1-Light2-Default-Color3-Right-Aligned();
+
+    @include on-event($self:true) {
+      color: $gs005;
+    }
+
+    cursor: pointer;
+    width: 20px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--active {
+      @include on-event($self:true) {
+        color: $CI01;
+      }
+    }
+  }
+
+  &__next {}
+}

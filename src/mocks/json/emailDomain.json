@@ -1,0 +1,22 @@
+[
+  {
+    "paramOrder": "1",
+    "paramValue": "@amazon.com",
+    "paramText": "amazon domain"
+  },
+  {
+    "paramOrder": "2",
+    "paramValue": "@apple.com",
+    "paramText": "apple domain"
+  },
+  {
+    "paramOrder": "3",
+    "paramValue": "@microsoft.com",
+    "paramText": "microsoft domain"
+  },
+  {
+    "paramOrder": "4",
+    "paramValue": "@gmail.com",
+    "paramText": "gmail domain"
+  }
+]

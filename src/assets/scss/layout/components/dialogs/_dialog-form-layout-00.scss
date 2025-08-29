@@ -1,0 +1,101 @@
+.dialog-form-layout-00 {
+  &__section {}
+
+  &__section+&__section {
+    margin-top: 40px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    >*+* {
+      margin-left: 16px;
+    }
+
+    &--f-wrap {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__title-tag {
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+  }
+
+  &__verification-link {
+    white-space: nowrap;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 16px;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0;
+      flex-basis: 100%;
+      flex-shrink: 1;
+      flex-grow: 1;
+      margin-top: 13px;
+    }
+  }
+
+  &__hint-tag {
+    margin-top: 12px;
+  }
+
+  &__cell {
+
+    &--error {
+
+      input:not([disable]),
+      [class^="select-"]:not([class*="--disable"]) .select-header {
+        border: 1px solid red !important;
+      }
+
+      .error-tag {
+        display: block;
+      }
+
+    }
+
+    &--auto {
+      @include flex-width(auto);
+    }
+
+    &--fluid {
+      flex: 1;
+    }
+
+
+    &--full {
+      @include flex-width(100%);
+    }
+
+    &--size-1 {
+      flex-basis: 140px;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+  }
+
+  &__verify-code {
+    @include flex-width(135px);
+    flex-shrink: 1;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+  }
+
+  &__refresh {
+    @include flex-width(24px);
+
+    &:hover {
+      animation: spin 3s infinite;
+    }
+
+    @include rwd($medium-small-screen) {
+      margin-top: 10px;
+    }
+  }
+}

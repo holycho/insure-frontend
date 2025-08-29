@@ -1,0 +1,335 @@
+//新增select mixin
+/// @example select樣式
+/// @param {Strings}  $select-type ['general'] - 參數請填select類型名稱general/underLine/borderRadius/material
+/// @param {Strings}  $arrow-type ['arrowTriangle'] - 參數請填arrow類型名稱arrowTriangle/arrowLine/arrowImage
+/// @param {Strings}  $text-position ['center'] - 參數請填文字對齊方式center/left
+/// @param {Colors}   $main-text-color [$lightblack] - 參數請填select文字/箭頭統一顏色
+/// @param {Colors}   $main-bg [#f7f7f7] - 參數請填select背景顏色
+/// @param {Numbers}  $select-width [100%] - 參數請填select寬度
+/// @param {Numbers}  $select-height [40px] - 參數請填select高度
+/// @param {Numbers}  $underline-width [1px] - 參數請填底線寬度，underLine/material樣式可設定
+/// @param {Colors}   $underline-color [$lightblack] - 參數請填底線顏色，underLine/material樣式可設定
+/// @param {Colors}   $border-color [transparent] - 參數請填外框顏色，borderRadius樣式可設定
+/// @param {Numbers}  $border-radius [6px] - 參數請填外框圓角尺寸，borderRadius樣式可設定
+/// @param {String}   $img-uncheck 參數請填收合打開前的圖片Url連結路徑，例如'/assets/images/xxx.svg'
+/// @param {String}   $img-checked 參數請填收合打開後的圖片Url連結路徑，例如'/assets/images/xxx.svg'
+/// @param {Colors}   $search-bg-color 參數請填搜尋欄的背景顏色
+
+@mixin nxjq-select($select-type:'general',
+  $arrow-type:'arrowTriangle',
+  $text-position:'center',
+  $main-text-color:$lightblack,
+  $main-text-hover-color: #f7f7f7,
+  $main-bg: #f7f7f7,
+  $main-hover-bg: $lightblack,
+  $select-width: 100%,
+  $select-height: 40px,
+  $underline-width:1px,
+  $underline-color:$lightblack,
+  $border-color:transparent,
+  $border-radius:6px,
+  $img-uncheck: '../img/libimg/icon_add.svg',
+  $img-checked: '../img/libimg/icon_less.svg',
+  $search-bg-color:#ffffff) {
+
+  //select基本結構
+  position: relative;
+  font-size: pxToRem(16px);
+  color: $main-text-color;
+  width: $select-width;
+  height: $select-height;
+  user-select: none;
+
+  //隠藏原本的select原本結構
+  .hidden-select {
+    display: none;
+    visibility: hidden;
+    padding-right: 10px;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  //預設文字＋右側圖示樣式
+  .select-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $main-bg;
+    padding: 8px 15px;
+    transition: all 0.2s ease-in;
+    line-height: calc(#{$select-height} - 15px);
+    border: none;
+    text-align: unquote($text-position);
+
+    @if($text-position=='left') {
+      padding-left: 1em;
+    }
+
+    &:active {
+      background-color: darken($main-bg, 5);
+    }
+
+    &:hover {
+      background-color: darken($main-bg, 2);
+    }
+
+    @if $arrow-type=='arrowTriangle' {
+      &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border: 7px solid transparent;
+        border-color: $main-text-color transparent transparent transparent;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-25%);
+      }
+    }
+
+    @else if $arrow-type=='arrowLine' {
+      &:after {
+        position: absolute;
+        content: "";
+        width: 8px;
+        height: 8px;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+        border-top: transparent;
+        border-right: transparent;
+        border-left: 2px solid $main-text-color;
+        border-bottom: 2px solid $main-text-color;
+        transition: all 0.2s ease-out;
+      }
+    }
+
+    @else if $arrow-type=='arrowImage' {
+      &:after {
+        position: absolute;
+        content: "";
+        width: 25px;
+        height: 25px;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg);
+
+        @if ($img-uncheck !="") {
+          background-image: url(#{$img-uncheck}) no-repeat;
+        }
+
+        background-repeat: no-repeat;
+        background-size: 18px;
+        background-position: center center;
+      }
+    }
+  }
+
+  .select-search {
+    text-align: center;
+    padding: 10px;
+    position: relative;
+
+    input {
+      border: none;
+      padding: 10px 10px 10px 50px;
+      border: 1px solid $border-color;
+      background-color: $search-bg-color;
+      border-radius: $border-radius;
+      width: 100%;
+      line-height: normal;
+    }
+
+    &:before {
+      content: '';
+      background-image: url('../../../img/libimg/search.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: block;
+      height: 22px;
+      width: 22px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 25px;
+
+    }
+
+    &--headerSearchbar {
+      padding: 0;
+
+      input {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+      }
+
+      &:before {
+        display: none;
+      }
+    }
+
+  }
+
+  // 展開下拉選單時(collapsed狀態)的預設文字＋右側圖示樣式
+  &.collapsed {
+    .select-header {
+      background-color: darken($main-bg, 5);
+
+      @if $arrow-type=='arrowTriangle' {
+        &:after {
+          top: 9px;
+          border-color: transparent transparent $main-text-color transparent;
+        }
+      }
+
+      @else if $arrow-type=='arrowLine' {
+        &:after {
+          transform: translateY(-50%) rotate(135deg);
+        }
+      }
+
+      @else if $arrow-type=='arrowImage' {
+        &:after {
+          @if ($img-checked !="") {
+            background-image: url(#{$img-checked}) no-repeat;
+          }
+
+          transform: translateY(-50%) rotate(360deg);
+          background-size: 18px;
+          background-position: center center;
+        }
+      }
+
+    }
+  }
+
+  // 下拉選單的基礎樣式
+  .select-option-list-wrapper {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    background-color: $main-bg;
+
+    .select-option-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+
+      &__item {
+        margin: 0;
+        padding: 12px 0;
+        border-top: 1px solid $main-bg;
+        transition: all 0.15s ease-in;
+        text-align: unquote($text-position);
+
+        @if($text-position=='left') {
+          padding-left: 1em;
+        }
+
+        &:hover {
+          color: $main-text-hover-color;
+          background-color: $main-hover-bg;
+        }
+      }
+    }
+  }
+
+  // 展開下拉選單時(collapsed狀態)的下拉選單樣式
+  &.collapsed {
+    .select-option-list-wrapper {
+      display: block;
+    }
+  }
+
+  // select的預設標籤
+  .select-label {
+    opacity: 0;
+  }
+
+  // 當select-type是underline模式時的預設文字＋右側圖示樣式
+  @if $select-type=='underLine' {
+    .select-header {
+      border-bottom: $underline-width solid $underline-color;
+    }
+
+    &.collapsed {
+      .select-header {
+        border-bottom: $underline-width solid $main-text-color;
+      }
+    }
+  }
+
+  // 當select-type是borderRadius模式時的預設文字＋右側圖示+下拉選單內容樣式
+  @else if $select-type=='borderRadius' {
+    .select-header {
+      background-color: $main-bg;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+    }
+
+    .select-option-list-wrapper {
+      border-radius: $border-radius;
+    }
+
+    .select-option-list {
+      border-radius: $border-radius;
+      border: 1px solid $border-color;
+      margin-top: 2px;
+
+      &__item {
+        &:first-child {
+          border: 0;
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: $border-radius;
+        }
+
+        &:last-child {
+          border: 0;
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
+      }
+    }
+  }
+
+
+  // 當select-type是material模式時的預設文字＋右側圖示樣式
+  @else if $select-type=='material' {
+    .select-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: all .2s ease;
+    }
+
+    .select-header {
+      border-bottom: $underline-width solid $underline-color;
+    }
+
+    &.collapsed {
+      .select-header {
+        border-bottom: $underline-width solid $main-text-color;
+      }
+    }
+
+    select.hidden-select:not([value="default"]) {
+      ~.select-label {
+        transform: translateY(-20px);
+        // top: -20px;
+        opacity: 1;
+        color: $main-text-color;
+        font-size: 14px;
+      }
+    }
+  }
+}

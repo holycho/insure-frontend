@@ -1,0 +1,57 @@
+[
+  {
+    "paramOrder": "1",
+    "paramValue": "0",
+    "paramText": "0萬"
+  },
+  {
+    "paramOrder": "2",
+    "paramValue": "10000",
+    "paramText": "1萬"
+  },
+  {
+    "paramOrder": "3",
+    "paramValue": "20000",
+    "paramText": "2萬"
+  },
+  {
+    "paramOrder": "4",
+    "paramValue": "30000",
+    "paramText": "3萬"
+  },
+  {
+    "paramOrder": "5",
+    "paramValue": "40000",
+    "paramText": "4萬"
+  },
+  {
+    "paramOrder": "6",
+    "paramValue": "50000",
+    "paramText": "5萬"
+  },
+  {
+    "paramOrder": "7",
+    "paramValue": "60000",
+    "paramText": "6萬"
+  },
+  {
+    "paramOrder": "8",
+    "paramValue": "70000",
+    "paramText": "7萬"
+  },
+  {
+    "paramOrder": "9",
+    "paramValue": "80000",
+    "paramText": "8萬"
+  },
+  {
+    "paramOrder": "10",
+    "paramValue": "90000",
+    "paramText": "9萬"
+  },
+  {
+    "paramOrder": "11",
+    "paramValue": "100000",
+    "paramText": "10萬"
+  }
+]

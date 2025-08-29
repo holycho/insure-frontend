@@ -1,0 +1,109 @@
+/// @example 輪播設定
+/// @param {Numbers}   $pagination-size [20px] - 頁碼點點的大小
+/// @param {Colors}    $navigation-color [red] - prev/next的顏色
+/// @param {Colors}    $pagination-color [grey] - 頁碼點點的顏色
+/// @param {Colors}    $pagination-active-color [red] - 頁碼點點actived時的顏色
+
+
+@mixin nxjq-carousel( //
+  $pagination-color: $grey,
+  $pagination-active-color: $red,
+  $pagination-size:20px,
+  $navigation-color: $red //
+
+) {
+
+
+  width: 100%;
+
+  .nxjq-carousel__shell {
+    overflow: hidden;
+  }
+
+  .nxjq-carousel__inner {
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .nxjq-carousel__item {
+    display: inline-block;
+    vertical-align: middle;
+    user-select: none;
+
+    img {
+      pointer-events: none;
+    }
+  }
+
+  .nxjq-carousel__pagination {
+    display: flex;
+
+    &-children {
+      width: $pagination-size;
+      height: $pagination-size;
+      border-radius: 50%;
+      background-color: $pagination-color;
+      position: relative;
+      text-align: center;
+
+      &--active {
+        background-color: $pagination-active-color;
+      }
+
+      &-inner {
+        display: none;
+      }
+
+
+      &-link {
+        display: block;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+      }
+
+      &-number {
+        position: relative;
+        display: none;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      +.nxjq-carousel__pagination-children {
+        margin-left: 20px;
+      }
+    }
+  }
+
+
+  .nxjq-carousel__navigation {
+    &-children {
+      display: inline-block;
+
+      &-link {
+        font-size: pxToRem(16px);
+        color: $navigation-color;
+
+
+      }
+
+      &--disable {
+        cursor: not-allowed;
+
+        >* {
+          cursor: not-allowed;
+        }
+
+      }
+
+      +.nxjq-carousel__navigation-children {
+        margin-left: 20px;
+      }
+    }
+  }
+}

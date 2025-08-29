@@ -1,0 +1,230 @@
+.checkbox-01 {
+  @include nxjq-checkbox( //
+    $unchecked-bgColor:$gs000,
+    $checkItem-size:26px,
+    $unchecked-borderColor:$CI02,
+    $checked-color:$CI02 //
+  );
+  position: relative;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+
+  label {
+    display: inline-flex;
+    align-items: flex-start;
+    margin-bottom: 0;
+
+    span {
+      flex-shrink: 0;
+
+    }
+
+    .text {
+      flex-shrink: 1;
+      word-break: break-all;
+      min-width: 0;
+    }
+
+    .descrp {
+      @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+      margin-top: 4px;
+      color: $gs006;
+    }
+  }
+
+  input[type="checkbox"]+label {
+    span {
+      border-width: 1px;
+      margin-top: 0;
+    }
+  }
+
+
+
+  input[disabled]+label {
+    span {
+      border: 1px solid $gs004;
+      background-color: transparentize($gs003, 0.5);
+    }
+
+    .text {
+      color: $gs005
+    }
+  }
+
+  .text {
+    color: $gs008;
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+
+  }
+
+  &--wrap,
+  &--wrap-full {
+    label {
+      flex-shrink: 0;
+    }
+
+    @include rwd(450px) {
+      height: auto;
+      flex-wrap: wrap;
+    }
+  }
+
+  &--wrap &__extension {
+    margin-left: 8px;
+    flex-shrink: 1;
+
+    @include rwd(450px) {
+      flex-shrink: 0;
+      height: auto;
+      margin-top: 8px;
+      width: auto;
+      margin-left: 36px;
+
+      >* {
+        top: 0;
+        transform: none !important;
+        width: auto;
+      }
+    }
+  }
+
+  &--wrap-full &__extension {
+    margin-left: 8px;
+
+    @include rwd(450px) {
+      height: auto;
+      width: auto;
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      >* {
+        top: 0;
+        transform: none !important;
+        width: auto;
+      }
+    }
+
+    @include rwd(450px) {
+      margin-left: 0;
+      margin-top: 8px;
+    }
+
+  }
+
+  &--wrap-full &__extension+&__extension {
+    margin-left: 8px;
+
+    @include rwd(773px) {
+      // 因為是採auto-wrap, 所以很難預測折行點,只能hard-code了
+      margin-top: 8px;
+    }
+
+    @include rwd(450px) {
+      margin-left: 0;
+    }
+
+  }
+
+  &__extension {
+    flex-shrink: 1;
+    height: 26px;
+    position: relative;
+    margin-left: 8px;
+
+    &--grow {
+      flex-grow: 1;
+    }
+
+    &--size-1 {
+      flex-basis: 226px;
+      width: 226px;
+
+      >* {
+        width: 100%;
+      }
+    }
+
+    &--size-2 {
+      flex-basis: 186px;
+      width: 186px;
+
+      @include rwd(450px) {
+        flex-grow: 1;
+        width: auto;
+      }
+
+      >* {
+        width: 100%;
+      }
+
+    }
+
+    >* {
+      top: 50%;
+      transform: translateY(-50%) !important;
+    }
+
+    &--flex {
+      display: flex;
+      align-items: center;
+      flex-basis: auto;
+
+      @include rwd(480px) {
+        // 因為是採auto-wrap, 所以很難預測折行點,只能hard-code了
+        flex-basis: 150px;
+        flex-shrink: 1;
+      }
+
+
+      >* {
+        top: 0%;
+        transform: none !important;
+      }
+    }
+
+  }
+
+  &__extension-cell {
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
+    position: relative;
+    white-space: nowrap;
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+
+    &--shrink {
+      flex-shrink: 1;
+      flex-grow: 0;
+    }
+
+    &--size-1 {
+      flex-basis: 186px;
+      width: 186px;
+    }
+  }
+
+  &__extension-cell+&__extension-cell {
+    margin-left: 8px;
+  }
+
+  &__extension-cell &__text {
+    margin-left: 0;
+  }
+}
+
+.checkbox-group-01 {
+  display: flex;
+
+  &__item {
+    flex: none;
+    flex-shrink: 1;
+    flex-grow: 0;
+  }
+
+  &__item+&__item {
+    margin-left: 40px;
+  }
+}

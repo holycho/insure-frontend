@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>Rectangle 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="39" height="39"></rect>
+        <path d="M31.1966036,11.6797021 L25.5952283,16.9834904 L29.1464722,31.2920822 L27.0270387,33.4112659 L20.2458015,22.3529094 L20.0899259,22.1959569 L13.1145998,28.8009187 C13.0748753,28.8406426 13.0301852,28.8708673 12.9906766,28.9080006 L12.7663625,34 L5,26.2346253 L10.0903537,26.0111784 C10.1283511,25.9699432 10.1587922,25.9261174 10.1983008,25.8855299 L16.8025048,18.9103154 L16.7468041,18.8539679 L5.58960709,11.9741771 L7.70882467,9.85477751 L21.9526612,13.4726749 L27.3206549,7.80295174 C28.391706,6.73191768 30.1272796,6.73278125 31.1974672,7.80295174 C32.2676548,8.87312223 32.2676548,10.608668 31.1966036,11.6797021 Z" id="path-3"></path>
+    </defs>
+    <g id="页面1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="EC首頁-1440-1" transform="translate(-176.000000, -639.000000)">
+            <g id="Group-5" transform="translate(0.000000, 70.000000)">
+                <g id="Group-4" transform="translate(120.000000, 554.000000)">
+                    <g id="Rectangle-3" transform="translate(51.000000, 8.000000)">
+                        <g id="Mask">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g></g>
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <use fill="#FFFFFF" xlink:href="#path-3"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

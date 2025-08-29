@@ -1,0 +1,17 @@
+.inside-page-03-banner {
+  height: 440px;
+  position: relative;
+  overflow-y: hidden;
+
+  @include rwd($medium-small-screen) {
+    height: 235px;
+  }
+
+  &__bg {
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+    z-index: 1;
+  }
+
+}

@@ -1,0 +1,142 @@
+// Plugin: sweetalert2
+
+// 設定 scrollbarPadding 為 false，此處不需再設定
+// .swal2-shown {
+//   overflow: unset !important;
+//   padding-right: 0px !important;
+// }
+
+.swal2-container {
+  padding: 0 !important;
+  z-index: 1000 !important;
+  .swal2-popup {
+    max-width: 560px;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .4);
+    padding: 48px;
+    &.swal2-show {
+      animation: slideIn .3s 0s ease-out 1 normal none running;
+      @keyframes slideIn {
+        from { transform: translate(0, -50px); }
+        to { transform: none; }
+      }
+    }
+    &.swal2-hide {
+      animation: none;
+    }
+  }
+  .swal2-close {
+    width: 20px;
+    height: 20px;
+    background-image: url('../../img/cross.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 32px;
+    right: 32px;
+    &:hover {
+      background-image: url('../../img/cross.png');
+    }
+  }
+  .swal2-header {
+    padding: 0;
+  }
+  .swal2-title {
+    color: #000000;
+    font-size: 1.75rem;
+    font-weight: bold;
+    line-height: 1.29;
+    margin: 0;
+  }
+  .swal2-content {
+    padding: 0;
+  }
+  .swal2-html-container {
+    color: #000000;
+    font-size: 1rem;
+    line-height: 1.63;
+    margin-top: 2px;
+  }
+  .swal2-actions {
+    margin-top: 32px;
+  }
+  .swal2-confirm {
+    width: 274px;
+    height: 44px;
+    // background-image: linear-gradient(135deg, #D57F91 0%, #D67FAB 15.73%, #B65095 51.64%, #922E8E 100%) !important;
+    background-color: $CI-gradient-01;
+    // background-color: #9D0246 !important;
+    background-color: $CI01 !important;
+    border-radius: 999px !important;
+    box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, .2);
+    font-size: 1rem !important;
+    line-height: 1.25;
+    margin: 0;
+    transition: background-color 500ms, box-shadow 500ms;
+    &.swal2-styled {
+      &:focus {
+        box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, .2);
+      }
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+  .swal2-cancel {
+    background-color: transparent !important;
+    // color: #7F0B78 !important;
+    color: $color-02 !important;
+    margin-left: 70px;
+    padding: 0;
+    &.swal2-styled {
+      &:hover {
+        background-image: none !important;
+      }
+    }
+  }
+}
+
+.swal2-custom-dialog {
+  .swal2-html-container {
+    text-align: left;
+  }
+}
+
+.swal2-text-align-justify-dialog {
+  .swal2-html-container {
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .swal2-container {
+    .swal2-popup {
+      width: calc(100% - 54px);
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+    .swal2-close {
+      width: 16px;
+      height: 16px;
+      top: 24px;
+      right: 24px;
+    }
+    .swal2-confirm {
+      width: 210px;
+      height: 40px;
+    }
+    .swal2-cancel {
+      width: 210px;
+      height: 40px;
+      margin: auto 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .swal2-container {
+    .swal2-title {
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,156 @@
+.ui-widget.ui-widget-content {
+  border: none;
+}
+
+.ui-datepicker {
+  height: 354px;
+  box-shadow:
+    0 1.5px 4.7px rgba(0, 0, 0, 0.057),
+    0 5.1px 15.9px rgba(0, 0, 0, 0.083),
+    0 23px 71px rgba(0, 0, 0, 0.14);
+
+  border-radius: 10px;
+  width: auto;
+  padding: 10px;
+
+  .ui-datepicker-header {
+    background-color: transparent;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ui-icon {
+    width: 50%;
+    display: block;
+    height: 50%;
+    background-position: 0 0;
+    background-size: cover;
+  }
+
+  .ui-datepicker-prev,
+  .ui-datepicker-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+
+  .ui-datepicker-prev {
+    span {
+      transform: rotate(180deg);
+      transform-origin: 50% 50%;
+    }
+  }
+
+  .ui-datepicker-next {}
+
+  .ui-datepicker-prev span,
+  .ui-datepicker-next span {
+    left: 0;
+    top: 0;
+    margin-left: 0;
+    margin-top: 0;
+    position: relative;
+    padding: 0;
+  }
+
+  .ui-widget-header .ui-icon {
+    background-image: url(../../../img/chevron-right.png);
+  }
+
+
+
+
+  .ui-datepicker-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  select.ui-datepicker-year,
+  select.ui-datepicker-month {
+    width: auto;
+    flex: none;
+    border: none;
+    background-color: $gs002;
+    border-radius: 999px;
+    text-align: center;
+    padding: 5px 10px;
+    margin: 0 10px;
+  }
+
+  select.ui-datepicker-month {
+    margin-right: 0;
+  }
+
+  .ui-datepicker-calendar {
+    margin: 0;
+
+    thead {
+      tr {
+        th {}
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          position: relative;
+          // padding: 0;
+
+          .ui-state-default {
+            background-color: transparent;
+            text-align: center;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0;
+            width: 40px;
+
+            &:after {
+              content: '';
+              display: block;
+              padding-bottom: 100%;
+            }
+
+            &:before {
+              content: '';
+              display: block;
+              height: calc(100% - 6px);
+              width: calc(100% - 6px);
+              border-radius: 50%;
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              margin: 0 auto;
+              z-index: -1;
+            }
+          }
+
+          .ui-state-active {
+            color: $gs000;
+
+
+            &:before {
+              background-color: $CI02;
+            }
+          }
+
+          // &.ui-state-disabled {
+          //   font-size: 0;
+          // }
+        }
+      }
+    }
+  }
+}

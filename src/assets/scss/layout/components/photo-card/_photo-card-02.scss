@@ -1,0 +1,92 @@
+.photo-card-02 {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0);
+  border-radius: 18px;
+  background-color: $gs000;
+  transition: 500ms box-shadow;
+  min-height: 210px; // 追加
+
+  &:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  @include rwd($medium-small-screen) {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    text-align: left;
+    padding-bottom: 32px;
+  }
+
+  &__former {
+    flex: none;
+  }
+
+  &__latter {
+    flex: 1;
+    margin-left: 24px;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0;
+      margin-top: 24px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  &__photo {
+    width: 225px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    font-size: 0;
+    border-radius: 12px;
+    overflow: hidden; // 追加
+
+    @include rwd($medium-small-screen) {
+      width: 100%;
+      height: 35;
+    }
+  }
+
+  &__title {
+    @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-small-screen) {
+      @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+
+  }
+
+  &__content {
+    margin-top: 8px;
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    @include Body151-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__descrp {
+    margin-top: 24px;
+    display: flex;
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs006;
+
+    >*+* {
+      margin-left: 8px;
+
+      @include rwd($smaller-screen) {
+        margin-top: 8px;
+        margin-left: 0;
+      }
+    }
+
+
+
+    @include rwd($medium-small-screen) {
+      margin-top: 12px;
+    }
+
+    @include rwd($smaller-screen) {
+      display: block;
+    }
+  }
+}

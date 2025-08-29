@@ -1,0 +1,17 @@
+[
+  {
+    "paramOrder": "1",
+    "paramText": "一般職業",
+    "paramValue": "01"
+  },
+  {
+    "paramOrder": "2",
+    "paramText": "註一職業",
+    "paramValue": "02"
+  },
+  {
+    "paramOrder": "3",
+    "paramText": "軍火商、博弈產業/公司",
+    "paramValue": "03"
+  }
+]

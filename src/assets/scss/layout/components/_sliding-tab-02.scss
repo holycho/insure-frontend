@@ -1,0 +1,89 @@
+$type-2-gradient :linear-gradient(270.45deg, #B99742 0%, #E2C989 100%);
+
+.sliding-tab-02 {
+  user-select: none;
+
+  &__pc {
+    @include nxjq-sliding-tab( //
+      $type:'toggle',
+      $shell-border-radius:10px,
+      $shell-background-color:transparent,
+      $nav-item-active-border-radius: 8px,
+      $nav-item-padding:14px,
+      $shell-gap:5px,
+      $main-color:$gs000,
+      $toggle-mode-gap-border-color:transparent,
+      $nav-item-text-color:$gs000,
+      $nav-item-active-text-color:$CI01);
+
+    @include Callout182-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-screen-2) {
+      @include Callout152-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    .nxjq-sliding-tab-botline .nxjq-sliding-tab-botline__inner {
+      transition: 750ms;
+    }
+
+    .nxjq-sliding-tab-nav-shell {
+      background-image: $CI-gradient-01;
+    }
+
+    .nxjq-sliding-tab-container__pane {
+      padding-top: 0;
+    }
+
+
+
+
+    @include rwd($medium-screen-2) {
+      display: none;
+    }
+  }
+
+  &--inline &__pc .nxjq-sliding-tab-nav-shell {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  &--inline &__pc .nxjq-sliding-tab-nav__item {
+    flex: none;
+  }
+
+  &__mobile {
+    @include nxjq-select( //
+      $select-type:'borderRadius',
+      $border-color:$gs004,
+      $text-position:'left',
+      $main-text-color:$gs008,
+      $select-height:48px,
+      $main-bg:$gs000 //
+    );
+    display: none;
+    cursor: pointer;
+
+    @include nxjq-customize-select-base-01();
+
+    @include rwd($medium-screen-2) {
+      display: block;
+    }
+
+    &.init {
+      .select-header {
+        color: $gs007;
+      }
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__pane-container {
+    margin-top: 24px;
+  }
+
+
+
+}

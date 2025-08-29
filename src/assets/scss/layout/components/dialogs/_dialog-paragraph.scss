@@ -1,0 +1,22 @@
+[data-dialog-id] {
+  ul.dialog-inner-list {
+    &--decimal {
+      padding-left: 1.5em;
+      @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+      color: $gs007;
+      list-style-type: decimal;
+
+      @include rwd($medium-screen-2) {
+        @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+      }
+
+      >li+li {
+        margin-top: 24px;
+
+        @include rwd($medium-screen-2) {
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}

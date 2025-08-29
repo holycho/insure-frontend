@@ -1,0 +1,197 @@
+[
+  {
+    "buildingInfo": {
+      "buildingArea": 20.00,
+      "buildingAreaM": 66.12,
+      "buildingCityName": "台北市",
+      "buildingFullAddress": "台北市內湖區瑞光路100號",
+      "buildingMaterial": "鋼骨混擬土(水泥)造",
+      "buildingRoof": "水泥平屋頂",
+      "buildingYear": "060 ",
+      "businessFlag": "N",
+      "decorationCost": 20000,
+      "earthquakeAmount": 60,
+      "endTime": "113/02/22",
+      "extraMovablePropAmount": 20,
+      "fireAmount": 100,
+      "movablePropertyPrice": 37,
+      "policyOthers": "否",
+      "startTime": "112/02/22",
+      "storeyAbove": 3
+    },
+    "policyDelivery": {
+      "deliveryName": "電子保單",
+      "email": "tpisoftware.insurtech@tpinformation.com.tw"
+    },
+    "policyInfo": {
+      "applyNo": "3411F0713000110",
+      "discount": 69,
+      "policyNo": "FIRE00001F07081",
+      "policyStatus": "投保完成",
+      "products": [
+        {
+          "campaignName": "住宅火災保險（基本型）",
+          "feeAfterDiscount": 223,
+          "groupName": "住宅火災保險",
+          "groupOrder": 1,
+          "planBriefDesc": "可自行輸入或選擇建議保額",
+          "planCode": "A1",
+          "planShowName": "住宅火災保險",
+          "productProfits": [
+            {
+              "discount": 0,
+              "displayAmt": "100萬元",
+              "profitDescZhTw": "建築物",
+              "profitId": "B"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "20萬元",
+              "profitDescZhTw": "加保建築物內動產",
+              "profitId": "MPIB"
+            }
+          ]
+        },
+        {
+          "campaignName": "住宅火災保險（基本型）",
+          "feeAfterDiscount": 223,
+          "groupName": "住宅火災保險",
+          "groupOrder": 1,
+          "planBriefDesc": "",
+          "planCode": "B1",
+          "planShowName": "住宅第三人責任基本保險",
+          "productProfits": [
+            {
+              "discount": 0,
+              "displayAmt": "100萬元",
+              "profitDescZhTw": "每一意外事故體傷之保險金額",
+              "profitId": "AOP-PI"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "200萬元",
+              "profitDescZhTw": "每一意外事故死亡之保險金額",
+              "profitId": "AOP-D"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "200萬元",
+              "profitDescZhTw": "每一意外事故財物損害責任之保險金額",
+              "profitId": "AOA-PL"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "1000萬元",
+              "profitDescZhTw": "每一意外事故體傷及死亡責任之保險金額",
+              "profitId": "AOA-PID"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "2400萬元",
+              "profitDescZhTw": "保險期間內之最高賠償金額",
+              "profitId": "AGG-HR"
+            }
+          ]
+        },
+        {
+          "campaignName": "住宅火災保險（基本型）",
+          "feeAfterDiscount": 223,
+          "groupName": "住宅火災保險",
+          "groupOrder": 1,
+          "planBriefDesc": "每一次事故賠償金額以新臺 幣一萬元為限，保險期間內累計賠償金額最高以新臺幣二萬元為限。 \t",
+          "planCode": "C1",
+          "planShowName": "住宅玻璃保險",
+          "productProfits": [
+            {
+              "discount": 0,
+              "displayAmt": "1萬元",
+              "profitDescZhTw": "每一次事故賠償金額",
+              "profitId": "AOP-G"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "2萬元",
+              "profitDescZhTw": "保險期間內累計賠償金額",
+              "profitId": "AGG-G"
+            }
+          ]
+        },
+        {
+          "campaignName": "住宅火災保險（基本型）",
+          "feeAfterDiscount": 223,
+          "groupName": "住宅火災保險",
+          "groupOrder": 1,
+          "planBriefDesc": "",
+          "planCode": "E1",
+          "planShowName": "住宅颱風及洪水災害補償保險",
+          "productProfits": [
+            {
+              "discount": 0,
+              "displayAmt": "9千元",
+              "profitDescZhTw": "第一區 新竹縣（市）、臺中市、嘉義縣（市）、苗栗縣、南投縣、 彰化縣、雲林縣",
+              "profitId": "W1"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "8千元",
+              "profitDescZhTw": "第二區 臺北市、新北市、臺南市、高雄市、桃園市、澎湖縣、 金門馬祖地區",
+              "profitId": "W2"
+            },
+            {
+              "discount": 0,
+              "displayAmt": "7千元",
+              "profitDescZhTw": "第三區 基隆市、宜蘭縣、花蓮縣、臺東縣、屏東縣",
+              "profitId": "W3"
+            }
+          ]
+        },
+        {
+          "campaignName": "",
+          "feeAfterDiscount": 540,
+          "groupName": "住宅地震基本保險",
+          "groupOrder": 2,
+          "planBriefDesc": "保額-自行計算，不能修改",
+          "planCode": "R0",
+          "planShowName": "住宅地震基本保險",
+          "productProfits": [
+            {
+              "discount": 540,
+              "displayAmt": "60萬",
+              "profitDescZhTw": "建築物(不包括動產及裝潢)",
+              "profitId": "BWMPD"
+            }
+          ]
+        }
+      ],
+      "totalFeeDiscount": 763,
+      "totalFeeOriginal": 832,
+      "isInsuCertPrint": "Y",
+      "isInsuFailure": "N"
+    },
+    "policyInsured": {
+      "address": "內湖路一段555號",
+      "areaName": "內湖區",
+      "bankContact": "",
+      "birthday": "077/08/08",
+      "cityName": "台北市",
+      "contactDistrict": "",
+      "contactFullAddress": "",
+      "contactZipCode": "",
+      "contactZipName": "",
+      "email": "tpisoftware.insurtech@tpinformation.com.tw",
+      "id": "A151273978",
+      "isInsuredOthers": "否",
+      "isSendToBank": "否",
+      "mobile": "0932978522",
+      "mortgageBankName": "臺灣銀行",
+      "mortgageBranchName": "營業部",
+      "mortgageName": "臺灣銀行 營業部",
+      "name": "林寶寶",
+      "occupationName": "一般職業",
+      "postCode": "114",
+      "telAreaNo": "02",
+      "telExtNo": "001",
+      "telNo": "21111111"
+    }
+  }
+]

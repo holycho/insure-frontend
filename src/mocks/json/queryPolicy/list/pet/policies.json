@@ -1,0 +1,41 @@
+[
+  {
+    "applyNo": "3421P0713000110",
+    "bcType": "C",    
+    "policyNo": "PET000001T07081",
+    "startTime": "106/01/15",
+    "endTime": "107/01/15",
+    "remark": "咪咪",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421P0713000120",
+    "bcType": "C",    
+    "policyNo": "PET000001T07023",
+    "startTime": "107/07/01",
+    "endTime": "108/07/01",
+    "remark": "小白",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421P0713000132",
+    "bcType": "C",    
+    "policyNo": "PET003041T18055",
+    "startTime": "108/05/09",
+    "endTime": "109/05/09",
+    "remark": "阿圓",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "origin": {
+    "data": {
+      "projectCode": "B2C",
+      "fireAmount": 0,
+      "raiseAmount": 0,
+      "earthquakeAmount": 0,
+      "liabilityAmount": 0,
+      "propertyAmount": 0,
+      "firePremium": 564,
+      "raisePremium": 103,
+      "earthquakePremium": 1350,
+      "liabilityPremium": 0,
+      "propertyPremium": 0
+    },
+    "total": 2017
+  },
+  "discount": {
+    "data": {
+      "projectCode": "B2C",
+      "fireAmount": 0,
+      "raiseAmount": 0,
+      "earthquakeAmount": 0,
+      "liabilityAmount": 0,
+      "propertyAmount": 0,
+      "firePremium": 433,
+      "raisePremium": 79,
+      "earthquakePremium": 1350,
+      "liabilityPremium": 0,
+      "propertyPremium": 0
+    },
+    "total": 1862
+  }
+}

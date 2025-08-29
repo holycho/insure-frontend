@@ -1,0 +1,50 @@
+[
+  {
+    "applyNo": "3421C0713000110",
+    "bcType": "C",    
+    "policyNo": "MOTO0021C0011",
+    "startTime": "106/01/01",
+    "endTime": "107/01/01",
+    "vPolicyNo": "MOTO0031C00022",
+    "vStartTime": "106/01/01",
+    "vEndTime": "107/01/01",
+    "remark": "JIK-956",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421C0713000120",
+    "bcType": "C",    
+    "policyNo": "MOTO0081C0033",
+    "startTime": "107/01/01",
+    "endTime": "108/01/01",
+    "vPolicyNo": "MOTO0094C0054",
+    "vStartTime": "107/01/01",
+    "vEndTime": "108/01/01",
+    "remark": "JIK-956",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421C0713000132",
+    "bcType": "C",    
+    "policyNo": "MOTO0101C3105",
+    "startTime": "108/01/01",
+    "endTime": "109/01/01",
+    "vPolicyNo": "MOTO0201C4206",
+    "vStartTime": "108/01/01",
+    "vEndTime": "109/01/01",
+    "remark": "JIK-956",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  }
+]

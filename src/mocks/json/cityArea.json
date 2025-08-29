@@ -1,0 +1,135 @@
+[
+  {
+    "cityId" : "100",
+    "cityName" : "台北市",
+    "area": [
+      {
+        "areaId": "100",
+        "areaName": "中正區",
+        "postCode": "100"
+      },
+      {
+        "areaId": "101",
+        "areaName": "大同區",
+        "postCode": "103"
+      },
+      {
+        "areaId": "102",
+        "areaName": "中山區",
+        "postCode": "104"
+      },
+      {
+        "areaId": "103",
+        "areaName": "松山區",
+        "postCode": "105"
+      },
+      {
+        "areaId": "104",
+        "areaName": "大安區",
+        "postCode": "106"
+      },
+      {
+        "areaId": "105",
+        "areaName": "萬華區",
+        "postCode": "108"
+      },
+      {
+        "areaId": "106",
+        "areaName": "信義區",
+        "postCode": "110"
+      },
+      {
+        "areaId": "107",
+        "areaName": "士林區",
+        "postCode": "111"
+      },
+      {
+        "areaId": "108",
+        "areaName": "北投區",
+        "postCode": "112"
+      },
+      {
+        "areaId": "109",
+        "areaName": "內湖區",
+        "postCode": "114"
+      },
+      {
+        "areaId": "110",
+        "areaName": "南港區",
+        "postCode": "115"
+      },
+      {
+        "areaId": "111",
+        "areaName": "文山區",
+        "postCode": "116"
+      }
+    ]
+  },
+  {
+    "cityId" : "110",
+    "cityName" : "基隆市",
+    "area": [
+      {
+        "areaId": "112",
+        "areaName": "仁愛區",
+        "postCode": "200"
+      },
+      {
+        "areaId": "113",
+        "areaName": "信義區",
+        "postCode": "201"
+      },
+      {
+        "areaId": "114",
+        "areaName": "中正區",
+        "postCode": "202"
+      },
+      {
+        "areaId": "115",
+        "areaName": "中山區",
+        "postCode": "203"
+      },
+      {
+        "areaId": "116",
+        "areaName": "安樂區",
+        "postCode": "204"
+      },
+      {
+        "areaId": "117",
+        "areaName": "暖暖區",
+        "postCode": "205"
+      },
+      {
+        "areaId": "118",
+        "areaName": "七堵區",
+        "postCode": "206"
+      }
+    ]
+  },
+  {
+    "cityId" : "260",
+    "cityName" : "高雄市",
+    "area": [
+      {
+        "areaId": "357",
+        "areaName": "新興區",
+        "postCode": "800"
+      },
+      {
+        "areaId": "358",
+        "areaName": "前金區",
+        "postCode": "801"
+      },
+      {
+        "areaId": "359",
+        "areaName": "苓雅區",
+        "postCode": "802"
+      },
+      {
+        "areaId": "360",
+        "areaName": "鹽埕區",
+        "postCode": "803"
+      }
+    ]
+  }
+]

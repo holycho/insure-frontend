@@ -1,0 +1,103 @@
+.radio-group-01 {
+  display: flex;
+
+  &__item {
+    flex: none;
+  }
+}
+
+.radio-group-01-item {
+  display: flex;
+  @include flex-width(128px);
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid $gs005;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+
+  }
+
+  +.radio-group-01-item {
+    margin-left: -1px;
+    flex-basis: 129px;
+  }
+
+  &:first-child &__label {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  &:last-child &__label {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  &__input:checked:not([disabled])+&__label {
+    border: 1px solid $CI02 !important;
+    position: relative;
+    z-index: 2;
+
+  }
+
+  &__input:checked+&__label &__icon {
+    position: relative;
+    display: block;
+    color: $CI02;
+    border: 2px solid currentColor;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: currentColor;
+      border-radius: 50%;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__input[disabled]:checked+&__label &__icon {
+    color: $gs005;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__icon {
+    width: 26px;
+    border: 2px solid $gs004;
+    height: 26px;
+    border-radius: 50%;
+  }
+
+  &__text {
+    margin-top: 2px;
+    @include Body161-Regular1-Light2-Default-Color2-Center-Aligned();
+
+    &--small {
+      @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+      color: $gs006
+    }
+  }
+
+  &__input[disabled]+&__label &__text {
+    color: $gs006;
+  }
+}

@@ -1,0 +1,247 @@
+.text-collection {
+
+  &__strong-red,
+  &__strong-gs008 {
+    @include Tilte182-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-screen-2) {
+      @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+  }
+
+  &__strong {
+
+    &-gs008 {
+      color: $gs008;
+    }
+
+    &-red {
+      color: #FF0200;
+    }
+
+  }
+
+  &__stronger-CI02 {
+    @include Body202-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI02;
+
+    @include rwd($medium-screen-2) {
+      @include Body182-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+  }
+
+  &__title {
+    @include Tilte182-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+
+    &.margin-bottom-8 {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__description {
+    &.display-flex {
+      display: flex;
+    }
+
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: #333333;
+
+    &--m {
+      @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    @include rwd($medium-screen-2) {
+      @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    .number {
+      margin-right: 16px;
+    }
+
+    &--mark {
+      text-decoration: underline;
+      font-weight: 700;
+      color: $CI02;
+    }
+
+  }
+
+  &__ul &__li {
+    display: flex;
+    align-items: flex-start;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      min-width: 5px;
+      min-height: 5px;
+      border-radius: 50%;
+      background-color: $gs008;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+
+    &.text-collection__description--m {
+      &::before {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  &__ul &__li--number {
+
+    display: flex;
+    align-items: flex-start;
+
+    &__number {
+      display: inline-block;
+      margin-right: 0.2em;
+    }
+  }
+
+  &__with-right-arrow {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI02;
+
+    // &::after {
+    //   content: "";
+    //   display: inline-block;
+    //   margin-left: 7px;
+    //   background: url('../../../img/right-arrow.png') no-repeat;
+    //   background-size: contain;
+    //   width: 6px;
+    //   height: 10px;
+    // }
+
+    &__a {
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $CI02;
+      }
+
+    }
+
+    &+& {
+      margin-left: 13px;
+    }
+  }
+
+  &__with-left-clock {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI02;
+
+    &.margin-top-negative-5 {
+      display: block;
+      margin-top: -5px;
+    }
+
+    &::before {
+      content: "";
+      display: inline-block;
+      position: relative;
+      margin-right: 4px;
+      top: 6px;
+      background: url('../../../img/clock.png') no-repeat;
+      background-size: contain;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__without-clock {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI02;
+
+    &.margin-top-negative-5 {
+      display: block;
+    }
+  }
+
+  // 相互之間的間距
+  &__strong-red+&__description {
+    margin-top: 12px;
+  }
+
+  &__description+&__description,
+  &__strong-gs008+&__strong-gs008 {
+    margin-top: 8px;
+  }
+
+  &__title+&__description {
+    margin-top: 12px;
+  }
+
+  &__description+&__title {
+    margin-top: 40px;
+  }
+
+}
+
+
+
+
+.show-when-smaller-than-medium-screen-2 {
+  display: none;
+
+  @include rwd($medium-screen-2 - 1) {
+    display: block;
+  }
+}
+
+.show-when-smaller-than-1001 {
+  display: none;
+
+  @include rwd(1000px) {
+    display: block;
+  }
+}
+
+.hide-when-smaller-than-medium-screen-2 {
+  display: block;
+
+  @include rwd($medium-screen-2 - 1) {
+    display: none;
+  }
+}
+
+.margin-right-16 {
+  margin-right: 16px;
+}
+
+.smaller-than-medium-screen-2-margin-top-56 {
+  @include rwd($medium-screen-2 - 1) {
+    margin-top: 56px;
+  }
+}
+
+.margin-bottom-56 {
+  margin-bottom: 56px;
+}
+
+.smaller-than-medium-screen-2-margin-bottom-48 {
+  @include rwd($medium-screen-2 - 1) {
+    margin-bottom: 48px;
+  }
+}
+
+.margin-top-80 {
+  margin-top: 80px;
+}
+
+.smaller-than-medium-screen-2-margin-top-40 {
+  @include rwd($medium-screen-2 - 1) {
+    margin-top: 40px;
+  }
+}
+
+.medium-screen-2-margin-top-minus-100 {
+  @include rwd($medium-screen-2) {
+    margin-top: -100px;
+  }
+}

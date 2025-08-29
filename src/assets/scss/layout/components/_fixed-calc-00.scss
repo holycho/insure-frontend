@@ -1,0 +1,236 @@
+$pc-height: 113px;
+$mobile-height: 96px;
+
+.fixed-calc-00 {
+
+
+  padding-bottom: $pc-height;
+
+  @include rwd($medium-screen-2) {
+    padding-bottom: $mobile-height;
+  }
+
+
+  &__shell {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 600;
+  }
+
+  &__foot-bar {}
+
+  &__collapse-block {
+    display: none;
+  }
+}
+
+.fixed-calc-00-foot-bar {
+  box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.1);
+  background-color: $gs000;
+  width: 100%;
+  height: $pc-height;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+  @include rwd($medium-screen-2) {
+    height: $mobile-height;
+  }
+
+
+  &__inner {
+    display: flex;
+    flex: none;
+    position: relative;
+
+    @include rwd($medium-screen-2) {
+      width: 100%;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  &__descrp {
+    position: absolute;
+    left: 0;
+    text-align: right;
+    transform: translateX(-100%) translateX(-24px);
+
+    @include rwd($medium-screen-2) {
+      position: relative;
+      transform: none;
+      margin-right: 16px;
+      flex: none;
+    }
+  }
+
+  &__btn {
+    width: 370px;
+    flex-basis: 370px;
+    flex-grow: 1;
+    display: flex;
+    height: 44px;
+
+    @include rwd($medium-screen-2) {
+      flex-shrink: 1;
+    }
+  }
+
+  &__text {
+    text-align: right;
+
+    &--null {
+      color: $gs005;
+      position: relative;
+      @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+
+      @include rwd($medium-screen-2) {
+        @include Caption121-Regular1-Light2-Default-Color1-Left-Aligned();
+      }
+
+      display: inline-block;
+
+      &:after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $gs005;
+      }
+    }
+
+    &--prefixed {
+      &:before {
+        display: inline-block;
+        content: attr(data-prefix);
+      }
+    }
+
+    &--highlight {
+      @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+      color: $CI02;
+    }
+
+    &--prefixed#{&}--highlight {
+      &:before {
+        content: attr(data-prefix);
+        @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+
+        @include rwd($medium-screen-2) {
+          @include Callout142-Bold1-Light2-Default-Color1-Left-Aligned();
+        }
+
+        margin-right: 2px;
+      }
+    }
+
+  }
+}
+
+.fixed-calc-00-collapse-block {
+  background-color: $color-03;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &__inner {
+    max-width: $main-content-width-pc-2;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  &__title {
+    @include Tilte202-Bold1-Light2-Default-Color2-Center-Aligned();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+
+    &:after {
+      border: none;
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      transform: translateY(0%) rotate(135deg);
+      transform-origin: 50% 50%;
+      border-left: 2px solid $CI02 !important;
+      border-bottom: 2px solid $CI02 !important;
+      transition: 500ms;
+      margin-left: 10px;
+    }
+
+    .fixed-calc-00--collapsed & {
+      &:after {
+        transform: translateY(-50%) rotate(-45deg);
+      }
+    }
+  }
+
+  &__data-head {
+    display: flex;
+    align-items: center;
+  }
+
+  &__data-content {
+    padding-left: 16px;
+    padding-top: 12px;
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 1px;
+      position: absolute;
+      background-color: $CI01;
+      left: 0;
+      top: 0;
+      height: calc(100% - 5px);
+    }
+  }
+
+  &__data-line {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__ul {
+    margin-top: 24px;
+  }
+
+  &__li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    &:last-child {
+      padding-top: 16px;
+    }
+  }
+
+  &__li+&__li {
+    border-top: 1px solid $gs000;
+  }
+
+  &__head {}
+
+  &__content {}
+
+  &__text {
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+
+    &--bold {
+      @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+      color: $gs009;
+    }
+  }
+
+}

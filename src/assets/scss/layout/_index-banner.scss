@@ -1,0 +1,59 @@
+.index-banner {
+  height: 585px;
+  position: relative;
+
+  &__bg {
+    background-size: cover;
+    background-position: 45%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 100%;
+  }
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1136px;
+    padding-top: 156px;
+    padding-left: 40px;
+  }
+
+  &__title {
+    br {
+      display: none;
+    }
+
+    &--main {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -1.1px;
+    }
+
+    &--vice {
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.33;
+      letter-spacing: -.39px;
+    }
+  }
+
+  &__title+&__title {
+    margin-top: 8px;
+  }
+
+  &__btn {
+    width: 180px;
+  }
+
+  &__title+&__btn {
+    margin-top: 48px;
+  }
+}

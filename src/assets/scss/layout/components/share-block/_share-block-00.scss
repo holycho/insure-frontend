@@ -1,0 +1,93 @@
+.share-block-00 {
+  background-color: $gs000;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.0487325);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 40px 64px;
+
+
+
+  @include rwd($medium-screen-2) {
+    padding: 32px 20px;
+  }
+
+  &__former {}
+
+  &__latter {
+    margin-left: auto;
+  }
+
+  &__title {
+    display: flex;
+    @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+
+
+    @include rwd($medium-screen-2) {
+      display: block;
+      @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+  }
+
+  &__title+&__descrp {
+    margin-top: 4px;
+  }
+
+  &__descrp {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs006;
+
+    @include rwd($medium-screen-2) {
+      display: none;
+    }
+  }
+
+  &__btn {
+    width: 180px;
+
+    @include rwd($medium-screen-2) {
+      width: 100px;
+    }
+  }
+
+  &__social-media-wrapper {
+    display: flex;
+
+    >*+* {
+      margin-left: 16px;
+    }
+  }
+
+  &__social-media {
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  &__text+&__text {
+    margin-left: 8px;
+
+    @include rwd($medium-screen-2) {
+      margin-left: 0;
+    }
+  }
+
+  &__text {
+    &--highlight {
+      color: $CI02;
+    }
+  }
+
+  &__btn-wrapper {
+    margin: 40px 0px 8px 0px;
+    text-align: center;
+
+    @include rwd($medium-small-screen) {
+      margin-top: 24px;
+    }
+
+
+  }
+
+
+
+}

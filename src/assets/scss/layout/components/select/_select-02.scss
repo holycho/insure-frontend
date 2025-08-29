@@ -1,0 +1,32 @@
+.select-02 {
+  @include nxjq-select( //
+    $select-type:'borderRadius',
+    $border-color:$gs005,
+    $text-position:'left',
+    $main-text-color:$gs004,
+    $select-height:48px,
+    $main-bg:$gs000 //
+  );
+
+
+  @include nxjq-customize-select-base-01();
+  cursor: pointer;
+
+  .select-header {
+    @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs004;
+  }
+
+  .select-option-list-wrapper {
+    .select-option-list__item:first-child {
+      display: none;
+    }
+  }
+
+  &.init:not(#{&}--disabled) {
+    .select-header {
+      color: $gs008;
+    }
+  }
+
+}

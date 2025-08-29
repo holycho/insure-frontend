@@ -1,0 +1,85 @@
+.inside-page-03-showcase {
+  margin-top: $pc-header-head-height + $mobile-header-height; // 追加
+  background-color: $gs002;
+
+  // 平版以下的螢幕 (追加)
+  @include rwd($nx-screen-pad-landscape) {
+    margin-top: $mobile-header-height;
+  }
+
+  &__former {
+    position: relative;
+  }
+
+  &__latter {
+    position: relative;
+    margin: 0 auto;
+    padding: 64px 0px 120px 0px;
+    max-width: 944px;
+
+    @include rwd(1000px) {
+      padding: 64px 12px 72px 12px;
+    }
+  }
+}
+
+.inside-page-03-showcase-latter {
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 64px;
+
+    @include rwd($medium-small-screen) {
+      margin-bottom: 40px;
+      flex-direction: column-reverse;
+    }
+  }
+
+
+}
+
+.inside-page-03-showcase-latter-top {
+  &__title_and_subtitle-container {}
+
+  &__image {
+    width: 142px;
+    height: 143px;
+
+    @include rwd($medium-small-screen) {
+      width: 99px;
+      height: 100px;
+      margin-bottom: 33px;
+    }
+  }
+
+  >img {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.inside-page-03-showcase-latter-top-title_and_subtitle-container {
+  &__title {
+    @include Large-Tilte362-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $gs009;
+    margin-bottom: 12px;
+
+    @include rwd($medium-small-screen) {
+      @include Tilte282-Bold1-Light2-Default-Color1-Left-Aligned();
+      margin-bottom: 8px;
+    }
+  }
+
+  &__subtitle {
+
+    @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+
+    @include rwd($medium-small-screen) {
+      @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    }
+  }
+}

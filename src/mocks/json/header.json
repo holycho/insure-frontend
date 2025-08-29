@@ -1,0 +1,185 @@
+[
+  {
+    "id": "insuredSlip",
+    "text": "線上投保",
+    "type": "0",
+    "login": "0",
+    "target": "0",
+    "child": [
+      {
+        "id": "insuredSlip1",
+        "text": "汽車保險",
+        "link": "http://10.20.30.235:30002/auto-insurance",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      },
+      {
+        "id": "insuredSlip2",
+        "text": "機車保險",
+        "link": "http://10.20.30.235:30002/moto-insurance",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      },
+      {
+        "id": "insuredSlip3",
+        "text": "住宅火災保險",
+        "link": "/insure/fire-insurance/calculation",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      },
+      {
+        "id": "insuredSlip4",
+        "text": "旅遊專區",
+        "type": "0",
+        "login": "0",
+        "target": "0",
+        "child": [
+          {
+            "id": "insuredSlip4_1",
+            "text": "旅行平安保險",
+            "link": "http://10.20.30.235:30002/insure/travel-insurance/policy-declaration",
+            "type": "1",
+            "login": "0",
+            "target": "0"
+          },
+          {
+            "id": "insuredSlip4_2",
+            "text": "登山綜合保險",
+            "link": "http://10.20.30.235:30002/insure/mountaineer-insurance/policy-declaration",
+            "type": "1",
+            "login": "0",
+            "target": "0"
+          }
+        ]
+      },
+      {
+        "id": "insuredSlip5",
+        "text": "寵物保險",
+        "link": "http://10.20.30.235:30002/pet-insurance",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      },
+      {
+        "id": "insuredSlip6",
+        "text": "個人傷害保險",
+        "link": "http://10.20.30.235:30002/psninj-insurance",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      }
+    ]
+  },
+  {
+    "id": "insuredServ",
+    "text": "保險服務",
+    "type": "0",
+    "login": "0",
+    "target": "0",
+    "child": [
+      {
+        "id": "insuredServ1",
+        "text": "保單查詢",
+        "link": "/service/query-policy",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      },
+      {
+        "id": "insuredServ2",
+        "text": "下載電子保單",
+        "link": "https://www.cki.com.tw/Page/Index/87",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      }
+    ]
+  },
+  {
+    "id": "activity",
+    "text": "活動訊息",
+    "type": "0",
+    "login": "0",
+    "target": "0",
+    "child": [
+      {
+        "id": "promo1",
+        "link": "/activity/promo",
+        "text": "熱門活動",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      },
+      {
+        "id": "news2",
+        "link": "/activity/news",
+        "text": "最新消息",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      }
+    ]
+  },
+  {
+    "id": "payment",
+    "text": "我要繳費",
+    "type": "2",
+    "link": "/service/payment",
+    "login": "0",
+    "target": "0"
+  },
+  {
+    "id": "renewal",
+    "text": "審核件查詢",
+    "type": "2",
+    "link": "/service/audit",
+    "login": "0",
+    "target": "0"
+  },
+  {
+    "id": "officialLine",
+    "text": "Line官方帳號",
+    "type": "1",
+    "link": "/#",
+    "login": "0",
+    "target": "1",
+    "icon": "/assets/img/u_line.svg"
+  },
+  {
+    "id": "officialFB",
+    "text": "FB專頁",
+    "type": "1",
+    "link": "/#",
+    "login": "0",
+    "target": "1",
+    "icon": "/assets/img/u_facebook.svg"
+  },
+  {
+    "id": "memberCenter",
+    "text": "會員中心",
+    "type": "0",
+    "login": "0",
+    "target": "0",
+    "child": [
+      {
+        "id": "memberSettings",
+        "text": "會員資料修改",
+        "link": "/member/settings",
+        "type": "1",
+        "login": "1",
+        "target": "0"
+      },
+      {
+        "id": "queryPolicy",
+        "text": "保單查詢",
+        "link": "/service/query-policy",
+        "type": "1",
+        "login": "0",
+        "target": "0"
+      }
+    ]
+  }
+]

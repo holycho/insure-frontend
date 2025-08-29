@@ -1,0 +1,27 @@
+.form-layout-outer-00 {
+  padding-top: 12px;
+
+
+  &__descrp {
+    @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+    color: $gs007;
+    font-weight: normal;
+  }
+
+  &__content {
+    margin-top: 56px;
+
+    @include rwd($medium-small-screen) {
+      margin-top: 40px;
+    }
+
+    @include ie11-hack() {
+      text-align: center;
+
+      >* {
+        text-align: left;
+      }
+    }
+
+  }
+}

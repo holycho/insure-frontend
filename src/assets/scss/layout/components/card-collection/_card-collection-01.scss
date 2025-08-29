@@ -1,0 +1,164 @@
+.card-collection-01 {
+  &__ul {
+    @include fixed-gutter-flex-grid($child-offset:1, $column-gutter:19px);
+
+    @include rwd($medium-screen) {
+      display: none;
+    }
+
+
+  }
+
+  &__li {
+    .photo-card-00 {
+      height: 100%;
+    }
+
+    &:first-child {
+      @include flex-width(100%);
+
+      .photo-card-00 {
+
+        &__shell {
+          flex-direction: row
+        }
+
+        &__former {
+          @include flex-width(41.37%);
+        }
+
+        &__latter {
+          @include flex-width(58.63%);
+
+          @include ie11-hack() {
+            @include flex-width(auto);
+            flex-grow: 1;
+            flex-shrink: 1;
+          }
+
+          padding-top: 32px;
+          padding-bottom: 36px;
+          padding-left: 20px;
+          padding-right: 24px;
+        }
+
+        &__bg-img {
+          height: 100%;
+        }
+      }
+
+      .photo-card-00-label {
+        display: flex;
+        align-items: flex-end;
+
+        >*+* {
+          margin-left: 16px;
+        }
+      }
+    }
+
+
+  }
+
+  &__carousel {
+    @include nxjq-carousel( //
+      $pagination-size:7px,
+      $pagination-color: $gs004, // 頁碼點點的顏色
+      $pagination-active-color: $CI01 //
+    );
+    display: none;
+    padding-bottom: 16px;
+
+    @include rwd($medium-screen) {
+      display: block;
+
+      .nxjq-carousel__shell {
+        overflow: visible;
+      }
+
+      .nxjq-carousel__inner {
+        display: flex;
+      }
+
+      .nxjq-carousel__item {
+        flex: none;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      .photo-card-00 {
+        white-space: normal;
+        transition: opacity 300ms;
+        pointer-events: none;
+        height: 100%;
+      }
+
+      .nxjq-carousel__item--active {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0s;
+
+        +.nxjq-carousel__item {
+          opacity: 1;
+          pointer-events: auto;
+          transition: opacity 0s;
+
+          @include rwd($medium-small-screen) {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    .nxjq-carousel__navigation {
+      display: none;
+      align-items: center;
+      width: 100%;
+      bottom: 206px;
+      position: absolute;
+      pointer-events: none;
+
+      @include rwd($medium-screen) {
+        display: flex;
+      }
+
+      >.nxjq-carousel__navigation-children+.nxjq-carousel__navigation-children {
+        margin-left: auto;
+      }
+
+      .nxjq-carousel__navigation-children {
+        font-size: 0;
+        pointer-events: auto;
+      }
+
+      .nxjq-carousel__navigation-children--prev {
+        transform: translateX(-100%) translateX(-12px) rotate(180deg);
+
+      }
+
+      .nxjq-carousel__navigation-children--next {
+        transform: translateX(100%) translateX(12px);
+
+      }
+
+      .nxjq-carousel__navigation-link {
+        background-image: url(../../../../img/icon_next.png);
+        background-size: cover;
+        width: 9px;
+        height: 20px;
+      }
+    }
+
+    .nxjq-carousel__pagination {
+      display: inline-flex;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100%;
+      position: absolute;
+
+      >.nxjq-carousel__pagination-children+.nxjq-carousel__pagination-children {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@import './vendor/jquery-ui.min';
+@import './vendor/jquery-ui.theme.min';
+
+@import './tool/project/mixins';
+@import './tool/project/variables';
+@import './tool/project/functions';
+@import './tool/project/keyframes';
+@import './tool/variables/typography';
+@import './tool/rwd-kits/breakpoint-util';
+// @import './tool/rwd-kits/grid-mixins';
+// @import './tool/rwd-kits/grid';
+
+// (新逸) 視覺工具
+@import './tool/nxjq/base/base';
+@import './tool/nxjq/mixins';
+@import './tool/nxjq/collapse';
+@import './tool/nxjq/variables';
+@import './tool/nxjq/components/dialog';
+
+// (新逸) 底層樣式
+@import './layout/nxjq/input';
+@import './layout/nxjq/select';
+@import './layout/nxjq/checkbox';
+@import './layout/nxjq/carousel';
+@import './layout/nxjq/sliding-tab';
+@import './layout/nxjq/tab';
+
+@import './base/base';
+@import './base/helpers';
+
+// Layout
+@import './layout/hamburger';
+@import './layout/site.scss';
+@import './layout/header';
+@import './layout/footer';
+
+// Main
+@import './layout/index-showcase';
+@import './layout/index-banner';
+@import './layout/index-bulletin';
+@import './layout/btn';
+@import './layout/section';
+@import './layout/index-step-guide';
+@import './layout/mobile-menu';
+
+// Components
+@import './layout/components/inside-page/inside-page-00/inside-page-00-banner';
+@import './layout/components/inside-page/inside-page-00/inside-page-00-showcase';
+@import './layout/components/inside-page/inside-page-01/inside-page-01-banner';
+@import './layout/components/inside-page/inside-page-01/inside-page-01-layout';
+@import './layout/components/inside-page/inside-page-02/inside-page-02-banner';
+@import './layout/components/inside-page/inside-page-02/inside-page-02-showcase';
+@import './layout/components/inside-page/inside-page-03/inside-page-03-banner';
+@import './layout/components/inside-page/inside-page-03/inside-page-03-showcase';
+@import './layout/components/form-layout-00';
+@import './layout/components/form-layout-outer-00';
+@import './layout/components/form-layout-01';
+@import './layout/components/date-picker-00';
+@import './layout/components/form-tags';
+@import './layout/components/color-tag';
+@import './layout/components/result-layout-00';
+@import './layout/components/result-table-00';
+@import './layout/components/fixed-calc-00';
+@import './layout/components/collapse-table-00';
+@import './layout/components/content-display-00';
+@import './layout/components/choose-commodity';
+@import './layout/components/two-card-group';
+@import './layout/components/arounding-text-00';
+@import './layout/components/credit-card-form-00';
+@import './layout/components/function-toggle-btn-comp';
+@import './layout/components/information-collapse-card';
+@import './layout/components/text-collection';
+@import './layout/components/article-displayer-00';
+@import './layout/components/article-paragraph-00';
+@import './layout/components/input/input-00';
+@import './layout/components/input/input-01';
+@import './layout/components/select/select-00';
+@import './layout/components/select/select-01';
+@import './layout/components/select/select-02';
+@import './layout/components/checkbox/checkbox-00';
+@import './layout/components/checkbox/checkbox-01';
+@import './layout/components/checkbox/checkbox-02';
+@import './layout/components/radio-group/radio-group-00';
+@import './layout/components/radio-group/radio-group-01';
+@import './layout/components/share-block/share-block-00';
+@import './layout/components/share-block/share-block-01';
+@import './layout/components/card-collection/card-collection-04';
+@import './layout/components/card-collection/card-collection-05';
+@import './layout/components/card-collection/card-collection-06';
+@import './layout/components/photo-card/photo-card-02';
+@import './layout/components/photo-card/photo-card-03';
+@import './layout/components/photo-card/photo-card-04';
+@import './layout/components/date-picker-00';
+@import './layout/components/date-ui';
+@import './layout/components/stepbar-00';
+@import './layout/components/verification-link-00';
+@import './layout/components/sliding-tab-00';
+@import './layout/components/sliding-tab-01';
+@import './layout/components/sliding-tab-02';
+@import './layout/components/sliding-tab-group-01';
+@import './layout/components/transposing-table-00';
+@import './layout/components/pagination-00';
+@import './layout/components/title-information-card';
+@import './layout/components/basic-table';
+
+// Dialogs
+@import './layout/components/dialogs/dialog-000';
+@import './layout/components/dialogs/dialog-001';
+@import './layout/components/dialogs/dialog-form-layout-00';
+@import './layout/components/dialogs/dialog-paragraph';
+
+// Customize
+@import './customize/sweetalert-customize';
+
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  margin: 3px 10px !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #DC143C !important;
+}

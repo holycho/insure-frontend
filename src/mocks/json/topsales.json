@@ -1,0 +1,16 @@
+[
+  {
+    "prodId": "",
+    "prodName": "駕駛人傷害險",
+    "prodIntro": "天雨路滑發生自撞、摔車跌倒的最佳保障",
+    "linkUrl": "http://google.com/",
+    "imgRectangleName": "car-ins.png"
+  },
+  {
+    "prodId": "",
+    "prodName": "國內旅遊豐遊趣",
+    "prodIntro": "最完整的國內旅行綜合保險",
+    "linkUrl": "http://google.com/",
+    "imgRectangleName": "travel-ins.png"
+  }
+]

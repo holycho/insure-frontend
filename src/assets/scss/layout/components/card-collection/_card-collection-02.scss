@@ -1,0 +1,89 @@
+.card-collection-02 {
+  @include nxjq-carousel();
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: $main-content-width-pc-2;
+
+  .nxjq-carousel {
+    &__shell {
+      overflow: visible;
+
+      @include rwd($medium-screen) {
+        overflow: hidden;
+      }
+    }
+
+    &__item {
+      transition: opacity 500ms;
+      opacity: 0.5;
+
+      &--active {
+        opacity: 1;
+        transition: opacity 0ms;
+      }
+    }
+  }
+
+  .nxjq-carousel__navigation {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 300px);
+    left: 50%;
+    pointer-events: none;
+
+    @include rwd($large-screen) {
+      width: calc(100vw - 140px);
+    }
+
+    @include rwd($medium-screen) {
+      width: calc(100% + 16px);
+    }
+
+    >.nxjq-carousel__navigation-children+.nxjq-carousel__navigation-children {
+      margin-left: auto;
+    }
+
+    .nxjq-carousel__navigation-children--disable {
+      display: none;
+    }
+
+    .nxjq-carousel__navigation-children--prev {
+      transform: translateX(-100%) rotate(-180deg);
+    }
+
+    .nxjq-carousel__navigation-children--next {
+      transform: translateX(100%);
+    }
+
+    .nxjq-carousel__navigation-children--prev,
+    .nxjq-carousel__navigation-children--next {
+      pointer-events: auto;
+
+      .nxjq-carousel__navigation-link {
+        background-image: url(../img/carousel-tab.svg);
+        width: 28px;
+        height: 67px;
+        background-size: cover;
+        opacity: 0.4;
+        transition: 300ms;
+
+        @include rwd($medium-screen) {
+          background-image: url(../../../../img/icon_next.png);
+          width: 9px;
+          height: 20px;
+        }
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+
+}

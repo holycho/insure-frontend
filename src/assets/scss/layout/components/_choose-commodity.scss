@@ -1,0 +1,120 @@
+.choose-commodity {
+  width: 100%;
+  display: flex;
+
+  @include rwd($medium-screen-2) {
+    display: block;
+  }
+
+  &__item {
+    flex: 1;
+
+    @include rwd($medium-screen-2) {
+      margin: auto;
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__item+&__item {
+    margin-left: 16px;
+
+    @include rwd($medium-screen-2) {
+      margin-left: 0;
+      margin-top: 16px;
+    }
+  }
+
+
+
+}
+
+.choose-commodity-item {
+
+  text-align: center;
+  padding: 53px 0px 48px 0px;
+
+  @include rwd($medium-screen-2) {
+    padding: 32px 24px;
+
+    &+& {
+      margin-top: 16px;
+    }
+  }
+
+
+  &__img-container {
+
+    margin: auto;
+    width: 96px;
+    height: 96px;
+
+    margin-bottom: 16px;
+
+
+    @include rwd($medium-screen-2) {
+      display: inline-block;
+      transform: translateY(5px);
+
+      width: 54px;
+      height: 54px;
+      margin-right: 12px;
+
+    }
+  }
+
+  &__text-container {
+    @include rwd($medium-screen-2) {
+      display: inline-block;
+      width: 190px;
+    }
+  }
+
+  &__button-container {
+    text-align: center;
+
+    @include rwd($medium-screen-2) {
+      a {
+        width: 152px;
+      }
+    }
+  }
+}
+
+.choose-commodity-item-text-container {
+  &__title {
+    @include Tilte242-Bold1-Light2-Default-Color2-Center-Aligned();
+    color: $black;
+    margin-bottom: 2px;
+
+    &.only-title {
+      margin-bottom: 48px;
+      margin-top: 24px;
+
+      @include rwd($medium-screen-2) {
+        margin-bottom: 21px;
+        transform: translateY(-13px);
+      }
+
+    }
+
+    @include rwd($main-content-width-pc-2 - 19) {
+      @include Body202-Bold1-Light2-Default-Color2-Center-Aligned();
+    }
+
+    @include rwd($medium-screen-2) {
+      text-align: left;
+    }
+  }
+
+  &__content {
+    @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+    color: #999999;
+    margin-bottom: 32px;
+
+    @include rwd($medium-screen-2) {
+      text-align: left;
+      margin-bottom: 24px;
+    }
+  }
+}

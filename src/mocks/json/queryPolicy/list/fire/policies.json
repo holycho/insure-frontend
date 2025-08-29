@@ -1,0 +1,41 @@
+[
+  {
+    "applyNo": "3411F0713000110",
+    "bcType": "C",    
+    "policyNo": "FIRE00001F07081",
+    "startTime": "106/01/01",
+    "endTime": "107/01/01",
+    "remark": "台北市內湖區瑞光路100號",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3411F0713000120",
+    "bcType": "C",    
+    "policyNo": "FIRE00001F07023",
+    "startTime": "107/01/01",
+    "endTime": "108/01/01",
+    "remark": "台中市南區建國南路一段208號",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3411F0713000132",
+    "bcType": "C",    
+    "policyNo": "FIRE03041F18055",
+    "startTime": "108/01/01",
+    "endTime": "109/01/01",
+    "remark": "高雄市左營區裕誠路30號",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  }
+]

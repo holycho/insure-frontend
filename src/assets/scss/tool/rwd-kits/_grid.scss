@@ -1,0 +1,67 @@
+@if $enable-grid-classes {
+
+  // 生成grid容器元素
+  .nx-grid {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+
+  // 生成無限制寬度的grid容器
+  .nx-grid-fluid {
+    @include make-container();
+  }
+
+  // 響應式容器在低於斷點的狀況下是滿寬度的
+  @each $breakpoint,
+  $container-max-width in $container-max-widths {
+    .nx-grid-#{$breakpoint} {
+      @extend .nx-grid-fluid;
+    }
+
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      %responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+
+      @each $name,
+      $width in $grid-breakpoints {
+        @if ($container-max-width > $width or $breakpoint==$name) {
+          .nx-grid-#{breakpoint-infix($name, $grid-breakpoints)} {
+            @extend %responsive-container-#{$breakpoint};
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Row
+//
+// 生成row class
+
+@if $enable-grid-classes {
+  .nx-grid__row {
+    @include make-row();
+  }
+
+  // 生成無間距列元素 class
+  .nx-grid__row--no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    >.nx-grid__col,
+    >[class*="nx-grid__col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+// Columns
+// 
+// 生成col class
+
+@if $enable-grid-classes {
+  @include make-grid-columns();
+}

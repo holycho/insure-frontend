@@ -1,0 +1,44 @@
+.content-display-00 {
+  max-width: 998px;
+  margin: auto;
+
+  @include rwd($medium-screen-2) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  &__title {
+    @include Tilte282-Bold1-Light2-Default-Color2-Center-Aligned();
+    color: $black;
+    margin-bottom: 32px;
+
+    @include rwd($main-content-width-pc-2 - 19) {
+      @include Tilte242-Bold1-Light2-Default-Color2-Center-Aligned();
+    }
+
+    @include rwd($medium-screen-2) {
+      margin-bottom: 24px;
+    }
+
+  }
+
+  &__link {
+    text-align: center;
+    margin-top: 64px;
+
+    >a,
+    button {
+
+      &,
+      &:hover,
+      &:active,
+      &:focus {
+        @include Callout162-Bold1-Light2-Default-Color2-Center-Aligned();
+        // color: #7f0b78;
+        color: $color-02;
+      }
+    }
+
+
+  }
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "applyNo": "3421T0713000110",
+    "bcType": "C",    
+    "policyNo": "TVAL00001T07081",
+    "startTime": "106/01/15",
+    "endTime": "106/01/28",
+    "remark": "日本",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421T0713000120",
+    "bcType": "C",    
+    "policyNo": "TVAL00001T07023",
+    "startTime": "107/10/01",
+    "endTime": "107/10/14",
+    "remark": "韓國",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421T0713000132",
+    "bcType": "C",    
+    "policyNo": "TVAL03041T18055",
+    "startTime": "108/05/01",
+    "endTime": "108/05/14",
+    "remark": "泰國",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  }
+]

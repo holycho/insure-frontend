@@ -1,0 +1,12 @@
+.site {
+  &__header {}
+
+  &__content {
+    overflow: hidden;
+  }
+
+  &__footer {
+    border-top: solid 1px $CI03;
+    padding-top: 1px;
+  }
+}

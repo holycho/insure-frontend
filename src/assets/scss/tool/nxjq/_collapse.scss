@@ -1,0 +1,296 @@
+/// @example collaps收合5種樣式
+/// $img-uncheck.$img-checked.$list-image三個圖片路徑預設是使用util/scss/base64圖片路徑變數做為預覽
+/// @param {Strings}  $collapseIcon-type ['cross'] - 參數請填collapse收合圖示樣式cross／crossLess／arrowTriangle／arrowLine／imageChange
+/// @param {Numbers}  $gutter [10px] - 參數請填收合清單的間隔距離，若設為0則無間距
+/// @param {Colors}   $title-bgColor [#eaeaea] - 參數請填收合未打開標題區背景
+/// @param {Colors}   $title-bgColor-active [#eaeaea] - 參數請填選收合打開後標題區背景
+/// @param {Colors}   $content-bgColor [#ffffff] - 參數請填選收合打開後內容背景
+/// @param {Colors}   $icon-color [#4a4a4a] - 參數請填圖示顏色
+/// @param {Colors}   $icon-color-active [#4a4a4a] - 參數請填active打開後圖示顏色
+/// @param {Strings}  $img-uncheck ['../img/libimg/icon_add.svg'] - 參數請填收合打開前的圖片Url連結路徑，例如'/assets/images/xxx.svg'
+/// @param {Strings}  $img-checked ['../img/libimg/icon_less.svg'] - 參數請填收合打開後的圖片Url連結路徑，例如'/assets/images/xxx.svg'
+/// @param {Strings}  $icon-position ['right'] - 參數請填寫圖示位置left/right
+/// @param {Strings}  $hasListType ['number'] - 參數請選擇標題的項目符號樣式number／image
+/// @param {Strings}  $list-textName ['Q'] - 參數請填寫項目清單的文字名稱，數字編號會自動代入，預設為'Q'，實際顯示則為Q1.Q2.Q3...
+/// @param {Strings}  $list-image ['../img/libimg/icon-list.svg'] - 若選擇有項目符號，參數請填項目符號圖片Url連結路徑，例如'/assets/images/xxx.svg'
+
+@mixin nxjq-collapse($collapseIcon-type: 'cross',
+  $gutter: 10px,
+  $title-bgColor: #eaeaea,
+  $title-bgColor-active: #eaeaea,
+  $content-bgColor: #ffffff,
+  $icon-color: #4a4a4a,
+  $icon-color-active: #4a4a4a,
+  $img-uncheck: '../img/libimg/icon_add.svg',
+  $img-checked: '../img/libimg/icon_less.svg',
+  $icon-position: 'right',
+  $hasListType: 'number',
+  $list-textName: 'Q',
+  $list-image: '../img/libimg/icon-list.svg') {
+
+  margin-bottom: $gutter;
+  letter-spacing: 1px;
+  line-height: 1.5;
+
+  >.collapse {
+    &__title {
+      background: $title-bgColor;
+      color: #323232;
+      font-size: pxToRem(16px);
+      text-align: left;
+      padding: 15px 55px 15px 40px;
+      cursor: pointer;
+
+      //jquery收合打開時active
+      &.active {
+        background: $title-bgColor-active;
+        color: #323232;
+      }
+
+      //判斷文字前是否需要增加項目符號(可選擇自訂文字符號 or 自訂圖片符號)
+      //假如項目符號清單為文字項目符號，只要在父層結構增加data-list="number"，即會增加這段css
+      &.hasList {
+        @if $hasListType=='number' {
+          @at-root {
+            [data-list="number"] {
+              counter-reset: num;
+            }
+          }
+
+          &:before {
+            counter-increment: num;
+            content: "#{$list-textName}"counter(num);
+            border-right: 1px solid;
+            height: 100%;
+            padding-right: 20px;
+            margin-right: 20px;
+          }
+        }
+
+        @else if $hasListType=='image' {
+          &:before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background-image: url(#{$list-image});
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+
+      @if $collapseIcon-type=='cross' {
+        position: relative;
+        animation: rotate .3s linear;
+
+        &:after {
+          display: inline-block;
+          position: absolute;
+          content: "\FF0B";
+          text-align: center;
+          width: 30px;
+          height: 30px;
+          line-height: pxToRem(30px);
+          font-size: pxToRem(30px);
+          color: $icon-color;
+          #{$icon-position}: 8px;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(0deg);
+          transform-origin: 50% 56.5%;
+          transition: all 0.4s ease-in-out;
+
+        }
+
+        @if $icon-position=='right' {
+          &:before {
+            right: 25px;
+          }
+
+          &:after {
+            right: 8px;
+          }
+        }
+
+        @else if $icon-position=='left' {
+          padding: 15px 40px 15px 55px;
+
+          &:before {
+            left: 25px;
+          }
+
+          &:after {
+            left: 26px;
+          }
+        }
+
+        &.active {
+          &:after {
+            transform: translate(-50%, -50%) rotate(360deg);
+            color: $icon-color-active;
+          }
+        }
+      }
+
+      @else if $collapseIcon-type=='crossLess' {
+        position: relative;
+
+        &:after {
+          display: inline-block;
+          position: absolute;
+          content: "\FF0B";
+          text-align: center;
+          width: 30px;
+          height: 30px;
+          line-height: pxToRem(30px);
+          font-size: pxToRem(30px);
+          color: $icon-color;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(0deg);
+          transform-origin: 50% 50%;
+          transition: all 0.4s ease-in-out;
+        }
+
+        @if $icon-position=='right' {
+          &:before {
+            right: 25px;
+          }
+
+          &:after {
+            right: 8px;
+          }
+        }
+
+        @else if $icon-position=='left' {
+          padding: 15px 40px 15px 55px;
+
+          &:before {
+            left: 25px;
+          }
+
+          &:after {
+            left: 26px;
+          }
+        }
+
+        &.active {
+          &:after {
+            content: "\FF0D";
+            transform: translate(-50%, -50%) rotate(360deg);
+            transform-origin: 50% 50%;
+            color: $icon-color-active;
+          }
+        }
+      }
+
+      @else if $collapseIcon-type=='arrowTriangle' {
+        position: relative;
+
+        &:after {
+          content: "";
+          @include gen-triangle($arrow_color: #160b27, $orientation: "bottom", $arrow_width: 5px, $arrow_size: 5px);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          #{$icon-position}: 25px;
+          bottom: 10px;
+          transition: all 0.2s ease-in-out;
+        }
+
+        @if $icon-position=='left' {
+          padding: 15px 40px 15px 55px;
+        }
+
+        &.active {
+          &:after {
+            transform: rotate(180deg);
+            border-top-color: $icon-color-active;
+            transition: all 0.4s ease-out;
+          }
+        }
+      }
+
+      @else if $collapseIcon-type=='arrowLine' {
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 12px;
+          height: 12px;
+          #{$icon-position}: 25px;
+          top: 50%;
+          transform: translateY(-50%) rotate(-45deg);
+          border-top: transparent;
+          border-right: transparent;
+          border-left: 2px solid $icon-color;
+          border-bottom: 2px solid $icon-color;
+          transition: all 0.2s ease-out;
+        }
+
+        @if $icon-position=='left' {
+          padding: 15px 40px 15px 55px;
+        }
+
+        &.active:after {
+          transform: rotate(135deg);
+          border-left: 2px solid $icon-color-active;
+          border-bottom: 2px solid $icon-color-active;
+        }
+      }
+
+      @else if $collapseIcon-type=='imageChange' {
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 25px;
+          height: 25px;
+          #{$icon-position}: 15px;
+          top: 50%;
+          transform: translateY(-50%) rotate(0deg);
+
+          @if ($img-uncheck !="") {
+            background: url(#{$img-uncheck}) no-repeat;
+          }
+
+          background-repeat: no-repeat;
+          background-size: 25px;
+          background-position: center center;
+        }
+
+        @if $icon-position=='left' {
+          padding: 15px 40px 15px 55px;
+        }
+
+        &.active:after {
+          @if ($img-checked !="") {
+            background: url(#{$img-checked}) no-repeat;
+          }
+
+          transform: translateY(-50%) rotate(360deg);
+          background-size: 25px;
+          background-position: center center;
+        }
+      }
+    }
+
+    &__content {
+      display: none;
+      background: $content-bgColor;
+      color: #323232;
+      padding: 15px;
+      line-height: 1.4;
+
+      //jquery收合打開時show block
+      &.show {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,175 @@
+.inside-page-01-layout {
+  background-color: $gs002;
+  margin-top: 89px;
+
+  @include rwd($medium-desktop-screen) {
+    margin-top: 44px;
+  }
+
+  &__former {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__latter {
+    min-height: 300px;
+    padding-top: 96px;
+    padding-bottom: 120px;
+    padding-left: 28px;
+    padding-right: 28px;
+
+    // 修正IE11 的extend-btn 在 resize 時會錯位的問題
+    @include ie11-hack() {
+      text-align: center;
+
+      >* {
+        text-align: left;
+      }
+    }
+
+
+    @include rwd($medium-screen-2) {
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 72px;
+      // not sure
+      padding-top: 64px;
+    }
+
+    &--result {
+      padding-top: 0;
+
+      @include rwd($medium-screen-2) {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+    }
+
+    &--typeA {
+      @include rwd($medium-screen-2) {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+
+    >* {
+      max-width: $main-content-width-pc-2;
+      position: relative;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+
+  &__sliding-tab+&__form {
+    margin-top: 56px;
+
+    @include rwd($medium-screen-2) {
+      margin-top: 40px;
+    }
+  }
+
+  &__form+&__form {
+    margin-top: 56px;
+  }
+
+  &__form+&__collapse-table-group {
+    margin-top: 32px;
+  }
+
+  &__collapse-table-group+&__form {
+    margin-top: 56px;
+  }
+
+  &__collapse-table-group {}
+
+  &__tag {
+    color: $gsc002;
+    @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__tag+&__recaptcha {
+    margin-top: 12px;
+  }
+
+  &__recaptcha {
+    width: 295px;
+  }
+
+  &__foot {
+    margin-top: 58px;
+    padding-left: 64px;
+    padding-right: 64px;
+
+    @include rwd($medium-small-screen) {
+      padding-left: 17px;
+      padding-right: 17px;
+    }
+  }
+
+  &__btn-wrapper {
+    text-align: center;
+    margin-top: 64px;
+
+    @include rwd($medium-small-screen) {
+      margin-top: 56px;
+    }
+
+    &--column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      >*+* {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  &__btn {
+    width: 370px;
+
+    @include rwd($medium-small-screen) {
+      width: 210px;
+    }
+
+  }
+}
+
+.inside-page-01-layout-extend-btn-wrapper {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include ie11-hack() {
+    left: auto;
+    transform: none;
+  }
+
+
+  @include rwd($medium-screen-2) {
+    >* {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__left-btn {
+    position: absolute;
+    left: 0;
+    display: block;
+    transform: translate(-100%, -50%) translateX(-56px);
+    top: 50%;
+    @include Callout162-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-screen-2) {
+      position: relative;
+      transform: none;
+      top: auto;
+      margin-bottom: 32px;
+    }
+  }
+}

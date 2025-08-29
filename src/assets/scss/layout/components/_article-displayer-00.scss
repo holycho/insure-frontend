@@ -1,0 +1,63 @@
+.article-displayer-00 {
+
+  &__title {
+    @include Tilte182-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__read-checker {}
+
+  &__content {
+    background-color: $gs002;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 20px;
+    height: 194px;
+    overflow: auto;
+
+    @include ie11-hack {
+      overflow-x: hidden;
+    }
+
+    @include custom-scroll();
+
+    >* {
+      width: 100%;
+    }
+
+    &--typeA {
+      background-color: transparentize($CI02, 0.92);
+    }
+  }
+}
+
+.article-displayer-00-read-checker {
+  &__input {
+    display: none;
+  }
+
+  &__text {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $CI02;
+    vertical-align: middle;
+
+    // &:after {
+    //   content: '';
+    //   display: inline-block;
+    //   vertical-align: middle;
+    //   width: 18px;
+    //   height: 18px;
+    //   margin-left: 5px;
+    //   background-size: cover;
+    //   background-repeat: no-repeat;
+    //   background-image: url(../../../img/grey-bg-chevron.png);
+    // }
+  }
+
+  &__input:checked+&__text {
+    // &:after {
+    //   background-size: cover;
+    //   animation: fadeIn 1s;
+    //   background-image: url(../../../img/purple-bg-chevron.png);
+    // }
+  }
+}

@@ -1,0 +1,207 @@
+[
+  {
+    "campaignId": "B2C",
+    "campaignName": "住宅火災保險（基本型）",
+    "curCode": "NTD",
+    "plans": [
+      {
+        "groupName": "住宅火災保險",
+        "groupOrder": 1,
+        "planCode": "A1",
+        "planShowName": "住宅火災保險",
+        "planDesc": "",
+        "showFrontend": "N",
+        "profits": [
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "B",
+            "profitDesc": "建築物",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 0,
+            "profitAmtDisplay": "0"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "MPIB",
+            "profitDesc": "加保建築物內動產",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 0,
+            "profitAmtDisplay": "0"
+          }
+        ],
+        "ver": 1
+      },
+      {
+        "groupName": "住宅火災保險",
+        "groupOrder": 1,
+        "planCode": "B1",
+        "planShowName": "住宅第三人責任基本保險",
+        "planDesc": "",
+        "showFrontend": "Y",
+        "profits": [
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "AGG-HR",
+            "profitDesc": "保險期間內之最高賠償金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 24000000,
+            "profitAmtDisplay": "2,400萬元"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "AOA-PID",
+            "profitDesc": "每一意外事故體傷及死亡責任之保險金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 10000000,
+            "profitAmtDisplay": "1,000萬元"
+          },
+          {
+            "deductibleId": null,
+            "deductibleVer": 1,
+            "profitId": "AOA-PL",
+            "profitDesc": "每一意外事故財物損害責任之保險金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 2000000,
+            "profitAmtDisplay": "200萬元"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "AOP-D",
+            "profitDesc": "每一意外事故死亡之保險金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 2000000,
+            "profitAmtDisplay": "200萬元"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "AOP-PI",
+            "profitDesc": "每一意外事故體傷之保險金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 1000000,
+            "profitAmtDisplay": "100萬元"
+          }
+        ],
+        "ver": 1
+      },
+      {
+        "groupName": "住宅火災保險",
+        "groupOrder": 1,
+        "planCode": "C1",
+        "planShowName": "住宅玻璃保險",
+        "planDesc": "",
+        "showFrontend": "Y",
+        "profits": [
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "AGG-G",
+            "profitDesc": "保險期間內累計賠償金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 20000,
+            "profitAmtDisplay": "2萬元"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "AOP-G",
+            "profitDesc": "每一次事故賠償金額",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 10000,
+            "profitAmtDisplay": "1萬元"
+          }
+        ],
+        "ver": 1
+      },
+      {
+        "groupName": "住宅火災保險",
+        "groupOrder": 1,
+        "planCode": "E1",
+        "planShowName": "住宅颱風及洪水災害補償保險",
+        "planDesc": "",
+        "showFrontend": "Y",
+        "profits": [
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "W1",
+            "profitDesc": "第一區 新竹縣（市）、臺中市、嘉義縣（市）、苗栗縣、南投縣、 彰化縣、雲林縣",
+            "profitUnit": "1000",
+            "profitUnitName": "千元",
+            "profitUnitValue": 1000,
+            "profitAmt": 9000,
+            "profitAmtDisplay": "9千元"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "W2",
+            "profitDesc": "第二區 臺北市、新北市、臺南市、高雄市、桃園市、澎湖縣、 金門馬祖地區",
+            "profitUnit": "1000",
+            "profitUnitName": "千元",
+            "profitUnitValue": 1000,
+            "profitAmt": 8000,
+            "profitAmtDisplay": "8千元"
+          },
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "W3",
+            "profitDesc": "第三區 基隆市、宜蘭縣、花蓮縣、臺東縣、屏東縣",
+            "profitUnit": "1000",
+            "profitUnitName": "千元",
+            "profitUnitValue": 1000,
+            "profitAmt": 7000,
+            "profitAmtDisplay": "7千元"
+          }
+        ],
+        "ver": 1
+      },
+      {
+        "groupName": "住宅地震基本保險",
+        "groupOrder": 2,
+        "planCode": "R0",
+        "planShowName": "住宅地震基本保險",
+        "planDesc": "",
+        "showFrontend": "Y",
+        "profits": [
+          {
+            "deductibleId": "",
+            "deductibleVer": 1,
+            "profitId": "BWMPD",
+            "profitDesc": "建築物(不包括動產及裝潢)",
+            "profitUnit": "10000",
+            "profitUnitName": "萬元",
+            "profitUnitValue": 10000,
+            "profitAmt": 0,
+            "profitAmtDisplay": "0"
+          }
+        ],
+        "ver": 1
+      }
+    ]
+  }
+]

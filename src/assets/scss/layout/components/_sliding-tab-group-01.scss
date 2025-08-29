@@ -1,0 +1,14 @@
+.sliding-tab-group-01 {
+  user-select: none;
+
+  &__sliding-tab {}
+
+  &__sliding-tab+&__sliding-tab {
+    margin-top: 56px;
+
+    @include rwd($medium-screen-2) {
+      margin-top: 16px;
+    }
+  }
+
+}

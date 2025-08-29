@@ -1,0 +1,33 @@
+.inside-page-00-showcase {
+  margin-top: $pc-header-head-height + $mobile-header-height; // 追加
+  background-color: $gs002;
+
+  // 平版以下的螢幕 (追加)
+  @include rwd($nx-screen-pad-landscape) {
+    margin-top: $mobile-header-height;
+  }
+
+  &__former {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__latter {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    margin-top: -93px;
+    max-width: $main-content-width-pc;
+    left: 0;
+    right: 0;
+    padding-bottom: 118px;
+
+    @include rwd($large-screen) {
+      width: calc(100% - 56px);
+    }
+
+    @include rwd($medium-small-screen) {
+      padding-bottom: 88px;
+    }
+  }
+}

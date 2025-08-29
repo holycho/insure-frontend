@@ -1,0 +1,238 @@
+$active-radius: 42px;
+$unactive-radius: 10px;
+$pseudo-line-color:transparentize($gs000, 0.7);
+// $pseudo-line-color-fake:rgb(207, 154, 187);
+
+.stepbar-00 {
+  position: relative;
+  padding-left: 28px;
+  padding-right: 28px;
+
+  @include rwd($main-content-width-pc-2+56px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+  }
+
+
+  &__cell {
+    position: relative;
+    z-index: 2;
+    flex: none;
+    display: flex;
+    justify-content: center;
+
+    >*::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 2px;
+      top: $active-radius/2;
+      background-color: $pseudo-line-color;
+
+      // @include rwd($medium-small-screen) {
+      //   background-color: $pseudo-line-color-fake;
+      // }
+    }
+  }
+
+  &__cell+&__cell {
+
+    flex: 1;
+    justify-content: flex-end;
+
+  }
+
+  &__cell:first-child {
+    >*::before {
+      width: 50%;
+      margin-right: 0;
+    }
+  }
+
+  &__cell:last-child {
+    &::before {
+      content: '';
+      display: block;
+      position: relative;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      flex: 1;
+      height: 2px;
+      top: $active-radius/2;
+      background-color: $pseudo-line-color;
+
+      // @include rwd($medium-small-screen) {
+      //   background-color: $pseudo-line-color-fake;
+      // }
+    }
+
+    >* {
+      position: relative;
+      // flex: none;
+    }
+
+    >*::before {
+      margin-left: 0;
+      width: 50%;
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    top: calc(100% + 8px);
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+
+    &--active {
+      opacity: 1;
+    }
+
+    @include rwd($main-content-width-pc-2+56px) {
+      top: calc(100% + 12px);
+      left: 0 !important;
+      transform: none;
+      width: 100% !important;
+    }
+  }
+
+}
+
+.stepbar-00-step {
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+
+  &__title {
+    color: $gs000;
+    @include Footnote151-Regular1-Light2-Default-Color1-Left-Aligned();
+    opacity: 0.7;
+    margin-top: 4px;
+    max-width: 6.25em;
+    user-select: none;
+    height: 1.6em;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+
+    @include rwd($main-content-width-pc-2+56px) {
+      opacity: 0;
+    }
+  }
+
+
+  &__number {
+    width: $unactive-radius;
+    height: $unactive-radius;
+    border-radius: 50%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    color: $CI03;
+    background: linear-gradient(135deg, #FFFFFF 0%, #EEEEEE 100%);
+    border: 1px solid $CI03;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0993772);
+    z-index: 5;
+  }
+
+  &--done:not(#{&}--active)::before {
+    background-color: $gs000;
+  }
+
+  &--done#{&}--active &__done-line {
+    background-color: $gs000;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 2px;
+    top: 21px;
+  }
+
+  &--active &__number {
+    width: $active-radius;
+    height: $active-radius;
+    @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &--active &__title {
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+    opacity: 1;
+    height: auto;
+    white-space: nowrap;
+  }
+
+}
+
+.stepbar-00-step-progress {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.0487325);
+  padding: 16px 32px 12px 32px;
+  border-radius: 8px;
+  background-color: $gs000;
+  width: 175px;
+  height: 62px;
+  transition: left 500ms;
+
+  &__bar {}
+
+  &__bar+&__title {
+    margin-top: 8px;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__text {
+    @include Footnote152-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+
+    &--number {
+      color: $CI03;
+    }
+  }
+
+  &__text+&__text {
+    margin-left: 4px;
+  }
+}
+
+.stepbar-00-step-progress-bar {
+  background-color: $gs003;
+  height: 2px;
+  position: relative;
+
+  &__inner {
+    background-color: $CI03;
+    height: 100%;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+    animation: growHorizontal 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    left: 0;
+  }
+}

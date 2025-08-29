@@ -1,0 +1,69 @@
+.inside-page-02-banner {
+  height: 329px;
+  position: relative;
+  overflow-y: hidden;
+
+  @include rwd($medium-small-screen) {
+    height: 235px;
+  }
+
+  &__bg {
+    background-size: cover;
+    height: 100%;
+    background-position: left;
+    z-index: 1;
+    position: relative;
+
+    @include rwd($main-content-width-pc) {
+      height: 140%;
+    }
+  }
+
+  &__inner {
+    max-width: $main-content-width-pc;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 65px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 2;
+    padding-left: 96px;
+    display: flex;
+
+    @include rwd($main-content-width-pc) {
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+
+    @include rwd($main-content-width-pc) {
+      padding-top: 40px;
+    }
+  }
+
+  &__title {
+    color: $gs009;
+
+    &--main {
+      @include Large-Tilte362-Bold1-Light2-Default-Color1-Left-Aligned();
+
+      @include rwd($medium-small-screen) {
+        @include Tilte282-Bold1-Light2-Default-Color1-Left-Aligned();
+      }
+    }
+
+  }
+
+  &__former {}
+
+  &__latter {
+    margin-left: auto;
+    margin-top: 52px;
+
+    @include rwd($main-content-width-pc) {
+      margin-top: 16px;
+    }
+  }
+}

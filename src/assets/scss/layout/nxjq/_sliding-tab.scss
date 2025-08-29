@@ -1,0 +1,245 @@
+//新增tab mixin
+
+/// @example sliding tab樣式
+/// @param {Numbers}  $botline-height 參數請填tab底線高度，預設為'3px' // 只支援line類型的sliding-tab
+/// @param {Colors}   $main-color 參數請填tab主色，預設顏色請參考色碼
+/// @param {String} $type 樣式類型 可選值: 'line'|'toggle'
+/// @param {Color} $nav-item-text-color nav-item 在未被active時的字體顏色
+/// @param {Number} $nav-item-padding nav-item 的padding
+/// @param {Number} $nav-item-box-shadow-config   只支援toggle類型的sliding-tab, 被active項目的botline-inner偽元素的box-shadow 設定
+/// @param {Color} $nav-item-active-text-color nav-item 在未被active時的字體顏色
+/// @param {Number} $nav-item-active-border-radius 只支援toggle類型的sliding-tab, 被active項目的botline-inner偽元素的圓角曲率
+/// @param {Color} $shell-background-color 只支援toggle類型的sliding-tab, nav shell殼層的背景色
+/// @param {Number} $shell-border-radius 只支援toggle類型的sliding-tab, nav shell殼層的圓角曲率
+/// @param {Number} $shell-gap 只支援toggle類型的sliding-tab, 被active項目的botline-inner偽元素的間隔距離
+/// @param {Color} $toggle-mode-gap-border-color 只支援toggle類型的sliding-tab
+/// @param {Number} $toggle-mode-gap-border-height 只支援toggle類型的sliding-tab
+/// @param {Number} $translate-mode-column-width 只有在js設定為translate mode時才會有效
+/// @param {Align} $nav-align nav-wrapper 整體 的align 設定
+/// @param {Align} $nav-item-align nav-item 個體 的align 設定
+/// @param {Number} $free-nav-item-width 是否放行nav-item 個體寬度, 使個別寬度不受限於統一寬度
+/// @param {Display} $shell-display nav-shell殼層的display設定 
+
+@mixin nxjq-sliding-tab( //
+  $type:'line', // line || toggle
+  $botline-height: 3px,
+  $main-color: #2d7a19, //
+  $nav-item-padding:10px,
+  $nav-item-text-color: black,
+  $nav-item-active-text-color: #999,
+  $nav-item-box-shadow-config:2px 3px 10px rgba(0, 0, 0, 0.1),
+  $nav-item-active-border-radius:10px, //只支援toggle類型的sliding-tab
+  $shell-background-color:#999, //只支援toggle類型的sliding-tab
+  $shell-border-radius:10px, //只支援toggle類型的sliding-tab
+  $shell-gap:3px, //只支援toggle類型的sliding-tab
+
+  $toggle-mode-gap-border-color:#333, //只支援toggle類型的sliding-tab
+  $toggle-mode-gap-border-height:10px, //只支援toggle類型的sliding-tab
+  $translate-mode-column-width:200px, //只有在js設定為translate mode時才會有效
+  $nav-align:center, //nav-wrapper 整體 的align 設定
+  $nav-item-align:center, //nav-item 個體 的align 設定
+  $free-nav-item-width:false, // 是否放行nav-item 個體寬度, 使個別寬度不受限於統一寬度
+  $shell-display:block // nav-shell殼層的display設定 
+
+) {
+
+  &.nxjq-sliding-tab-wrapper {
+    text-align: $nav-align;
+  }
+
+  .nxjq-sliding-tab-nav-shell {
+    position: relative;
+    display: $shell-display;
+
+    &--translateMode {
+      display: inline-block;
+      transition: 400ms;
+    }
+
+    @if($type=="toggle") {
+      border-radius: $shell-border-radius;
+      background-color: $shell-background-color;
+    }
+  }
+
+  .nxjq-sliding-tab-nav {
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    z-index: 4;
+
+    &__item {
+      @if($free-nav-item-width==true) {
+        flex: none;
+      }
+
+      @else {
+        flex: 1;
+      }
+
+      text-align: $nav-item-align;
+
+      @if($type=="toggle") {
+        +.nxjq-sliding-tab-nav__item {
+          position: relative;
+
+          &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1px;
+            background-color: $toggle-mode-gap-border-color;
+            height: $toggle-mode-gap-border-height;
+          }
+
+        }
+      }
+    }
+
+    &--translateMode {
+      .nxjq-sliding-tab-nav__item {
+        @include flex-width($translate-mode-column-width);
+      }
+    }
+
+
+    &__item {
+      padding: $nav-item-padding;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $nav-item-text-color;
+      transition: color 1s;
+
+      @if($type=="toggle") {
+        padding: $nav-item-padding;
+      }
+
+      &--active {
+        @if($type=="line") {
+          color: $nav-item-active-text-color;
+        }
+
+        @else if ($type=="toggle") {
+          color: $nav-item-active-text-color;
+        }
+      }
+
+      // TPI 調整
+      .textEffect {
+        z-index: 1;
+      }
+
+      .selectedEffect {
+        visibility: hidden;
+        display: block;
+        opacity: 0;
+        transition: visibility 0s 500ms, opacity 500ms linear;
+        position: absolute;
+        width: calc(100% - 8px);
+        height: calc(100% - 8px);
+        left: 4px;
+        top: 4px;
+        background-color: white;
+        border-radius: 8px;
+        &.active {
+          visibility: visible;
+          opacity: 1;
+          transition: opacity 500ms linear;
+        }
+      }
+
+    }
+  }
+
+
+  .nxjq-sliding-tab-container {
+    position: relative;
+
+    &__pane {
+      display: none;
+      padding-top: 1em;
+
+      &--active {
+        display: block;
+      }
+    }
+  }
+
+  .nxjq-sliding-tab-botline {
+    width: 100%;
+    text-align: left;
+
+    @if($type=="line") {
+      position: relative;
+      z-index: 3;
+    }
+
+    @else if ($type=="toggle") {
+      position: absolute;
+      height: 100%;
+      top: 0;
+    }
+
+
+    .nxjq-sliding-tab-botline__inner {
+
+      position: absolute;
+      bottom: 0;
+      display: inline-block;
+      height: $botline-height;
+      transition: 1000ms;
+
+
+      @if($type=="line") {
+        position: relative;
+        z-index: 3;
+        background-color: $main-color;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          bottom: 0;
+          transform: translateY(100%);
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 8px 6px 0 6px;
+          border-color: $main-color transparent transparent transparent;
+        }
+      }
+
+      @else if ($type=="toggle") {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          width: calc(100% - #{$shell-gap*2});
+          height: calc(100% - #{$shell-gap*2});
+          border-radius: $nav-item-active-border-radius;
+          background-color: $main-color;
+          box-shadow: $nav-item-box-shadow-config;
+        }
+      }
+
+
+    }
+  }
+
+
+}

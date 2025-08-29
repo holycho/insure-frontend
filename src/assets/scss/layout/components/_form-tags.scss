@@ -1,0 +1,44 @@
+.error-tag {
+  display: none;
+  color: red;
+  @include Caption131-Regular1-Light2-Default-Color1-Left-Aligned();
+  font-weight: normal;
+}
+
+.hint-tag {
+  align-items: flex-start;
+  color: $CI02;
+  padding-left: 15px;
+  position: relative;
+  font-weight: normal;
+  @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+
+  &:before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 1.47*1em /2;
+    transform: translateY(-50%);
+    background-color: $CI02;
+  }
+
+  &__text {
+    vertical-align: top;
+
+    &--inline-block {
+      display: inline-block;
+    }
+  }
+
+  &--red {
+    color: red;
+
+    &:before {
+      background-color: red;
+    }
+  }
+}

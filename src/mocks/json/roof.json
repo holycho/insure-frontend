@@ -1,0 +1,17 @@
+[
+  {
+    "paramOrder": "1",
+    "paramValue": "CONCRETE_FLAT",
+    "paramText": "水泥平頂屋"
+  },
+  {
+    "paramOrder": "2",
+    "paramValue": "CONCRETE_SLOPE",
+    "paramText": "水泥斜屋頂"
+  },
+  {
+    "paramOrder": "3",
+    "paramValue": "OTHER",
+    "paramText": "其他"
+  }
+]

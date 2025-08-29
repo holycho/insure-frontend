@@ -1,0 +1,186 @@
+//新增input mixin(在基本結構下方)
+/// @example input樣式
+/// @param {Strings}  $input-type ['general'] - 參數請填input種類general/material/underline/prepend
+/// @param {Numbers}  $input-width [100%] - 參數請填input欄位寬度，請輸入數字，單位為px/百分比，例如100px/30%
+/// @param {Colors}   $line-color [#b4b4b4] - 參數請填input外框/底線顏色
+/// @param {Colors}   $active-color [#5264ae] - 參數請填input外框/底線顏色(Focus狀態時)
+/// @param {Colors}   $bg-color [$white] - 參數請填input背景顏色
+/// @param {Colors}   $label-color [$lightblack] - 參數請填input文字標籤顏色
+/// @param {Colors}   $text-color [$grey] - 參數請填input Placeholder文字顏色(ex.請填寫欄位)
+/// @param {Numbers}  $font-size [16px] - 參數請填input文字大小，例如：1px/1em
+/// @param {Numbers}  $border-radius [0.625em] - 參數請填input外框圓角尺寸，例如：0.625em
+
+@mixin nxjq-input($input-type:'general',
+  $input-width:100%,
+  $line-color:#b4b4b4,
+  $active-color:#5264ae,
+  $bg-color:$white,
+  $label-color:$lightblack,
+  $text-color:$grey,
+  $font-size:16px,
+  $border-radius:0.625em) {
+
+  font-size: $font-size;
+  transform-origin: 50% 50%;
+  transform: rotate(180deg);
+  position: relative;
+  width: $input-width;
+
+  @if $input-type=='material' {
+    padding-bottom: 1em;
+  }
+
+  @if $input-type=='prepend' {
+    display: flex;
+    align-items: center;
+    background-color: $bg-color;
+    border-radius: $border-radius;
+  }
+
+
+  .input-label {
+    color: $label-color;
+    margin-top: .5em;
+    transform-origin: 50% 50%;
+    transform: rotate(180deg);
+    display: block;
+
+    @if $input-type=='material' {
+      margin-top: 0;
+      transform: rotate(180deg);
+      position: absolute;
+      bottom: 2em;
+      left: -0.625em;
+      width: 100%;
+      pointer-events: none;
+      transition: .2s ease;
+    }
+
+    @if $input-type=='prepend' {
+      flex: none;
+      margin-top: 0;
+      padding: 0 1em;
+    }
+  }
+
+
+  .input-deco {
+    display: none;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    @if $input-type=='underline'or $input-type=='material' {
+      background-color: $line-color;
+      height: 1px;
+      display: block;
+      transform-origin: 50% 50%;
+      transform: rotate(180deg);
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        bottom: 1px;
+        transform-origin: 50% 50%;
+        opacity: 0;
+
+        @if $input-type=='material' {
+          opacity: 1;
+          transition: transform 0.35s ease;
+          transform: scaleX(0);
+          background-color: $active-color;
+        }
+      }
+    }
+
+    @else if $input-type=='prepend' {
+      border: 1px solid;
+      border-color: $line-color;
+      border-radius: $border-radius;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+  }
+
+  input {
+    display: block;
+    padding: 1em 0.625em;
+    width: 100%;
+    line-height: normal;
+    border: 1px solid;
+    border-color: $line-color;
+    border-radius: $border-radius;
+    background-color: $bg-color;
+    transition: border-color 0.15s ease-in-out;
+    transform-origin: 50% 50%;
+    transform: rotate(180deg);
+
+    @if $input-type=='underline'or $input-type=='material' {
+      border: none;
+      border-radius: 0;
+    }
+
+    @if $input-type=='prepend' {
+      border: none;
+      border-left: 1px solid $line-color;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:focus {
+      @if $input-type=='general' {
+        border-width: 2px;
+        border-color: $active-color;
+      }
+
+      @else if $input-type=='underline'or $input-type=='material' {
+        ~.input-deco {
+          height: 1px;
+
+          &:after {
+            transition: transform 0.4s ease;
+            transform: scaleX(1);
+            opacity: 1;
+            background-color: $active-color;
+          }
+        }
+      }
+
+      @else if $input-type=='prepend' {
+        border: 2px solid;
+        border-color: $active-color;
+      }
+    }
+
+    &:focus~.input-deco {
+      background-color: transparent;
+    }
+
+    @if $input-type=='material' {
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        ~.input-label {
+          color: $active-color;
+          transform: rotate(180deg) translate(-0.5em, -1.5em);
+        }
+      }
+    }
+
+    &::placeholder {
+      color: $text-color;
+
+      @if $input-type=='material' {
+        opacity: 0;
+      }
+    }
+  }
+}

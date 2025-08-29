@@ -1,0 +1,450 @@
+$mobile-header-height:44px;
+$pc-header-head-height:35px;
+
+.header {
+  // position: relative;
+  // z-index: 5;
+  // 固定 Header
+  position: fixed;
+  width: 100%;
+  // 提升 z-index，避免被下面組件穿透
+  z-index: 1000;
+  box-shadow: inset 0px -1px 0px $gs005;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.0001);
+    box-shadow: inset 0px -0.5px 0px #B4B4B4;
+  }
+
+  &__inner {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: $main-content-width-pc+10;
+    transform: translateX(5px);
+    width: calc(100% - 54px);
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    @include rwd($nx-screen-pad-landscape) {
+      transform: none;
+    }
+
+    @include rwd($smaller-screen) {
+      margin: 0 15px;
+      width: 100%;
+    }
+
+    &--align-right {
+      justify-content: flex-end;
+    }
+  }
+
+  &__head {
+    background-color: #f8f8f8;
+    height: $pc-header-head-height;
+    text-align: right;
+
+    @include rwd($nx-screen-pad-landscape) {
+      display: none;
+    }
+  }
+
+  &__content {
+    background-color: $gs000;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    background-color: #f5f3eb;
+
+    @include rwd($nx-screen-pad-landscape) {
+      height: $mobile-header-height;
+    }
+  }
+
+  &__links-nav-pc {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    a {
+      text-decoration: none;
+    }
+
+    >*+* {
+      margin-left: 16px;
+    }
+
+    @include rwd($nx-screen-pad-landscape) {
+      display: none;
+    }
+  }
+
+  &__menu-nav-pc {
+    display: flex;
+    align-items: center;
+
+    >*+* {
+      margin-left: 24px;
+    }
+
+    @include rwd($nx-screen-pad-landscape) {
+      display: none;
+    }
+  }
+
+  &__nav-content {
+    display: inline-flex;
+    align-items: center;
+
+
+    >*+* {
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 19px;
+        width: 1px;
+        margin: 0 24px;
+        background: rgba(0, 0, 0, 0.0001);
+        box-shadow: inset 0.5px 0px 0px $gs005;
+      }
+    }
+  }
+
+  &__mobile-content {
+    display: none;
+    a {
+      text-decoration: none;
+    }
+
+    @include rwd($nx-screen-pad-landscape) {
+      display: flex;
+      align-items: center;
+    }
+
+    >*+* {
+      margin-left: 16px;
+
+      @include rwd($smaller-screen) {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__mobile-menu {
+    position: fixed;
+    // display: none;
+    z-index: 99;
+    animation: fadeIn 500ms;
+
+    width: 100%;
+    top: $mobile-header-height;
+    height: calc(100% - #{$mobile-header-height});
+    background-color: $gs000;
+  }
+}
+
+.header-logo {
+  display: inline-flex;
+  align-items: center;
+
+
+  &__img {
+    &--pc {
+      @include flex-width(112px);
+
+      @include rwd($nx-screen-pad-landscape) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      display: none;
+      @include flex-width(100px);
+
+      @include rwd($nx-screen-pad-landscape) {
+        display: block;
+      }
+    }
+  }
+
+  &__img+&__text {
+    margin-left: 24px;
+
+    @include rwd($nx-screen-pad-landscape) {
+      margin-left: 8px;
+    }
+  }
+
+  &__text {
+    @include flex-width(auto);
+    @include Body151-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $CI03;
+
+    @include rwd($nx-screen-pad-landscape) {
+      font-size: 20px;
+      @include Caption121-Regular1-Light2-Default-Color2-Center-Aligned();
+    }
+  }
+}
+
+.header-text-link {
+  @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+  color: $CI01;
+  transition: 300ms;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: transparentize($CI01, 0.35)
+  }
+
+  &:visited {
+    color: $CI01;
+  }
+}
+
+.header-dropdown {
+  position: relative;
+  // 去除連結樣式
+  a {
+    text-decoration: none;
+  }
+
+  &__head {
+    display: flex;
+    @include Body151-Regular1-Light2-Default-Color1-Left-Aligned();
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+
+    @include on-event($self:true) {
+      color: inherit;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      @include flex-width(12px);
+      transform-origin: 50% 50%;
+      height: 12px;
+      transition: transform 300ms;
+      background-image: url(../../img/icon_more_12pt.svg);
+      margin-left: 4px;
+    }
+  }
+
+  &--special &__head {
+    &:after {
+      display: none;
+    }
+  }
+
+  &--special &__menu {
+    left: 0;
+    top: 100%;
+
+    @include rwd(1300px) {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &--special {
+    width: 120px;
+    color: $gs000;
+    background-color: $CI02;
+  }
+
+  &--active &__head {
+    &:after {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__menu {
+    min-width: 154px;
+    padding: 8px;
+    padding-top: 16px;
+    display: block;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 8px 8px;
+    pointer-events: none;
+    position: absolute;
+    z-index: 50;
+    transition: opacity 300ms;
+    top: calc(100% + 14px);
+    left: -32px;
+    opacity: 0;
+    box-sizing: content-box;
+    white-space: nowrap;
+  }
+
+  &--active &__menu {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &__link {
+    display: block;
+    padding-left: 24px;
+    padding-right: 23px;
+    border-radius: 6px;
+    transition: background-color 300ms, color 300ms;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    @include Body151-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs008;
+    cursor: pointer;
+
+    &:not(#{&}--hasDescendant):hover {
+      background-color: $gs001;
+      @include Body152-Bold1-Light2-Default-Color1-Left-Aligned;
+      color: $CI01;
+    }
+
+    &--hasDescendant {
+      padding-right: 0;
+
+      .header-dropdown__text {
+        position: relative;
+        width: 100%;
+        display: inline-block;
+
+        &:after {
+          content: '';
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          display: block;
+          width: 8px;
+          height: 8px;
+          transform: translateY(-50%) rotate(-45deg);
+          transform-origin: 50% 50%;
+          border-left: 2px solid $CI01 !important;
+          border-bottom: 2px solid $CI01 !important;
+          transition: 500ms;
+        }
+
+        &.active {
+          &:after {
+            transform: rotate(135deg);
+          }
+        }
+      }
+    }
+
+    &--hasDescendant:hover {
+      .header-dropdown__text {
+        color: $CI01;
+      }
+    }
+
+    &:not(#{&}--hasDescendant):active {
+      background-color: $gs002;
+    }
+  }
+
+  &__descendant-menu {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  &__descendant-menu &__link {
+    padding-left: 10px;
+  }
+}
+
+.header-hamburger {
+  @include nxjq-hamburger($line-color:$CI01, $line-actived-color:$CI01, $icon-width:22px, $line-gap:6px, $line-height:2px, $touch-area-expanding:3px);
+}
+
+.header-pc-login {
+  @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+  color: $CI01;
+  width: 120px;
+}
+
+.header-pc-acc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+
+  &__name {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include on-event($self:true) {
+      color: $gs008;
+    }
+  }
+
+  &__devider {
+    width: 1px;
+    height: 13px;
+    background-color: $gs004;
+    margin: 0 7px;
+    display: block;
+  }
+
+  &__logout {
+    @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+    color: $CI01;
+  }
+}
+
+.header-mobile-login {
+  display: flex;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 13px;
+  padding-right: 13px;
+  border-radius: 4px;
+  white-space: nowrap;
+  @include Caption131-Regular1-Light2-Default-Color2-Center-Aligned();
+
+  @include on-event($self:true) {
+    color: $gs000;
+  }
+
+  background-color: $CI02;
+}
+
+.header-mobile-acc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__name {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    @include on-event($self:true) {
+      color: $gs008;
+    }
+  }
+
+  &__devider {
+    width: 1px;
+    height: 13px;
+    background-color: $gs004;
+    margin: 0 7px;
+    display: block;
+  }
+
+  &__logout {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $CI01;
+  }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "bankCode": "000",
+    "bankName": "中央銀行",
+    "bankShortname": "央行",
+    "printBranchType": "N",
+    "branchs": [
+      {
+        "branchCode": "0000022",
+        "branchName": "中央銀行國庫局",
+        "bkShortname": "央行國庫局",
+        "printBranchType": "N"
+      }
+    ]
+  },
+  {
+    "bankCode": "004",
+    "bankName": "臺灣銀行",
+    "bankShortname": "臺銀",
+    "printBranchType": "N",
+    "branchs": [
+      {
+        "branchCode": "0040037",
+        "branchName": "營業部",
+        "bkShortname": "臺銀營業部",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0040059",
+        "branchName": "公庫部",
+        "bkShortname": "臺銀公庫部",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0040071",
+        "branchName": "館前分行",
+        "bkShortname": "臺銀館前",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0040082",
+        "branchName": "信託部",
+        "bkShortname": "臺銀信託部",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0040093",
+        "branchName": "台南分行",
+        "bkShortname": "臺銀台南分行",
+        "printBranchType": "N"
+      }
+    ]
+  },
+  {
+    "bankCode": "005",
+    "bankName": "臺灣土地銀行",
+    "bankShortname": "土銀",
+    "printBranchType": "N",
+    "branchs": [
+      {
+        "branchCode": "0050027",
+        "branchName": "基隆分行",
+        "bkShortname": "土銀基隆分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0050038",
+        "branchName": "中和分行",
+        "bkShortname": "土銀中和分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0050049",
+        "branchName": "南港分行",
+        "bkShortname": "土銀南港分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0050050",
+        "branchName": "台北分行",
+        "bkShortname": "土銀台北分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0050061",
+        "branchName": "南港分行",
+        "bkShortname": "土銀南港分行",
+        "printBranchType": "N"
+      }
+    ]
+  },
+  {
+    "bankCode": "006",
+    "bankName": "合作金庫商業銀行",
+    "bankShortname": "合庫",
+    "printBranchType": "N",
+    "branchs": [
+      {
+        "branchCode": "0060017",
+        "branchName": "財務部",
+        "bkShortname": "合庫財務部",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0060028",
+        "branchName": "館前分行",
+        "bkShortname": "合庫館前分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0060039",
+        "branchName": "西門分行",
+        "bkShortname": "合庫西門分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0060040",
+        "branchName": "延平分行",
+        "bkShortname": "合庫延平分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0060051",
+        "branchName": "大稻埕分行",
+        "bkShortname": "合庫大稻埕分行",
+        "printBranchType": "N"
+      }
+    ]
+  },
+  {
+    "bankCode": "007",
+    "bankName": "第一商業銀行",
+    "bankShortname": "一銀",
+    "printBranchType": "N",
+    "branchs": [
+      {
+        "branchCode": "0070731",
+        "branchName": "信託處",
+        "bkShortname": "一銀信託處",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0070937",
+        "branchName": "營業部",
+        "bkShortname": "一銀營業部",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0070948",
+        "branchName": "安和分行",
+        "bkShortname": "一銀安和分行",
+        "printBranchType": "N"
+      },
+      {
+        "branchCode": "0070959",
+        "branchName": "國際金融業務分行",
+        "bkShortname": "一銀國際金融業務分行",
+        "printBranchType": "N"
+      }
+    ]
+  }
+]

@@ -1,0 +1,332 @@
+.footer {
+  padding-top: 40px;
+  border-top: 2px solid $CI03;
+  background-color: $gs000;
+
+  &__inner {
+    position: relative;
+    max-width: $main-content-width-pc-2;
+    width: 100%;
+    left: calc((100% - #{$main-content-width-pc-2})/2);
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      // padding-left: 28px;
+      // padding-right: 28px;
+    }
+  }
+
+  &__former {
+    @include rwd($main-content-width-pc-2 + 56px) {
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+  }
+
+  &__latter {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+
+    // @include rwd($medium-small-screen) {
+    //   margin-top: 0px;
+    // }
+    @include rwd($main-content-width-pc-2 + 56px) {
+      margin-top: 40px;
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+  }
+
+  &__foot {}
+}
+
+.footer-contact {
+  &__title {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__content {
+    display: flex;
+    margin-top: 16px;
+    flex-wrap: wrap;
+
+    @include rwd($medium-small-screen) {
+      display: block;
+    }
+  }
+
+  &__text,
+  &__link {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    white-space: normal;
+
+  }
+
+  &__link {
+    transition: color 300ms;
+
+    @include on-event($self:true) {
+      color: $CI01;
+    }
+
+    &:hover {
+      color: transparentize($CI01, 0.35);
+    }
+  }
+
+  &__text+&__text {
+    margin-top: 12px;
+  }
+
+  &__former {
+    // @include flex-width(auto)
+    margin-right: 30px;
+    flex: 1;
+
+    @include rwd($medium-small-screen) {
+      margin-right: 0;
+    }
+  }
+
+  &__latter {
+    // @include flex-width(auto);
+    transform: translateX(15px);
+    // margin-left: auto;
+    margin-left: 0px;
+    flex: 1;
+
+    @include rwd(1136px) {
+      transform: none;
+      margin-top: 12px;
+    }
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0;
+      // margin-top: 26px;
+      margin-top: 12px;
+    }
+  }
+}
+
+.footer-links {
+  width: 100%;
+
+  &__pc {
+    display: flex;
+    justify-content: space-between;
+    // margin-top: -40px;
+    margin-top: -20px;
+    padding-bottom: 28px;
+
+    @include rwd(767px) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    display: none;
+    padding-bottom: 32px;
+
+    @include rwd(767px) {
+      display: block;
+    }
+
+    .footer-links-group__title {
+      &:hover {
+        // background-color: #FADCDA;
+        background-color: #FAF0E4;
+      }
+    }
+
+    .footer-links-group__list {
+      display: none;
+
+      &.show {
+        display: block;
+      }
+    }
+  }
+
+  &__item {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    display: block;
+    transition: color 300ms;
+    margin-left: 8px;
+
+    @include on-event($self:true) {
+      color: $CI01;
+    }
+
+    &:hover {
+      color: transparentize($CI01, 0.35);
+    }
+  }
+
+  &__item+&__item {
+    margin-top: 12px;
+  }
+
+  &__column {
+    @include flex-width(25.4%);
+    height: 310px;
+    position: relative;
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+      object-fit: cover;
+      opacity: 0.1;
+    }
+  }
+
+  &__group {
+    margin-top: 40px;
+
+    @include rwd($medium-desktop-screen) {
+      margin-top: 20px;
+    }
+  }
+}
+
+.footer-links-group {
+  a {
+    text-decoration: none;
+    color: $color-02;
+    font-weight: bold; // 追加
+  }
+  &.collaspe {
+    @include nxjq-collapse($collapseIcon-type:'arrowLine', $title-bgColor:transparent, $title-bgColor-active:transparent);
+    margin-bottom: 0;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-top: 24px;
+
+    .collapse {
+      &__title {
+        padding: 0;
+        @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+        display: flex;
+        align-items: center;
+
+        &:after {
+          position: relative;
+          display: block;
+          right: 0;
+          width: 8px;
+          height: 8px;
+          border-left: 2px solid $CI01 !important;
+          border-bottom: 2px solid $CI01 !important;
+          margin-left: 4px;
+        }
+      }
+
+      &__content {
+        padding-top: 12px;
+        padding-left: 13px;
+        padding-right: 13px;
+        margin-top: 0;
+      }
+    }
+  }
+
+
+  &__title {
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__list {
+    margin-top: 16px;
+  }
+}
+
+.footer-foot {
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+  position: relative;
+  left: 0;
+  right: 0;
+  max-width: 1136px;
+  width: 100%;
+  margin: 0 auto;
+  // padding-left: 24px;
+  // padding-right: 24px;
+
+  @include rwd($medium-small-screen) {
+    border-top: 1px solid $CI03;
+  }
+
+  &__inner {
+    max-width: $main-content-width-pc-2;
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      width: calc(100% - 48px);
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+
+    @include rwd($medium-small-screen) {
+      display: block;
+      padding-bottom: 18px;
+    }
+  }
+
+  &__former {}
+
+  &__latter {
+    margin-left: auto;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0;
+    }
+  }
+
+  &__nav {}
+
+  &__social-media {
+    width: 24px;
+  }
+
+  &__social-media+&__social-media {
+    margin-left: 16px;
+  }
+
+  &__support {
+    display: flex;
+  }
+
+  &__copyright {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    color: $gs007;
+    margin-left: 32px;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0;
+      margin-top: 14px;
+    }
+  }
+
+  &__link {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+
+    @include on-event($self:true) {
+      color: $CI01;
+    }
+
+    @include rwd($medium-small-screen) {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

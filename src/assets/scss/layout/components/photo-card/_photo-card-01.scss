@@ -1,0 +1,129 @@
+.photo-card-01 {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 40px;
+  position: relative;
+  white-space: normal;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: calc(100% - 55px);
+    background-color: $gs000;
+    z-index: 1;
+    border-radius: 16px;
+  }
+
+  >* {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__img {
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    font-size: 0;
+  }
+
+  &__content {
+    margin-top: 19px;
+  }
+
+  &__title {
+    @include Tilte202-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI01;
+  }
+
+  &__descrp {
+    margin-top: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $gs003;
+    margin-bottom: 16px;
+    color: $gs008;
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__detail {
+    padding-bottom: 12px;
+    border-bottom: 1px solid $gs003;
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    display: none;
+  }
+
+  &__tag {
+    margin-top: 12px;
+  }
+
+  &__foot {
+    margin-top: 24px;
+    display: flex;
+  }
+
+  &__btn {
+    @include flex-width(56.67%);
+  }
+
+  &__collapse-trigger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    @include flex-width(34.58%);
+    background-color: $gs002;
+    border-radius: 999px;
+
+    @include on-event($self:true) {
+      color: $CI02;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: relative;
+      display: block;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      border-left: 2px solid $CI02;
+      border-bottom: 2px solid $CI02;
+      margin-left: 4px;
+      transform: translateY(-50%) rotate(-45deg);
+      transition: 500ms;
+      margin-left: 8px;
+      transition: 350ms;
+    }
+
+    &.show::after {
+      transform: rotate(135deg);
+    }
+  }
+}
+
+.photo-card-01-tag {
+  &__former {}
+
+  &__latter {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__descrp {
+    color: $gs005;
+    @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__value {
+    color: $CI03;
+    @include Tilte282-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__unit {
+    color: $gs008;
+    margin-left: 8px;
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+}

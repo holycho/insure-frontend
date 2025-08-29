@@ -1,0 +1,27 @@
+[
+  {
+    "sn": "7c725ba2-b563-4e6c-807c-d6bf36d7265b",
+    "id": "A151273978",
+    "name": "林寶寶",
+    "mobile": "0928234567",
+    "birthday": "71/01/07",
+    "gender": "M",
+    "groupCoLtdId": null,
+    "groupEmpId": null,
+    "groupRelation": null,
+    "groupUnitId": null,
+    "marriage": "0",
+    "telAreaNo": "02",
+    "telExtNo": "",
+    "telNo": "29991111",
+    "emailAddr": "lin.bao-bao@gmail.com",
+    "postCode": "114",
+    "cityId": "100",
+    "areaId": "109",
+    "address": "內湖路一段12號",
+    "registerTime": "2021-01-01 09:15:00",
+    "adFlag": true,
+    "inviteCode": null,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzbiI6IjdjNzI1YmEyLWI1NjMtNGU2Yy04MDdjLWQ2YmYzNmQ3MjY1YiIsIm5hbWUiOiLmnpflr7blr7YiLCJpYXQiOjE3MjM3ODc2ODd9.E3o0-dOKBmUTE4ghxIJ1Yo5cKsKSQYaXIHq1ceCdLF0"
+  }
+]

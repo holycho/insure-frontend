@@ -1,0 +1,63 @@
+.card-collection-06 {
+  @include nxjq-carousel( //
+    $pagination-size:7px,
+    $pagination-color: $gs004, // 頁碼點點的顏色
+    $pagination-active-color: $CI01 //
+  );
+  position: relative;
+
+  .nxjq-carousel__shell {
+    overflow: visible;
+  }
+
+  .nxjq-carousel__navigation {
+    display: none;
+    align-items: center;
+    width: 100%;
+    bottom: 50%;
+    transform: translateY(50%);
+    position: absolute;
+
+    @include rwd($medium-screen) {
+      display: flex;
+    }
+
+    >.nxjq-carousel__navigation-children+.nxjq-carousel__navigation-children {
+      margin-left: auto;
+    }
+
+    .nxjq-carousel__navigation-children {
+      font-size: 0;
+    }
+
+    .nxjq-carousel__navigation-children--prev {
+      transform: translateX(-100%) translateX(-11px) rotate(180deg);
+
+    }
+
+    .nxjq-carousel__navigation-children--next {
+      transform: translateX(100%) translateX(11px);
+
+    }
+
+    .nxjq-carousel__navigation-link {
+      background-image: url(../../../../img/icon_next.png);
+      background-size: cover;
+      width: 9px;
+      height: 20px;
+    }
+  }
+
+  .nxjq-carousel__pagination {
+    display: inline-flex;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(100% + 16px);
+    position: absolute;
+
+
+    >.nxjq-carousel__pagination-children+.nxjq-carousel__pagination-children {
+      margin-left: 10px;
+    }
+  }
+}

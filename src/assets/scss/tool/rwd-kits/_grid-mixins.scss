@@ -1,0 +1,175 @@
+/// 網格系統專用mixin
+
+// 生成置放網格用的容器
+/// 
+/// @param {Numbers} $gutter [$grid-gutter-width] 
+
+@mixin make-container($gutter: $grid-gutter-width) {
+  width: 100%;
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+// 設定在不同breakpoint底下， 那個來置放網格的容器，他的最大寬度
+/// 
+/// @param {Numbers} $max-widths [$container-max-widths] 
+/// @param {Numbers} $breakpoints [$grid-breakpoints] 
+
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+
+  @each $breakpoint,
+  $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+// 設定網格系統的 row
+/// @param {Numbers} $gutter [$grid-gutter-width] 
+
+@mixin make-row($gutter: $grid-gutter-width) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$gutter / 2;
+  margin-left: -$gutter / 2;
+}
+
+// 用來產生 自由寬度 的 col(.nx-grid__col-xx-auto) 專用的mixin
+
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%; // Reset earlier grid tiers
+}
+
+//  用來去幫每個row底下的子元素(col)定義他的flex-basis 是佔row 的多少長度百分比
+/// @param {Numbers} $size 
+/// @param {Numbers} $columns [$grid-columns] 
+
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns);
+  // 這邊下面計算 max-width的用意是要防止IE或Firefox 超越容器寬度
+  max-width: percentage($size / $columns);
+}
+
+/// 用來做出col元素左offset的mixin
+/// @param {Numbers} $size 
+/// @param {Numbers} $columns [$grid-columns] 
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  margin-left: if($num==0, 0, percentage($num));
+}
+
+// Row columns
+//
+// 用來修飾row用的mixin, 使用上的方法是創造一個class, 然後把這個mixin include 在這個class裡面，這樣這個class就可以下在row元素上
+// 這個產生出來的class可以用來把flex 容器(這邊是row) 底下的子項 變為 100%/$count 等分
+/// 
+/// @param {Numbers} $count 
+
+@mixin row-cols($count) {
+  &>* {
+    flex: 0 0 100% / $count;
+    max-width: 100% / $count;
+  }
+}
+
+// 根據預設的總格數，與網格gutter寬度/斷點集，產生整體網格col架構規則
+/// @param {Numbers} $columns [$grid-columns] 
+/// @param {Numbers} $gutter [$grid-gutter-width] 
+/// @param {Numbers} $breakpoints [$grid-breakpoints] 
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+
+  // 所有col元素的基底樣式
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  // 取得$breakpoints（斷點集） 裡面所有的key值 （也就是所有斷點名稱，例如xs,sm 等），並且遍歷之
+  @each $breakpoint in map-keys($breakpoints) {
+    // 將當下遍歷到的key值轉化為中綴詞字串
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // 先幫每一個尺寸的col套上基底樣式
+    @for $i from 1 through $columns {
+      .nx-grid__col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+
+    // 幫這個斷點區間的col與col-auto套上基底樣式
+    .nx-grid__col#{$infix},
+    .nx-grid__col#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    //根據當下遍歷到的斷點名去下 min-width 規則
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+
+      // 產生這個斷點區間的基本 `.nx-grid__col-{bp}` col classes （用來等分列寬的class）
+      .nx-grid__col#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+
+      // 產生這個斷點區間的 `.nx-grid__row-cols-{bp}-{size}`   row 等分修飾 classes 
+      @for $i from 1 through $grid-row-columns {
+        .nx-grid__row-cols#{$infix}-#{$i} {
+          @include row-cols($i);
+        }
+      }
+
+      // 產生這個斷點區間的 `.nx-grid__col-{bp}-auto`  col-auto classes 
+      .nx-grid__col#{$infix}-auto {
+        @include make-col-auto();
+      }
+
+      // 產生這個斷點區間的各尺寸 `.nx-grid__col-{bp}-{size}`  col classes 
+      @for $i from 1 through $columns {
+        .nx-grid__col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+
+      // 產生這個斷點區間的 first-order col classes 
+      .nx-grid__col--order#{$infix}-first {
+        order: -1;
+      }
+
+      // 產生這個斷點區間的 last-order col classes 
+      .nx-grid__col--order#{$infix}-last {
+        order: $columns + 1;
+      }
+
+      // 產生這個斷點區間的 個別order col classes 
+      @for $i from 0 through $columns {
+        .nx-grid__col--order#{$infix}-#{$i} {
+          order: $i;
+        }
+      }
+
+      // 之所以for指到`$columns - 1`是因為不開放能夠offset一整條row的狀況 
+      @for $i from 1 through ($columns - 1) {
+
+        // if not 就是 !condition的意思，這邊是要避免有中綴詞是空字串的狀況
+        @if not ($infix=="") {
+
+          // 產生這個斷點區間的 各尺寸 offset classes 
+          .nx-grid__col--offset#{$infix}-#{$i} {
+            @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}

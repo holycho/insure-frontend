@@ -1,0 +1,11 @@
+[
+  {
+    "id": "activity",
+    "text": "熱門活動",
+    "order": 1,
+    "type": "1",
+    "link": "/activity/promo",
+    "login": "0",
+    "target": "1"
+  }
+]

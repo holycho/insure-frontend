@@ -1,0 +1,12 @@
+.card-collection-05 {
+  @include fixed-gutter-flex-grid( //
+    $column-gutter:16px,
+    $column-number:2,
+    $min-screen-width:$medium-screen-2+1 //
+  );
+  @include fixed-gutter-flex-grid( //
+    $column-gutter:16px,
+    $column-number:1,
+    $max-screen-width:$medium-screen-2 //
+  )
+}

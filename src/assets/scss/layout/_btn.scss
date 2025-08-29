@@ -1,0 +1,135 @@
+.btn-primary {
+  background-image: $CI-gradient-01;
+  background-color: $CI01;
+  border-radius: 999px;
+  @include Callout162-Bold1-Light2-Default-Color2-Center-Aligned();
+  height: 44px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 500ms, box-shadow 500ms;
+  box-shadow: 3px 10px 20px 0px transparentize($gs009, 0.8);
+
+  &--disabled {
+    background-image: none;
+    background-color: $gs003 !important;
+    color: $gs005 !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+  }
+
+  @include on-event($self:true) {
+    color: $gs000;
+    text-decoration: none;
+  }
+
+  &:hover {
+    box-shadow: 3px 10px 20px 0px transparentize($gs009, 1);
+
+  }
+
+  &:active {
+    box-shadow: 3px 10px 20px 0px transparentize($gs009, 1);
+    background-image: none;
+    background-color: $CI02;
+  }
+}
+
+.btn-secondary {
+  background-color: transparentize($gs000, 0.5);
+  /* CI01 */
+  border: 1px solid $CI01;
+  border-radius: 6px;
+  height: 44px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: 300ms;
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+  }
+
+  &--48h {
+    height: 48px;
+  }
+
+  &--32h {
+    height: 32px;
+  }
+
+  @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+
+  @include on-event($self:true) {
+    text-decoration: none;
+    color: $CI01;
+  }
+
+  &:hover {
+    background-color: transparentize($CI01, 0.96);
+  }
+
+  &:active {
+    background-color: $CI01;
+    color: $gs000;
+  }
+}
+
+.btn-secondary-2 {
+  background-color: transparentize($gs000, 0.2);
+  color: $CI01;
+  /* CI01 */
+  border-radius: 999px;
+  height: 52px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 300ms, color 300ms;
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+  }
+
+  @include Callout162-Bold1-Light2-Default-Color2-Center-Aligned();
+
+  @include on-event($self:true) {
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $CI01;
+    color: $gs000 !important;
+  }
+
+  &:visited {
+    color: $CI01;
+  }
+
+  &:active {
+    background-color: $CI01-d;
+    color: $gs000;
+  }
+
+}
+
+
+[class*="btn"],
+[class*="link"] {
+  &.size-1 {
+    @include flex-width(91px)
+  }
+
+  &.size-2 {
+    @include flex-width(120px)
+  }
+}
+
+.btn-text {
+  @include Callout162-Bold1-Light2-Default-Color1-Left-Aligned();
+
+  @include on-event($self:true) {
+    color: $CI02;
+  }
+}

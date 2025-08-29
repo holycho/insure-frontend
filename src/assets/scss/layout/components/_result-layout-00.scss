@@ -1,0 +1,77 @@
+.result-layout-00 {
+  &__head {
+    margin-top: 96px;
+
+    @include rwd($medium-screen-2) {
+      position: relative;
+      z-index: 3;
+      margin-top: -88px;
+    }
+
+    &--mobileNoFallback {
+      @include rwd($medium-screen-2) {
+        margin-top: 64px;
+      }
+    }
+  }
+
+  &__content {
+    margin-top: 96px;
+
+    @include rwd($medium-screen-2) {
+      margin-top: 64px;
+    }
+  }
+
+  &__head+&__content {
+    margin-top: 80px;
+
+    @include rwd($medium-screen-2) {
+      margin-top: 64px;
+    }
+  }
+
+
+
+  &__block {}
+
+  &__block+&__block {
+    margin-top: 80px;
+
+    &.margin-bottom-56 {
+      margin-bottom: 56px;
+    }
+
+    @include rwd($medium-screen-2) {
+      margin-top: 64px;
+    }
+  }
+
+  &__label-text {
+    display: flex;
+    align-items: center;
+    @include Tilte182-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $gs007;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      height: 1px;
+      background-color: $gs003;
+      flex: 1;
+    }
+
+    &:before {
+      margin-right: 16px;
+    }
+
+    &:after {
+      margin-left: 16px;
+    }
+
+    +* {
+      margin-top: 24px;
+    }
+  }
+}

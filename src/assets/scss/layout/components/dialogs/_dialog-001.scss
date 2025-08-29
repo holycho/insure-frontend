@@ -1,0 +1,265 @@
+.dialog-001 {
+  $max-height: 700px;
+  $vertical-gap: 56px;
+  $box-shadow-cut-proof: 25px;
+  position: relative;
+
+  @include nxjq-dialog( //
+    $dialog-position:'center',
+    $dialog-backdrop-color:rgba(0, 0, 0, 0.4),
+    $dialog-width:560px,
+    $dialog-radius:16px,
+    $dialog-shadow: true,
+  );
+
+
+  &--max-width-752 {
+    .dialog__content {
+      max-width: 752px;
+    }
+  }
+
+
+
+
+  &__back {
+    width: 20px;
+    position: absolute;
+    top: 32px;
+    left: 32px;
+  }
+
+
+  &__title {
+    @include Tilte282-Bold1-Light2-Default-Color2-Center-Aligned();
+
+    @include rwd($medium-small-screen) {
+      @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    &.margin-bottom-30 {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__descrp {
+    @include Body161-Regular1-Light2-Default-Color2-Center-Aligned();
+    margin-top: 2px;
+
+    &--color-gs007 {
+      color: $gs007;
+    }
+  }
+
+  &__descrp-2 {
+    @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+    margin-top: 2px;
+    color: $gs007;
+
+    @include rwd($medium-small-screen) {
+      @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    }
+
+    &--text-center {
+      text-align: center;
+    }
+  }
+
+  &__content {
+  }
+
+
+
+  &__btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex: none;
+  }
+
+  &__shell {
+    display: flex;
+    height: 100%;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__qrcode {
+    width: 150px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 32px;
+
+
+  }
+
+  &__barcode {
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 32px;
+
+  }
+
+  &__exchange-code {
+    @include Large-Tilte362-Bold1-Light2-Default-Color2-Center-Aligned();
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 32px;
+    text-align: center;
+
+    @include rwd ($medium-small-screen) {
+      @include Tilte282-Bold1-Light2-Default-Color2-Center-Aligned();
+    }
+  }
+
+  &__sub-content {
+    margin-top: 40px;
+  }
+
+  &__footer {
+    margin-top: 48px;
+  }
+
+  &__label-text {
+    display: flex;
+    align-items: center;
+    color: $gs007;
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      height: 1px;
+      background-color: $gs003;
+      flex: 1;
+    }
+
+    &:before {
+      margin-right: 8px;
+    }
+
+    &:after {
+      margin-left: 8px;
+    }
+
+    +* {
+      margin-top: 20px;
+    }
+  }
+
+  &__qrcode+&__btn {
+    margin-top: 16px;
+  }
+
+  &__btn {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 274px;
+    height: 44px;
+    margin-top: 32px;
+
+    @include rwd($medium-screen-2) {
+      width: 210px;
+      height: 40px;
+    }
+
+    &--text {
+      height: auto;
+      text-align: center;
+    }
+
+    &--size-1 {
+      width: 180px;
+
+      @include rwd($medium-screen-2) {
+        width: 152px;
+      }
+    }
+  }
+
+  &__btn+&__btn--text {
+    margin-top: 24px;
+  }
+
+  &__descrp+&__form {
+    margin-top: 32px;
+  }
+
+  &__form {
+    max-width: 368px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    &--size-2 {
+      max-width: 420px;
+    }
+  }
+
+  &__social-media-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__social-media {
+    @include flex-width(50px);
+
+  }
+
+  &__social-media+&__social-media {
+    margin-left: 16px;
+  }
+
+  .dialog {
+
+    &__wrapper {
+      height: 100%;
+
+      @media screen and (max-height:560px) {
+        align-items: flex-start;
+      }
+    }
+
+    &__content {
+      padding: 48px;
+      margin-top: 0;
+      position: relative;
+      max-height: 542px;
+
+
+      @include rwd($medium-screen-2) {
+        padding-left: 24px;
+        padding-right: 24px;
+        width: calc(100% - 54px);
+        max-height: none;
+      }
+
+
+
+
+    }
+
+
+
+
+  }
+
+  @include dialog-base();
+}

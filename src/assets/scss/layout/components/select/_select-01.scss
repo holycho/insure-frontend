@@ -1,0 +1,31 @@
+.select-01 {
+  cursor: pointer;
+
+  &--hasTitle &__title {
+    display: block;
+  }
+
+  &__title {
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+    display: none;
+  }
+
+  &__select {
+    @include nxjq-select( //
+      $select-type:'borderRadius',
+      $border-color:$gs004,
+      $text-position:'left',
+      $main-text-color:$gs006,
+      $select-height:48px,
+      $main-bg:$gs000 //
+    );
+
+    @include nxjq-customize-select-base-01();
+  }
+
+  &.init:not(#{&}--disabled) {
+    .select-header {
+      color: $gs008;
+    }
+  }
+}

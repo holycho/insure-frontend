@@ -1,0 +1,40 @@
+.verification-link-00 {
+  @include Callout162-Bold1-Light2-Default-Color1-Left-Aligned();
+  white-space: nowrap;
+
+  @include on-event($self:true) {
+    color: $CI02;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    @include flex-width(15px);
+    height: 15px;
+    background-image: url(../../../img/refresh-p.svg);
+    background-size: cover;
+    // animation: spin 2s infinite linear;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+
+  &:hover::before {
+    animation: spin 3s infinite;
+  }
+
+
+
+  &--disable {
+    cursor: not-allowed !important;
+
+    @include on-event($self:true) {
+      color: $gs004;
+    }
+
+    &:before {
+      background-image: url(../../../img/refresh.svg);
+      animation: spin 3s infinite;
+      background-size: cover;
+    }
+  }
+}

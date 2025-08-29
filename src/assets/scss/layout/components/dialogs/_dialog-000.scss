@@ -1,0 +1,162 @@
+.dialog-000 {
+  $max-height: 700px;
+  $vertical-gap: 56px;
+
+  $box-shadow-cut-proof: 25px;
+  @include nxjq-dialog( //
+    $dialog-position:'center',
+    $dialog-backdrop-color:rgba(0, 0, 0, 0.4),
+    $dialog-width:752px,
+    $dialog-radius:16px,
+    $dialog-shadow: true,
+  );
+
+  &__head {
+    text-align: center;
+    flex: none;
+  }
+
+  &__title {
+    @include Tilte282-Bold1-Light2-Default-Color2-Center-Aligned();
+
+    @include rwd($medium-small-screen) {
+      @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+    }
+  }
+
+  &__descrp {
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+    margin-top: 2px;
+    color: $gs007;
+  }
+
+  &__ul-00 {
+    @include fixed-gutter-flex-grid($column-number:3, $column-gutter:16px, $min-screen-width:$medium-screen-2 + 1);
+    @include fixed-gutter-flex-grid($column-number:2, $column-gutter:16px, $max-screen-width:$medium-screen-2)
+  }
+
+  &__li-00 {
+    display: flex;
+    align-items: center;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $gs007;
+      flex: none;
+      margin-right: 10px;
+    }
+
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__head+&__content {
+    margin-top: 32px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-shrink: 0;
+    overflow: auto;
+    padding-bottom: $box-shadow-cut-proof;
+
+
+  }
+
+  &__scroll-content {
+    max-height: 468px;
+    overflow: auto;
+    flex: 1;
+    flex-shrink: 0;
+    @include custom-scroll();
+  }
+
+  &__btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex: none;
+  }
+
+  &__shell {
+    display: flex;
+    height: 100%;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__btn {
+    width: 180px;
+    height: 44px;
+
+    @include rwd($medium-screen-2) {
+      height: 152px;
+      height: 40px;
+    }
+  }
+
+  .dialog {
+
+    &__wrapper {
+      height: 100%;
+    }
+
+    &__content {
+      padding: 48px;
+      padding-bottom: $box-shadow-cut-proof;
+
+
+      @include rwd($medium-screen-2) {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: $box-shadow-cut-proof;
+        width: calc(100% - 54px);
+        max-height: $max-height;
+      }
+
+      @media screen and (max-height:$max-height+2*$vertical-gap) {
+        max-height: calc(100% - #{2*$vertical-gap});
+        height: 100%; // 這個是為了避免螢幕高度偏低時做的處置
+
+      }
+
+      //ie hack
+
+      @include ie11-hack() {
+        min-height: 86.2vh;
+      }
+
+      @include ie11-hack($medium-small-screen) {
+        height: calc(100% - 108px);
+      }
+
+      @media all and (-ms-high-contrast: none) and (min-height:$max-height+2*$vertical-gap+1) {
+        height: 100vh;
+        min-height: 0;
+      }
+
+      @media all and (-ms-high-contrast: none) and (min-height:$max-height+2*$vertical-gap+1) and (min-width:$medium-small-screen+1) {
+        height: 100vh;
+        max-height: 628px;
+        min-height: 0;
+      }
+
+
+    }
+
+
+
+
+  }
+
+  @include dialog-base();
+}

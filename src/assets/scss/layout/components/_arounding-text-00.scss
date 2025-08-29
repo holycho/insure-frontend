@@ -1,0 +1,78 @@
+.arounding-text-00 {
+  &__ul {}
+
+  &__floating-item {
+    width: 126px;
+    margin-left: 64px;
+    float: right;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 8px;
+      width: 71px;
+    }
+  }
+
+  &__li {
+    padding-left: 10px;
+    position: relative;
+    max-width: 620px;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background-color: $CI02;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      transform: translateY(-50%);
+
+    }
+  }
+
+  &__li+&__li {
+    margin-top: 8px;
+  }
+
+  &__text {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+
+    @include on-event($self:true) {
+      color: $CI02;
+    }
+
+    vertical-align: middle;
+
+    &--link {
+      vertical-align: middle;
+
+      &:after {
+        content: '';
+        vertical-align: middle;
+        width: 16px;
+        display: inline-block;
+        height: 16px;
+        background-image: url(../../../img/chevron-right.png);
+        background-size: cover;
+        vertical-align: top;
+        margin-top: 2px;
+      }
+
+      @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+
+      @include rwd($medium-small-screen) {
+        @include Caption132-Bold1-Light2-Default-Color1-Left-Aligned();
+      }
+    }
+
+    &--iblock {
+      display: inline-block;
+    }
+
+    &--block {
+      display: block;
+    }
+  }
+}

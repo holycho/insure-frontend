@@ -1,0 +1,42 @@
+.input-00 {
+  @include nxjq-input( //
+    $border-radius:6px,
+    $active-color:$CI01 //
+  );
+  transform: none;
+  cursor: pointer;
+
+  &--error {
+    input:not([disabled]) {
+      border: 1px solid red !important;
+    }
+  }
+
+  input {
+    padding: 8px 16px;
+    transform: none;
+    color: $gs008;
+    @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+
+    @include ie11-hack() {
+      min-height: 48px;
+    }
+
+    &::placeholder {
+      color: $gs004;
+    }
+
+    &:focus {
+      border-width: 1px;
+    }
+
+    &[disabled] {
+      background-color: $gs002;
+      color: $gs005;
+
+      &::placeholder {
+        color: $gs005;
+      }
+    }
+  }
+}

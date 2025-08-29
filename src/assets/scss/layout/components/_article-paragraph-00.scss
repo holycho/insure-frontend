@@ -1,0 +1,216 @@
+.article-paragraph-00 {
+  $this: &;
+
+  &--setA {
+    margin-top: 24px;
+
+    @include rwd($medium-small-screen) {
+      margin-top: 16px;
+    }
+  }
+
+  &__title {
+    @include Body162-Bold1-Light2-Default-Color1-Left-Aligned();
+
+    &--normal {
+      font-weight: normal;
+    }
+
+    &.color-gs008 {
+      color: $gs008;
+    }
+  }
+
+  &__title+&__ul {
+    margin-top: 8px;
+  }
+
+  &__text {
+    &--shallow {
+      padding-left: 16px !important;
+    }
+
+    &.color-gs008 {
+      color: $gs008;
+    }
+  }
+
+  &__text--single+&__ul,
+  &__ul+&__text--single {
+    margin-top: 16px;
+  }
+
+  &__ul {
+    padding-left: 16px;
+    list-style-type: decimal;
+    counter-reset: list 0;
+
+    &--null {
+      list-style-type: none;
+    }
+
+    &--nested {
+      padding-left: 48px !important;
+    }
+  }
+
+  &__li,
+  &__text {
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__li {
+
+    &--chinese,
+    &--chinese-bold,
+    &--parentheses-chinese,
+    &--contract-chinese,
+    &--contract-chinese-bold {
+      list-style: none;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      &:before {
+        display: inline-block;
+        font-size: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        position: relative;
+        transform: none;
+        flex: none;
+      }
+
+      >* {
+        @include flex-width(100%);
+
+        @include ie11-hack() {
+          flex-shrink: 1;
+        }
+
+        padding-left: 16px;
+      }
+
+      >*:first-child() {
+        display: inline-block;
+        flex: 1;
+
+        @include ie11-hack() {
+          flex-shrink: 1;
+        }
+
+        padding-left: 0;
+      }
+    }
+
+    &--parentheses {
+      position: relative;
+      list-style-type: none;
+
+      &:before {
+        position: absolute;
+        transform: translateX(-130%);
+        content: "("counter(list)")";
+        counter-increment: list;
+      }
+    }
+
+    &--chinese {
+      &:before {
+        content: attr(data-order)"、";
+        counter-increment: list;
+      }
+    }
+
+    &--chinese-bold {
+      &:before {
+        content: attr(data-order)"、";
+        // position: absolute;
+        counter-increment: list;
+        font-weight: bold;
+      }
+    }
+
+    &--parentheses-chinese {
+      &:before {
+        content: "（"attr(data-order)")";
+        // position: absolute;
+        counter-increment: list;
+        margin-right: 5px;
+      }
+    }
+
+    &--contract-chinese {
+      &:before {
+        // position: absolute;
+        content: "第"attr(data-order)"條";
+        counter-increment: list;
+        margin-right: 15px;
+      }
+    }
+
+    &--contract-chinese-bold {
+      &:before {
+        // position: absolute;
+        content: "第"attr(data-order)"條";
+        counter-increment: list;
+        font-weight: bold;
+        margin-right: 15px;
+      }
+    }
+
+  }
+
+  &__title+&__text {
+    margin-top: 8px;
+  }
+
+  &__text+&__text {
+    margin-top: 8px;
+  }
+
+  &__text+&__ul,
+  &__ul+&__text {
+    margin-top: 8px;
+  }
+
+  &__li+&__li {
+    margin-top: 8px;
+  }
+
+  &__li--chinese-bold+&__li--chinese-bold {
+    margin-top: 16px;
+  }
+
+  &--setA &__li+&__li,
+  &--setA &__text+&__ul {
+    margin-top: 24px;
+  }
+
+  &--setA &__text+&__ul {
+    @include rwd($medium-screen) {
+      margin-top: 16px;
+    }
+  }
+
+
+
+  >#{&}__ul {
+
+    >#{$this}__li {
+
+      >#{$this}__ul,
+      >#{$this}__text {
+        padding-left: 32px;
+      }
+
+    }
+
+    padding-left: 0;
+  }
+
+
+
+
+}

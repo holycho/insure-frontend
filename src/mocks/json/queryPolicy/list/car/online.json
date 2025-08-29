@@ -1,0 +1,50 @@
+[
+  {
+    "applyNo": "3421C0713000110",
+    "bcType": "C",    
+    "policyNo": "CAR00001C07081",
+    "startTime": "106/01/01",
+    "endTime": "107/01/01",
+    "vPolicyNo": "CAR00001C08002",
+    "vStartTime": "106/01/01",
+    "vEndTime": "107/01/01",
+    "remark": "AJF-3956",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421C0713000120",
+    "bcType": "C",    
+    "policyNo": "CAR00001C07023",
+    "startTime": "107/01/01",
+    "endTime": "108/01/01",
+    "vPolicyNo": "CAR00001C08054",
+    "vStartTime": "107/01/01",
+    "vEndTime": "108/01/01",
+    "remark": "AJF-3956",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  },
+  {
+    "applyNo": "3421C0713000132",
+    "bcType": "C",    
+    "policyNo": "CAR03041C18055",
+    "startTime": "108/01/01",
+    "endTime": "109/01/01",
+    "vPolicyNo": "CAR03051C20606",
+    "vStartTime": "108/01/01",
+    "vEndTime": "109/01/01",
+    "remark": "AJF-3956",
+    "buttonInfo": {
+      "showPolicyModify": "N",
+      "showUploadPhoto": "N",
+      "showRefund": "N"
+    }
+  }
+]

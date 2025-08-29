@@ -1,0 +1,172 @@
+[
+  {
+    "policy": {
+      "discount": 1250,
+      "totalFeeDiscount": 11600,
+      "applicantName": "周子瑜",
+      "prodInfo": [
+        {
+          "plan": [
+            {
+              "planCode": "2101",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "強制責任保險",
+              "insuranceCategory": "CALI",
+              "profit": [
+                {
+                  "profitId": "M"
+                },
+                {
+                  "profitId": "DD"
+                }
+              ]
+            }
+          ],
+          "subPlan": []
+        },
+        {
+          "plan": [
+            {
+              "planCode": "0101",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "汽車車體損失保險甲式",
+              "insuranceCategory": "PDI",
+              "profit": [
+                {
+                  "profitId": "PD"
+                }
+              ]
+            }
+          ],
+          "subPlan": [
+            {
+              "planCode": "2201",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "蓮花汽車車體損失保險約定駕駛人A型附加條款",
+              "insuranceCategory": "PDI",
+              "profit": [
+                {
+                  "profitId": "PD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "plan": [
+            {
+              "planCode": "2601",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "強制責任險駕駛人傷害險(限車主本人)",
+              "insuranceCategory": "PI",
+              "profit": [
+                {
+                  "profitId": "M"
+                },
+                {
+                  "profitId": "DD"
+                }
+              ]
+            }
+          ],
+          "subPlan": []
+        },
+        {
+          "plan": [
+            {
+              "planCode": "3101",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "第三人責任保險(傷害)",
+              "insuranceCategory": "TPLI",
+              "profit": [
+                {
+                  "profitId": "PI"
+                }
+              ]
+            },
+            {
+              "planCode": "3201",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "第三人責任保險(財損)",
+              "insuranceCategory": "TPLI",
+              "profit": [
+                {
+                  "profitId": "PD"
+                }
+              ]
+            }
+          ],
+          "subPlan": [
+            {
+              "planCode": "3301",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "汽車第三人責任保險傷害責任多倍保障附加條款",
+              "insuranceCategory": "TPLI",
+              "profit": [
+                {
+                  "profitId": "PI"
+                }
+              ]
+            },
+            {
+              "planCode": "3901",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "第三人責任保險失能增額附加條款",
+              "insuranceCategory": "TPLI",
+              "profit": [
+                {
+                  "profitId": "Ds"
+                }
+              ]
+            },
+            {
+              "planCode": "3801",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "蓮花汽車第三人責任保險慰問保險金附加條款",
+              "insuranceCategory": "TPLI",
+              "profit": [
+                {
+                  "profitId": "DB"
+                },
+                {
+                  "profitId": "HsB"
+                }
+              ]
+            },
+            {
+              "planCode": "5101",
+              "planType": "car",
+              "expYear": 1,
+              "ver": 1,
+              "planShowName": "第三人責任保險乘客體傷責任附加條款",
+              "insuranceCategory": "TPLI",
+              "profit": [
+                {
+                  "profitId": "PD"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

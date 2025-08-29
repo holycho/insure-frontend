@@ -1,0 +1,2 @@
+import InsuranceAndPersonalNoticeClause from './InsuranceAndPersonalNoticeClause';
+export default InsuranceAndPersonalNoticeClause;

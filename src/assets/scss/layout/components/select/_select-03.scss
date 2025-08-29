@@ -1,0 +1,93 @@
+.select-03 {
+  @include nxjq-select( //
+    $select-type:'borderRadius',
+    $border-color:$gs004,
+    $text-position:'left',
+    $main-text-color:$gs004,
+    $select-height:48px,
+    $main-bg:$gs000 //
+  );
+
+  cursor: pointer;
+
+  @include nxjq-customize-select-base-01();
+
+  &__no-result {
+    padding-left: 16px;
+  }
+
+  .select-header {
+    @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  .select-option-list-wrapper {
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid $gs004;
+    padding: 12px 4px;
+    @include custom-scroll();
+
+    .select-option-list__item:first-child {
+      display: none !important;
+    }
+
+    .select-option-list {
+      position: relative;
+      max-height: none;
+      border: none;
+      padding: 0;
+      max-height: none;
+      overflow: visible;
+    }
+
+  }
+
+
+
+
+
+
+  &__graphic-list:not(#{&}__graphic-list--disabled)+.select-option-list {
+    &:before {
+      content: '';
+      display: block;
+      height: 1px;
+      top: 0;
+      width: calc(100% - 16px);
+      position: relative;
+      margin: 0 auto;
+      background-color: $gs002;
+    }
+  }
+
+  &__graphic-list--disabled {
+    display: none !important;
+  }
+
+  &.init:not(#{&}--disabled) {
+    .select-header {
+      color: $gs008;
+    }
+  }
+
+}
+
+.select-03-graphic-list {
+  padding: 20px;
+  @include fixed-gutter-flex-grid($column-number:3, $column-gutter:14px);
+}
+
+.select-03-graphic-item {
+  &__icon {
+    width: 62px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  &__text {
+    @include Footnote141-Regular1-Light2-Default-Color2-Center-Aligned();
+    color: $gs008;
+  }
+}

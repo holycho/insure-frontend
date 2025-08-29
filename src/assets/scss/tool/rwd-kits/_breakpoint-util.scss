@@ -1,0 +1,187 @@
+// Breakpoint viewport sizes and media queries.
+//
+// Breakpoints are defined as a map of (name: minimum width), order from small to large:
+//
+//    (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
+//
+// The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
+
+
+
+//  取得所輸入的斷點名稱在$breakpoints(斷點集)中的下一個斷點，如果輸入的斷點名稱本來就是最後一個斷點，則會回傳 null
+//  使用範例：
+//    >> breakpoint-next(sm)
+//    得到結果: md
+//    >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    得到結果: md
+//    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
+//    得到結果: md
+/// @param {String} $name 斷點名
+/// @param {Map} $breakpoints [$grid-breakpoints] 斷點集
+/// @param {Lists} $breakpoint-names [map-keys($breakpoints] 斷點集key值所組成的lists
+
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if($n !=null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// 取得輸入的斷點名所代表的斷點寬度，如果輸入的斷點名代表的寬度為0，將回傳null
+// 使用範例：
+//   >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//   回傳 576px
+/// 
+/// @param {String} $name 斷點名
+/// @param {Map} $breakpoints [$grid-breakpoints] 斷點集
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, null);
+}
+
+// 取得輸入的斷點名的下一個斷點，其所代表的斷點寬度-0.02px的寬度(這個動作是用來修正某版safari bug)，如果輸入的斷點名本身已經是最大斷點，將回傳null
+// 使用範例：
+//  >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//  回傳 767.98px
+/// 
+/// @param {String} $name 斷點名
+/// @param {Map} $breakpoints [$grid-breakpoints] 斷點集
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - .02, null);
+}
+
+// 輸入斷點名稱，以生成col的斷點名稱 中綴詞，如果輸入的斷點名本身代表的就是寬度0，則回傳空字串
+// 使用範例：
+//    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    ""  (得到空字串)
+//    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    "-sm" （得到輸入的一個dash+斷點名）
+/// 
+/// @param {String} $name 斷點名
+/// @param {Map} $breakpoints [$grid-breakpoints] 斷點集
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints)==null, "", "-#{$name}");
+}
+
+// 根據輸入的斷點名，產生該斷點名對應的寬度以上的media query規則(min-width)，如果輸入的斷點名本身就是代表寬度0，則不產生@media，直接套用至@content
+/// @param {String} $name 斷點名
+/// @param {Map} $breakpoints [$grid-breakpoints] 斷點集
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
+
+// 根據輸入的斷點名，產生該斷點名對應的寬度以下的media query規則(min-width)，如果輸入的斷點名本身就是代表最大寬度，則不產生@media，直接套用至@content
+/// @param {*} $name 
+/// @param {*} $breakpoints [$grid-breakpoints] 斷點集
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
+
+// 根據輸入的兩個斷點名，產生這兩個斷點名所代表的寬度區間的media query規則，如果兩個斷點有其中一個是極值，則會分別採用min-width 或max-width的計算方式
+/// 
+/// @param {*} $lower 所代表的寬度比較小的斷點名
+/// @param {*} $upper 所代表的寬度比較大的斷點名
+/// @param {*} $breakpoints [$grid-breakpoints]  斷點集
+
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min !=null and $max !=null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+
+  //如果輸入的$max斷點名代表最大斷點，則使用min-width: $lower 規則
+  @else if $max==null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  }
+
+  //如果輸入的$min斷點名代表寬度0，則使用max-width： 規則
+  @else if $min==null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// 根據輸入的一個斷點名，產生這個斷點名所代表的寬度的media query規則(就只有那1px的寬度)，如果該斷點是極值，則會採用min-width 或max-width的計算方式
+/// 
+/// @param {*} $name 
+/// @param {*} $breakpoints [$grid-breakpoints] 斷點集
+
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints); // 判定如果這的寬度代表的不是0， 就會採用這個name代表的斷點寬度，否則拿到null
+  $max: breakpoint-max($name, $breakpoints); // 判定有next breakpoint的話(換句話說不是最大斷點)，就會採用這個name代表的斷點寬度 否則拿到null
+
+  // 既不是最大斷點也不是0
+  @if $min !=null and $max !=null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+
+  //如果輸入的斷點名代表最大斷點，則使用min-width: 最大斷點規則
+  @else if $max==null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  }
+
+  //如果輸入的斷點名代表寬度0，則使用max-width規則
+  @else if $min==null {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+/// @example 快速創建Device Width Media Query規則
+/// @param {String} $breakpoint 參數請填長度單位，裝置斷點寬度
+
+@mixin rwd($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+
+@mixin min-rwd($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+
+@mixin between-rwd($min-screen-width, $max-screen-width) {
+  @media screen and (min-width:$min-screen-width) and (max-width: $max-screen-width) {
+    @content;
+  }
+}

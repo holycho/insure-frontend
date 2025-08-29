@@ -1,0 +1,11 @@
+[
+  {
+    "id": "activity",
+    "text": "最新消息",
+    "order": 2,
+    "type": "1",
+    "link": "/activity/news",
+    "login": "0",
+    "target": "1"
+  }
+]

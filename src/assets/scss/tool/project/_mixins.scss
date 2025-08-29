@@ -1,0 +1,226 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@mixin order-rotate($breakpoint) {
+  @include rwd($breakpoint) {
+    transform-origin: 50% 50%;
+    transform: rotate(180deg);
+
+    >* {
+      transform-origin: 50% 50%;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@mixin custom-scroll($thumbColor: #888, $thumbHover: #555, $width: 5px, $height: 5px, $radius: 2.5px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $thumbColor;
+    // 圓角處理
+    border-radius: $radius;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumbHover;
+    // 圓角處理
+    border-radius: $radius;
+  }
+}
+
+
+
+@mixin safari-hack() {
+  @media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+      @content;
+
+    }
+  }
+}
+
+
+
+@mixin nxjq-customize-select-base-01() {
+  &--disabled {
+    pointer-events: none;
+
+    .select-header {
+      background-color: $gs002 !important;
+      color: $gs005;
+
+      &:after {
+        opacity: 0.3;
+      }
+
+      .select-search.select-search--headerSearchbar {
+        input {
+          &::placeholder {
+            color: $gs005;
+          }
+        }
+      }
+    }
+  }
+
+  &--error:not([class*="--disable"]) {
+    .select-header {
+      border: 1px solid red !important;
+    }
+  }
+
+  .select-header {
+    z-index: 5;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    >* {
+      white-space: nowrap;
+    }
+
+    .select-search.select-search--headerSearchbar {
+      input {
+        &::placeholder {
+          color: $gs004;
+        }
+      }
+    }
+  }
+
+
+  .select-option-list-wrapper {
+    background-color: $gs000;
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    z-index: 500;
+
+    .select-option-list {
+      transition: 0ms;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      padding: 12px 4px;
+      max-height: 200px;
+      overflow: auto;
+
+      &__item {
+        border-top: none;
+        padding: 8px 12px;
+        @include Body181-Regular1-Light2-Default-Color1-Left-Aligned();
+        color: $gs008;
+
+        &:hover {
+          color: $CI01;
+          background-color: transparent;
+        }
+
+        &:focus,
+        &:active {
+          background: #F8F8F8;
+          border-radius: 6px;
+        }
+
+      }
+    }
+  }
+
+  .select-header {
+    transition: 0ms;
+    padding: 8px 30px 8px 1rem;
+
+    &:after {
+      border: none;
+      width: 9px;
+      height: 9px;
+      right: 16px;
+      transform: translateY(-75%) rotate(-45deg);
+      transform-origin: 50% 50%;
+      border-left: 2px solid $CI01 !important;
+      border-bottom: 2px solid $CI01 !important;
+      transition: 500ms;
+    }
+  }
+
+  &.collapsed {
+    z-index: 10;
+
+    .select-header {
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-color: $CI01;
+      background-color: $gs000;
+
+      &:after {
+        transform: translateY(100%) rotate(135deg);
+      }
+    }
+
+    .select-option-list-wrapper {}
+
+    .select-option-list {
+      border-top: none;
+    }
+
+
+  }
+
+
+}
+
+@mixin dialog-base() {
+  .dialog {
+
+    &__close {
+      background-color: transparent;
+      top: 32px;
+      right: 32px;
+      width: 20px;
+      height: 20px;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../../img/cross.png);
+        transform: rotate(0deg);
+        background-size: cover;
+      }
+
+      @include rwd($medium-screen-2) {
+        top: 24px;
+        right: 24px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+@mixin ie11-hack($breakpoint:null) {
+  @if($breakpoint==null) {
+    @media all and (-ms-high-contrast: none) {
+      @content
+    }
+  }
+
+  @else {
+    @media all and (-ms-high-contrast: none) and (max-width:$breakpoint) {
+      @content
+    }
+  }
+
+}

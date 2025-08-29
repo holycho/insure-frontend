@@ -1,0 +1,283 @@
+//TODO:新增checkbox mixin
+/// @example Checkbox樣式
+/// 1.使用預設一般背景選取框樣式，$checkbox-type請輸入hasBg
+/// 2.使用預設外框選取框樣式，$checkbox-type請輸入hasBorder
+/// 3.使用放圖片為選取狀態樣式，$checkbox-type請輸入hasImg，可依據客製需求放置設計後的圖片
+/// 4.使用卡片型樣式，$checkbox-type請輸入hasCard，此種類型同樣也兼具上一點更換圖片功能
+/// 5.$checked-icon圖片路徑預設../img/libimg/tick.svg，會自動將檔案轉換為base64格式
+/// 6.使用純文字卡片開關樣式，$checkbox-type請輸入switchToggle
+/// @param {Strings}   $checkbox-type ['hasBg'] - 參數請填checkbox樣式hasBg/hasBorder/hasImg/hasCard/switchToggle
+/// @param {Numbers}   $checkItem-size [20px] - 參數請填checkbox選取框的大小，會包含圖片一起縮放
+/// @param {Colors}    $unchecked-bgColor [#ffffff] - 參數請填選取框的背景顏色(未選取時)
+/// @param {Colors}    $checked-bgColor [#1e88e5] - 參數請填選取框的背景顏色(選取時)，僅適用於switchToggle
+/// @param {Colors}    $unchecked-borderColor [#e4e4e4] - 參數請填選取框的外框顏色(未選取時)
+/// @param {Colors}    $checked-color [#7bc4ca] - 參數請填選取框指定統一顏色(選取後)
+/// @param {Strings}   $checked-icon ['../img/libimg/tick.svg'] - 參數請填選取框指定更換圖片(選取後)，圖片Url連結路徑例如'../img/libimg/xxx.svg'
+/// @param {Colors}    $uncheck-textColor [$lightblack] - 參數請填卡片樣式指定文字顏色(選取前)
+/// @param {Colors}    $checked-textColor [#ffffff] - 參數請填卡片樣式指定文字顏色(選取後)
+/// @param {Numbers}   $border-radius [4px] - 參數請填外框圓角的尺寸
+
+@mixin nxjq-checkbox($checkbox-type: 'hasBg',
+  $checkItem-size: 20px,
+  $unchecked-bgColor: #ffffff,
+  $checked-bgColor:#1e88e5,
+  $unchecked-borderColor: #e4e4e4,
+  $checked-color: #7bc4ca,
+  $checked-icon: '../img/libimg/tick.svg',
+  $uncheck-textColor: $lightblack,
+  $checked-textColor: #ffffff,
+  $border-radius:4px) {
+  padding-left: 30px;
+
+  label {
+    text-indent: -30px;
+    word-break: break-all;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .text {
+    display: inline-block;
+    min-width: 200px;
+    max-width: 100%;
+    text-indent: 0;
+    vertical-align: middle;
+  }
+
+  //初始狀態判斷：一般checkbox樣式(hasBg.hasBorder)/圖片樣式(hasImg)/卡片樣式(hasCard)
+  @if $checkbox-type=='hasCard' {
+    //card style 卡片的scss
+    padding-left: 0;
+    padding: 0 5px;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+
+    label {
+      width: 100%;
+      text-align: left;
+      text-indent: 0;
+      margin: 0;
+      background: $unchecked-bgColor;
+      border: 2px solid $unchecked-borderColor;
+      border-radius: $border-radius;
+    }
+
+    .text {
+      display: inline-block;
+      min-width: 200px;
+      max-width: 100%;
+      text-indent: 0;
+      padding: 10px 15px 10px 0;
+      vertical-align: middle;
+      color: $uncheck-textColor;
+    }
+
+    //checked前的checkbox style
+    input[type="checkbox"]+label span {
+      display: inline-block;
+      width: $checkItem-size;
+      height: $checkItem-size;
+      background: $unchecked-bgColor;
+      border: 2px solid $unchecked-borderColor;
+      border-radius: $border-radius;
+      margin: 10px;
+      vertical-align: middle;
+      transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
+    }
+  }
+
+  @else if $checkbox-type=='hasImg' {
+
+    //hasImg基本樣式-checked前的checkBox style
+    input[type="checkbox"]+label span {
+      display: inline-block;
+      width: $checkItem-size;
+      height: $checkItem-size;
+      background: $unchecked-bgColor;
+      border: 2px solid $unchecked-borderColor;
+      border-radius: $border-radius;
+      margin: -2px 10px 0 0;
+      vertical-align: middle;
+      position: relative;
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  @else if $checkbox-type=='switchToggle' {
+    display: inline-flex;
+    padding-left: 0;
+    width: 100%;
+    max-width: 100px;
+
+    input[type="checkbox"]+label span,
+    input[type="checkbox"]:checked+label span {
+      display: none;
+    }
+
+    label {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      border-radius: $border-radius;
+      transition: background-color .3s linear;
+    }
+
+    .text {
+      display: block;
+      padding: 10px 0;
+      min-width: auto;
+      text-align: center;
+    }
+
+    input[type="checkbox"]+label {
+      border: 1px solid transparent;
+      background-color: $unchecked-bgColor;
+      color: $uncheck-textColor;
+    }
+  }
+
+  @else {
+
+    //default基本樣式-checked前的checkBox style
+    input[type="checkbox"]+label span {
+      display: inline-block;
+      width: $checkItem-size;
+      height: $checkItem-size;
+      background: $unchecked-bgColor;
+      border: 2px solid $unchecked-borderColor;
+      border-radius: $border-radius;
+      margin: -2px 10px 0 0;
+      vertical-align: middle;
+      position: relative;
+
+      &:before {
+        content: "";
+        background: $checked-color;
+        border: 2px solid $checked-color;
+        position: absolute;
+        width: $checkItem-size;
+        height: $checkItem-size;
+        border-radius: $border-radius;
+        left: 50%;
+        top: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.3s ease-out;
+      }
+    }
+  }
+
+  //隠藏預設checkbox
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  //disabled style
+  input[type="checkbox"]:disabled+label {
+    cursor: not-allowed;
+    color: #b9b9b9;
+  }
+
+  //checked後判斷：一般checkbox樣式(hasBg.hasBorder)/圖片樣式(hasImg)/卡片樣式(hasCard)
+  @if $checkbox-type=='hasBg' {
+    input[type="checkbox"]:checked+label span {
+      &:before {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        width: 6px;
+        height: 10px;
+        border: 2px solid #ffffff;
+        border-left: 0;
+        border-top: 0;
+        left: 50%;
+        top: 45%;
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%) rotate(45deg);
+        position: absolute;
+      }
+    }
+  }
+
+  @else if $checkbox-type=='hasBorder' {
+    input[type="checkbox"]:checked+label span {
+      &:before {
+        background: transparent;
+        border: 2px solid $checked-color;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        width: 6px;
+        height: 10px;
+        border: 2px solid $checked-color;
+        border-left: 0;
+        border-top: 0;
+        left: 50%;
+        top: 45%;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(45deg);
+      }
+    }
+  }
+
+  @else if $checkbox-type=='hasImg' {
+
+    //預設點擊後事項
+    input[type="checkbox"]:checked+label span {
+      display: inline-block;
+      width: $checkItem-size;
+      height: $checkItem-size;
+      background: url(#{$checked-icon}) #ffffff center no-repeat;
+      background-size: $checkItem-size;
+      margin: -2px 10px 0 0;
+      transform: scale(1);
+    }
+  }
+
+  @else if $checkbox-type=='hasCard' {
+    input[type="checkbox"]:checked+label {
+      background: $checked-color;
+      border: 2px solid $checked-color;
+
+      .text {
+        color: $checked-textColor;
+      }
+    }
+
+    input[type="checkbox"]:checked+label span {
+      display: inline-block;
+      width: $checkItem-size;
+      height: $checkItem-size;
+      border: 2px solid #ffffff;
+      background: url(#{$checked-icon}) #ffffff center no-repeat;
+      background-size: $checkItem-size;
+    }
+  }
+
+  @else if $checkbox-type=='switchToggle' {
+    input[type="checkbox"]:checked+label {
+      border: 1px solid transparent;
+      background-color: $checked-bgColor;
+      color: $checked-textColor;
+    }
+  }
+
+  //假如$checkItem-size設定的尺寸>=29px，則做以下判斷
+  @if $checkItem-size>=29px {
+    input[type="checkbox"]:checked+label span {
+      &:after {
+        width: 11px;
+        height: 16px;
+      }
+    }
+  }
+}

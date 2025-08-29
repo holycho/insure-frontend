@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+$main-content-width-pc:1136px;
+$main-content-width-pc-2:944px;
+$large-screen:$main-content-width-pc+56px;
+$medium-desktop-screen:1024px;
+$medium-screen:900px;
+$medium-screen-2:800px;
+$medium-small-screen:600px;
+$smaller-screen:374px;
+
+
+//grascale
+$gs000:#fff;
+$gs001:#f8f8f8;
+$gs002:#eeeeee;
+$gs003:#dddddd;
+$gs004:#c9c9c9;
+$gs005:#b4b4b4;
+$gs006:#999999;
+$gs007:#666666;
+$gs008:#333333;
+$gs009:#000000;
+
+$gsc001:#f2f2f2;
+$gsc002:#212121;
+
+//CI
+// $CI01:#9D0246;
+$CI01:#d56364;
+// $CI01:#fb3e88;
+// $CI01-d:#7a0036;
+$CI01-d:#da8a8c;
+// $CI01-d:#d56364;
+// $CI02:#7f0b78;
+// $CI02:#72be6a;
+$CI02:#DC143C; // Crimson
+// $CI03:#b99742;
+// $CI03:#51bf45;
+// $CI03:#C21E56; // 玫瑰紅
+$CI03: #f20c00;
+
+$color-01:#FFF9EB;
+$color-02:#EF4F4F;
+// $color-03: #F0E7F0;
+$color-03: #FBEBEF;
+// $color-04: #cb94cb;
+$color-04:#f3cce3;
+
+// $CI-gradient-01:linear-gradient(135deg, #D57F91 0%, #D67FAB 15.73%, #B65095 51.64%, #922E8E 100%);
+// $CI-gradient-01:linear-gradient(135deg, #faf0f0 0%, #efbfb7 15.73%, #da8a8c 51.64%, #fb3e88 100%);
+$CI-gradient-01:linear-gradient(135deg, #fff4f7 0%, #efbfb7 15.73%, #da8a8c 51.64%, #DC143C 100%);
+// $CI-gradient-02:linear-gradient(152.84deg, #E7CA84 8.56%, #B99742 91.6%);
+$CI-gradient-02:linear-gradient(152.84deg, #f9f9b4 8.56%, #f2ea26 91.6%);

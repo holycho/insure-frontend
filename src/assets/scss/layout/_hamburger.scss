@@ -1,0 +1,89 @@
+@mixin nxjq-hamburger( //
+  $line-color:black,
+  $line-actived-color:grey,
+  $icon-width:40px, // 三橫線的長度
+  $line-gap:10px, // 三橫線的間距
+  $line-height:5px, //每條線的高度
+  $line-radius:40px, //每條線的圓角曲率半徑
+  $touch-area-expanding:40px
+) {
+
+  &.nxjq-hamburger {
+    position: relative;
+    cursor: pointer;
+
+    >span.nxjq-hamburger__stroke {
+      display: block;
+      position: absolute;
+      width: $icon-width;
+      opacity: 1;
+      left: 0;
+      right:0;
+      margin:0 auto;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+
+    // end: active
+  }
+
+  &.nxjq-hamburger {
+    width: $icon-width + $touch-area-expanding *2;
+    height: $touch-area-expanding *2 + $line-gap *2 + $line-height * 3;
+
+    >span.nxjq-hamburger__stroke {
+      height: $line-height;
+      border-radius: $line-radius;
+    }
+
+    >span.nxjq-hamburger__stroke {
+      background-color: $line-color;
+
+      &:nth-child(1) {
+        top: $touch-area-expanding;
+        transform: scaleX(1);
+        transform-origin:50% 50%;
+        left: 0%;
+      }
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        top: $line-gap + $touch-area-expanding + $line-height;
+      }
+
+      &:nth-child(4) {
+        left: 0%;
+        top: $line-gap*2 + $touch-area-expanding + $line-height*2;
+        transform: scaleX(1);
+        transform-origin:50% 50%;
+      }
+
+    }
+  }
+
+  &.nxjq-hamburger--active {
+    >span.nxjq-hamburger__stroke {
+      background-color: $line-actived-color;
+
+      &:nth-child(1) {
+        transform: scaleX(0);
+      }
+
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      &:nth-child(4) {
+        transform: scaleX(0);
+      }
+
+    }
+
+    // end: span
+  }
+
+}

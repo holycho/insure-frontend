@@ -1,0 +1,17 @@
+[
+  {
+    "paramOrder": "1",
+    "paramText": "工作或營業收入",
+    "paramValue": "1"
+  },
+  {
+    "paramOrder": "2",
+    "paramText": "存款",
+    "paramValue": "2"
+  },
+  {
+    "paramOrder": "3",
+    "paramText": "其他",
+    "paramValue": "99"
+  }
+]

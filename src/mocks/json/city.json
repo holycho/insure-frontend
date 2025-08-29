@@ -1,0 +1,112 @@
+[
+  {
+    "paramOrder": "1",
+    "paramValue": "100",
+    "paramText": "台北市"
+  },
+  {
+    "paramOrder": "2",
+    "paramValue": "110",
+    "paramText": "基隆市"
+  },
+  {
+    "paramOrder": "3",
+    "paramValue": "120",
+    "paramText": "新北市"
+  },
+  {
+    "paramOrder": "4",
+    "paramValue": "130",
+    "paramText": "宜蘭縣"
+  },
+  {
+    "paramOrder": "5",
+    "paramValue": "140",
+    "paramText": "連江縣"
+  },
+  {
+    "paramOrder": "6",
+    "paramValue": "150",
+    "paramText": "新竹市"
+  },
+  {
+    "paramOrder": "7",
+    "paramValue": "160",
+    "paramText": "新竹縣"
+  },
+  {
+    "paramOrder": "8",
+    "paramValue": "170",
+    "paramText": "桃園市"
+  },
+  {
+    "paramOrder": "9",
+    "paramValue": "180",
+    "paramText": "苗栗縣"
+  },
+  {
+    "paramOrder": "10",
+    "paramValue": "190",
+    "paramText": "台中市"
+  },
+  {
+    "paramOrder": "11",
+    "paramValue": "200",
+    "paramText": "彰化縣"
+  },
+  {
+    "paramOrder": "12",
+    "paramValue": "210",
+    "paramText": "南投縣"
+  },
+  {
+    "paramOrder": "13",
+    "paramValue": "220",
+    "paramText": "嘉義市"
+  },
+  {
+    "paramOrder": "14",
+    "paramValue": "230",
+    "paramText": "嘉義縣"
+  },
+  {
+    "paramOrder": "15",
+    "paramValue": "240",
+    "paramText": "雲林縣"
+  },
+  {
+    "paramOrder": "16",
+    "paramValue": "250",
+    "paramText": "台南市"
+  },
+  {
+    "paramOrder": "17",
+    "paramValue": "260",
+    "paramText": "高雄市"
+  },
+  {
+    "paramOrder": "18",
+    "paramValue": "270",
+    "paramText": "澎湖縣"
+  },
+  {
+    "paramOrder": "19",
+    "paramValue": "280",
+    "paramText": "金門縣"
+  },
+  {
+    "paramOrder": "20",
+    "paramValue": "290",
+    "paramText": "屏東縣"
+  },
+  {
+    "paramOrder": "21",
+    "paramValue": "300",
+    "paramText": "台東縣"
+  },
+  {
+    "paramOrder": "22",
+    "paramValue": "310",
+    "paramText": "花蓮縣"
+  }
+]

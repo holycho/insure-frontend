@@ -1,0 +1,128 @@
+.inside-page-01-banner {
+  height: 138px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: $CI-gradient-01;
+  overflow-wrap: break-word;
+
+  @include rwd($main-content-width-pc-2 + 56px) {
+    height: 210px;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  @include rwd($medium-screen-2) {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+
+  &--thick {
+    height: 182px;
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      height: 210px;
+    }
+  }
+
+  &--result {
+    @include rwd($medium-screen-2) {
+      align-items: flex-start;
+      padding-top: 32px;
+    }
+  }
+
+  &--result-2 {
+    @include rwd($main-content-width-pc-2 + 56px) {
+      height: 122px;
+    }
+  }
+
+  &--null {
+    @include rwd($medium-screen-2) {
+      height: 138px;
+    }
+  }
+
+
+
+  &__inner {
+    width: 100%;
+    max-width: $main-content-width-pc-2;
+    display: flex;
+    align-items: flex-start;
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      display: block;
+    }
+
+
+  }
+
+  &__former {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+
+
+    &--center {
+      flex: 1;
+      text-align: center;
+    }
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      text-align: center;
+    }
+  }
+
+  &__latter {
+    flex: 1;
+    margin-left: 64px;
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      margin-left: 0;
+      margin-top: 12px;
+    }
+  }
+
+  &__title {
+    color: $gs000;
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      max-width: none;
+
+      br {
+        display: none;
+      }
+    }
+
+
+    &--main {
+      @include Large-Tilte362-Bold1-Light2-Default-Color1-Left-Aligned();
+
+      @include safari-hack() {
+        width: calc(100% + 1px);
+      }
+
+      @include rwd($main-content-width-pc-2 + 56px) {
+        @include Tilte282-Bold1-Light2-Default-Color1-Left-Aligned();
+      }
+    }
+
+    &--vice {
+      @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+      color: transparentize($gs000, 0.2);
+    }
+
+  }
+
+  &__stepbar {}
+
+  &__title+&__title-tag {
+    margin-left: 8px;
+
+    @include rwd($main-content-width-pc-2 + 56px) {
+      margin-left: 0;
+    }
+  }
+}

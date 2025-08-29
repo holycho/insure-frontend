@@ -1,0 +1,164 @@
+.photo-card-00 {
+  background: $gs000;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 18px;
+  display: flex;
+
+  &__shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__former {
+    padding: 12px;
+    flex: none;
+  }
+
+  &__latter {
+    padding-left: 24px;
+    padding-top: 10px;
+    padding-bottom: 34px;
+    padding-right: 12px;
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+
+    @include rwd($medium-small-screen) {
+      padding-left: 12px;
+    }
+
+  }
+
+  &__title {
+    @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__bg-img {
+    background-size: cover;
+    background-position: center;
+
+    &:after {
+      content: '';
+      display: block;
+      padding-bottom: 43.69%;
+    }
+
+    border-radius: 12px;
+  }
+
+  &__btn {
+    width: 120px;
+
+  }
+
+  &__suffix {
+    margin-top: auto;
+  }
+}
+
+.photo-card-00-item-group {
+  margin-top: 10px;
+
+  &__title {
+    @include Tilte162-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI01;
+  }
+
+  &__ul {
+    margin-top: 8px;
+    margin-left: -16px;
+    width: calc(100% + 16px);
+
+    @include rwd($medium-small-screen) {
+      margin-left: -10px;
+      width: 100%;
+    }
+
+  }
+
+  &__li {
+    @include Body161-Regular1-Light2-Default-Color1-Left-Aligned();
+
+    @include rwd($medium-small-screen) {
+      @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+      margin-left: 10px;
+    }
+
+    display: inline-flex;
+    align-items: center;
+    margin-left: 16px;
+    margin-top: 6px;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $gs006;
+      margin-right: 8px;
+    }
+  }
+}
+
+
+.photo-card-00-label {
+  margin-top: 24px;
+
+  @include rwd($medium-small-screen) {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__title {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+  }
+
+  &__content {
+    @include rwd($medium-small-screen) {
+      margin-left: 16px;
+    }
+  }
+
+  &__value {
+    @include Large-Tilte322-Bold1-Light2-Default-Color1-Left-Aligned();
+    color: $CI03;
+  }
+
+  &__unit {
+    @include Footnote141-Regular1-Light2-Default-Color1-Left-Aligned();
+    margin-left: 4px;
+  }
+}
+
+.photo-card-00-suffix {
+  display: flex;
+  align-items: flex-end;
+
+  @include rwd($medium-small-screen) {
+    display: block;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  &__former {}
+
+  &__latter {
+    margin-left: auto;
+
+    @include rwd($medium-small-screen) {
+      margin-left: 0;
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
