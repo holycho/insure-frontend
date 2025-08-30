@@ -8,6 +8,7 @@ import LoginDialog from 'app/common/compoments/Dialog/LoginDialog';
 import { useDispatch } from 'react-redux';
 import { fetchMemberProfileAction } from 'app/store/system/actions';
 import { initialHeaderAndFooterAction } from 'app/store/layout/actions';
+import environment from 'environments';
 
 // 1. 等待 msw 完全啟動完成，不然呼叫 API 會炸掉
 const MOCK_SERVER_DELAY = 3000;
@@ -18,7 +19,8 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
   const authorizationState = useSelector((state: RootState) => state.system.member.authorization);
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
+    // if (process.env.NODE_ENV === 'development') {
+    if (environment.browser.useMsw) {
       setTimeout(() => {
         reduxDispatch(initialHeaderAndFooterAction());
       }, MOCK_SERVER_DELAY);
@@ -41,7 +43,8 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
   useEffect(() => {
     if (authorizationState && authorizationState.member) {
       // 注意: mock server 尚未掛載，故加 500 毫秒緩衝
-      if (process.env.NODE_ENV === 'development') {
+      // if (process.env.NODE_ENV === 'development') {
+      if (environment.browser.useMsw) {
         setTimeout(() => {
           reduxDispatch(fetchMemberProfileAction({ sn: authorizationState.member.sn }));
         }, MOCK_SERVER_DELAY);

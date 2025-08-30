@@ -6,6 +6,7 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import 'app/core/services/interceptorsService'; // Axios 全域設定
 import 'app/core/services/yupService'; // Yup 全域設定
+import environment from 'environments';
 
 console.log('REACT_APP_MODE', process.env.REACT_APP_MODE);
 const { mocker } = require('mocks/browser');
@@ -22,7 +23,8 @@ const root = ReactDOM.createRoot(
 let waitingMsw = 0;
 async function renderApp() {
   // 根據環境設定來啟動 mockserviceworker (僅限測試單一分頁或 end-to-end 測試)
-  if (process.env.NODE_ENV === 'development') {
+  // if (process.env.NODE_ENV === 'development') {
+  if (environment.browser.useMsw) {
     await mocker.start({
       onUnhandledRequest: 'bypass',
     });

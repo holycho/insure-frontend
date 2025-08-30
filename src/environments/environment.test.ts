@@ -1,4 +1,7 @@
 const devEnvConstants = {
+  browser: {
+    useMsw: true,
+  },
   backend: {
     domainName: 'http://localhost:3000',
     resources: {

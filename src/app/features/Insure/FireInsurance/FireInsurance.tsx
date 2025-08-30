@@ -9,6 +9,7 @@ import useBeforeunload from 'app/core/hooks/useBeforeunload';
 import commonService from 'app/core/services/commonService';
 import { initProcessAction } from 'app/store/insure/fireInsurance/actions';
 import { useDispatch } from 'react-redux';
+import environment from 'environments';
 
 import Calculation from './Calculation';
 // const Calculation = React.lazy(() => import('./Calculation'));
@@ -80,7 +81,8 @@ const FireInsurance: React.FC = () => {
   useEffect(() => {
     // 初始化流程 (初始取得相關資料)
     // 注意: mock server 尚未掛載，故加 500 毫秒緩衝
-    if (process.env.NODE_ENV === 'development') {
+    // if (process.env.NODE_ENV === 'development') {
+    if (environment.browser.useMsw) {
       setTimeout(() => {
         reduxDispatch(initProcessAction());
       }, MOCK_SERVER_DELAY);
