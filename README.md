@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment
+
+### Node.js
+
+Before executing `npm install` command, we must install Node.js **v20.11.1** at first.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
