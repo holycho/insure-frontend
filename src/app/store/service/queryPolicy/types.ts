@@ -45,6 +45,7 @@ export interface AuthenticationState {
         currentStep: ForgetStepCodesEnum | null;
         insuredId?: string; // 身份證字號
         vehicleLicense?: string; // 車牌號碼
+        demoTip?: string; // demo 提示
       }
     }
   }
@@ -136,6 +137,7 @@ export interface FetchApplyNoDoneAction {
     nextStep: ForgetStepCodesEnum;
     insuredId: string;
     vehicleLicense: string;
+    demoTip?: string;
   };
 }
 

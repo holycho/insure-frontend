@@ -9,6 +9,7 @@ import { setDialogVisibleAction } from 'app/store/ui/actions';
 import { setLoginRedirectUrl } from 'app/store/member/login/actions';
 import { ROUTES } from 'app/core/router';
 import { LinkAuthenticationEnum } from 'app/bff/enums/linkUrl';
+import alertService from 'app/core/services/alertService';
 
 const MemMenu: React.FC<MemMenuProps> = (props) => {
   const reduxDispatch = useDispatch();
@@ -23,7 +24,6 @@ const MemMenu: React.FC<MemMenuProps> = (props) => {
    * @param linkInfo 連結選單
    */
   const handleMemMenuClick = (linkInfo: LinkInfo) => {
-    setIsActive(false);
     if (linkInfo.login === LinkAuthenticationEnum.Required && !authorizationState) {
       reduxDispatch(setDialogVisibleAction('loginDialog', true));
       // 暫存選單路由，待登入後跳轉
@@ -32,7 +32,10 @@ const MemMenu: React.FC<MemMenuProps> = (props) => {
       }
       return;
     }
-    console.log(linkInfo.link);
+    if (linkInfo.disabled && linkInfo.message) {
+      alertService.base('系統提示', linkInfo.message);
+      return;
+    }
     if (linkInfo.link) {
       if (linkInfo.link.includes('http://') || linkInfo.link.includes('https://')) {
         window.open(linkInfo.link, linkInfo.target === '1' ? '_blank' : '_self');
@@ -40,6 +43,7 @@ const MemMenu: React.FC<MemMenuProps> = (props) => {
         routerService.push(linkInfo.link);
       }
     }
+    setIsActive(false);
   };
 
   return (

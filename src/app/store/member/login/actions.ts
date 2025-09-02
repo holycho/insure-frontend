@@ -25,7 +25,7 @@ export const fetchLoginCaptchaDoneAction = (response: CaptchaGetResp): LoginActi
 });
 
 export const saveLoginDataAction = (data: LoginFormValues): LoginActions => ({
-  type:  MEMBER_LOGIN__SAVE_LOGIN_DATA,
+  type: MEMBER_LOGIN__SAVE_LOGIN_DATA,
   payload: {
     data
   }

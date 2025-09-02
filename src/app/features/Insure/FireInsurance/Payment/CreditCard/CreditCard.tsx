@@ -10,7 +10,7 @@ import { CreditCardFormValues } from './types';
 import CreditCardExpireField from 'app/common/compoments/Field/CreditCardExpireField';
 import CreditCardScodeField from 'app/common/compoments/Field/CreditCardScodeField';
 import { useDispatch, useSelector } from 'react-redux';
-import { savePaymentResultAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, savePaymentResultAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import { StepCodesEnum } from '../../types';
 import { RootState } from 'app/store/types';
 import apiService from 'app/bff/services/apiService';
@@ -70,7 +70,14 @@ const CreditCard: React.FC = () => {
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   // const handlePayClick = () => {
   //   routerHistory.push(ROUTES.INSURE__FIRE_INSURANCE__COMPLETE);
@@ -169,13 +176,18 @@ const CreditCard: React.FC = () => {
                     no3rdFName="ccNo3rd"
                     no4thFName="ccNo4th"
                   />
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">測試卡號: 4532 5932 0025 1836</div>
+                  <br />
                   {/* 到期年月 */}
                   <CreditCardExpireField
                     mmFName="ccExpireMM"
                     yyFName="ccExpireYY"
                   />
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">測試有效期限: 09/26</div>
+                  <br />
                   {/* 安全碼 */}
                   <CreditCardScodeField name="ccScode" />
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">測試安全碼: 322</div>
                 </div>
               </div>
               <div className="form-layout-00__btn-wrapper">

@@ -117,6 +117,21 @@ const LoginDialog: React.FC<LoginDialogProps> = (props) => {
     routerHistory.push(ROUTES.MEMBER__REGISTER__PERSIONAL_INFO);
   };
 
+  const handleResendOTP = () => {
+      if (!loginState.captcha) return;
+      const { values } = loginFormik;
+      const args: SigninPreReq = {
+        memberId: values.memberId,
+        captchaSn: loginState.captcha.captchaSn,
+        captchaCode: values.captchaCode
+      };
+      if (process.env.REACT_APP_MODE === 'e2e') {
+        args.mode = 'e2e';
+      }
+      // 執行發送 OTP
+      reduxDispatch(sendLoginOTPAction(args, false));
+  };
+
   return (
     <div className="dialog-001" data-dialog-id="dialog-login">
       <div className="dialog__backdrop" />
@@ -146,6 +161,7 @@ const LoginDialog: React.FC<LoginDialogProps> = (props) => {
                               )} />
                             </div>
                           </div>
+                          <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">內建測試帳號登入: A151273978，亦可註冊新會員</div>
                         </div>
                         <div className="dialog-form-layout-00__section">
                           <div className="dialog-form-layout-00__title-tag">圖形驗證碼</div>
@@ -192,7 +208,8 @@ const LoginDialog: React.FC<LoginDialogProps> = (props) => {
                     <FormikForm>
                       <div className="dialog-001__form dialog-001__form--size-2 dialog-form-layout-00">
                         <div className="dialog-form-layout-00__section">
-                          <CaptchaField name="otpCode" duration={30} />
+                          <CaptchaField name="otpCode" duration={loginState.otp?.duration ?? 30} onResend={handleResendOTP} />
+                          <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">{loginState.otp?.otpDemoTip ?? ''}</div>
                         </div>
                       </div>
                       <button id="otpVerify" type="submit" className="dialog-001__btn btn-primary">

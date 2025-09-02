@@ -7,7 +7,7 @@ import FormikForm from 'app/common/compoments/Form/FormikForm';
 import * as Yup from 'yup';
 import commonService from 'app/core/services/commonService';
 import { RootState } from 'app/store/types';
-import { savePaymentResultAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, savePaymentResultAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import { StepCodesEnum } from '../../types';
 import { PaymentReq } from 'app/bff/models/payment';
 import apiService from 'app/bff/services/apiService';
@@ -72,7 +72,14 @@ const Transfer: React.FC = () => {
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   useEffect(() => {
     if (bankState.length > 0) {
@@ -137,6 +144,7 @@ const Transfer: React.FC = () => {
                     )} />
                   </div>
                 </div>
+                <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">測試銀行: 000</div>
               </div>
               <div className="form-layout-00__section">
                 <div className="form-layout-00__title-tag">轉出帳號</div>
@@ -148,6 +156,7 @@ const Transfer: React.FC = () => {
                     )} />
                   </div>
                 </div>
+                <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">測試帳戶: 00000000000000</div>
               </div>
               <div className="form-layout-00__section">
                 <ArticleDisplayer00 title="注意事項" name="caTermReaded">

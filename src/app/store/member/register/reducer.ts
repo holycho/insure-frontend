@@ -18,9 +18,9 @@ const registerReducer: Reducer<RegisterState, RegisterActions> = (state = initia
     // 設置可訪問步驟
     case MEMBER_REGISTER__SET_ACCESSIBLE_STEP: {
       const currentStep = action.payload.step;
-      console.log(currentStep, state.accessibleSteps.filter(it => it !== currentStep));
+      // console.log(currentStep, state.accessibleSteps.filter(it => it !== currentStep));
       const accessibleSteps = state.accessibleSteps.filter(it => it !== currentStep).concat(currentStep);
-      console.log('所有步驟', accessibleSteps);
+      // console.log('所有步驟', accessibleSteps);
       return { ...state, accessibleSteps };
     }
     // 填寫頁面所需資料

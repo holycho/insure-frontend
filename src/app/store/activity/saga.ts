@@ -19,7 +19,7 @@ function * initialNews (action: InitialNewsAction) {
 function * fetchNewsDetail (action: FetchNewsDetailAction) {
   const response: NewsDetailResp = yield call(apiService.postNewsDetail, action.payload.args);
   if (response) {
-    console.log(response);
+    // console.log(response);
     yield put(fetchNewsDetailDoneAction(response));
     if (action.payload.data) {
       yield put(push(action.payload.data.linkUrl));

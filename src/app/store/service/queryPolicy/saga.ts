@@ -31,7 +31,7 @@ function * fetchApplyNo (action: FetchApplyNoAction) {
   const response: VerifyApplyNoResp = yield call(apiService.postVerifyApplyNo, action.payload.args);
   if (response) {
     alertService.base('系統提醒', response.resultMsg);
-    yield put(fetchApplyNoDoneAction(ForgetStepCodesEnum.Auth, action.payload.args.insuredId, action.payload.args.carLicense));
+    yield put(fetchApplyNoDoneAction(ForgetStepCodesEnum.Auth, action.payload.args.insuredId, action.payload.args.carLicense, response.demoTip));
   }
 }
 
@@ -44,7 +44,7 @@ function * fetchPolicyDetail (action: FetchPolicyDetailAction) {
     if (response) {
       yield put(fetchPolicyDetailDoneAction('fire', response));
       const firePath = ROUTES.SERVICE__QUERY_POLICY__DETAIL_FIRE.replace(':applyNo', action.payload.applyNo);
-      console.log('住火險明細', firePath);
+      // console.log('住火險明細', firePath);
       if (!action.payload.id) {
         yield put(push(firePath));
       } else {

@@ -2,7 +2,7 @@ import TextCollectionSection from 'app/common/compoments/TextCollectionSection';
 import TextCollectionTable from 'app/common/compoments/TextCollectionTable';
 import commonService from 'app/core/services/commonService';
 import { RootState } from 'app/store/types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
@@ -15,6 +15,10 @@ const styles: { [key: string]: React.CSSProperties } = {
 
 const Detail: React.FC = () => {
   const detailState = useSelector((state: RootState) => state.activity.news.detail);
+
+  useEffect(() => {
+    commonService.windowScrollToTop();
+  }, []);
 
   /**
    * @description 處理「保險期間」顯示

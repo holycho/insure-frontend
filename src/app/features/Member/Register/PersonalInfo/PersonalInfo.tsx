@@ -1,5 +1,5 @@
 import { ErrorMessage, FormikProvider, useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -24,6 +24,7 @@ import InsuranceClause from 'app/common/compoments/Clauses/InsuranceClause';
 import { RegisterRouteMatchesStep } from '../types';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/store/types';
+import commonService from 'app/core/services/commonService';
 
 const PersonalInfo: React.FC = () => {
   const routerHistory = useHistory();
@@ -90,6 +91,10 @@ const PersonalInfo: React.FC = () => {
       routerHistory.push(ROUTES.MEMBER__REGISTER__CONFIRM_INFO);
     }
   });
+
+  useEffect(() => {
+    commonService.windowScrollToTop();
+  }, []);
 
   return (
     <div className="inside-page-01-layout__latter">

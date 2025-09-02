@@ -23,6 +23,7 @@ import { SignupOtpReq } from 'app/bff/models/signupOtp';
 import { OTPActionsEnum } from 'app/bff/enums/otp';
 import { MemReqUd } from 'app/bff/models/mem/memReqUd';
 import { ROUTES } from 'app/core/router';
+import commonService from 'app/core/services/commonService';
 
 const PersonalInfo: React.FC = () => {
   const routerHistory = useHistory();
@@ -94,6 +95,10 @@ const PersonalInfo: React.FC = () => {
       }
     }
   });
+
+  useEffect(() => {
+    commonService.windowScrollToTop();
+  }, []);
 
   /**
    * @description 頁面初始

@@ -18,7 +18,7 @@ const base = (title: string, content: string, confirmButtonText: string = 'ç¢ºèª
     showCloseButton: showCloseButton,
     closeButtonHtml: ''
   }).then(res => {
-    console.log('res', res);
+    // console.log('res', res);
     if (callback && res.isConfirmed) {
       callback();
     }

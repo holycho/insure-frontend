@@ -21,7 +21,7 @@ import AddressFieldsGroup from 'app/common/compoments/Field/AddressFieldsGroup';
 import DatePicker00Field from 'app/common/compoments/Field/DatePicker00Field';
 import MortgageBankField from 'app/common/compoments/Field/MortgageBankField';
 import ContactField from 'app/common/compoments/Field/ContactField';
-import { saveInsuranceInfoDataAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, saveInsuranceInfoDataAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { StepCodesEnum } from '../types';
 import { RootState } from 'app/store/types';
@@ -223,7 +223,7 @@ const InsuranceInfo: React.FC = () => {
     onSubmit: async (values) => {
       // 說明：若是「軍火商、博弈產業/公司」，則跳出警語並禁止繼續投保。
       if (values.insured.occId === '03') {
-        const defaultMsg = '●本案須以紙本方式受理及人工核保進行作業，請您親至本公司各營業單位洽詢投保相關事宜或請您透過客服信箱(e-service@mail.cki.com.tw)留下聯絡資料及欲投保之險種，本公司將派專員與您聯繫，如有不便，敬請見諒，謝謝。';
+        const defaultMsg = '●本案須以紙本方式受理及人工核保進行作業，請您親至本公司各營業單位洽詢投保相關事宜或請您透過客服信箱(insure.help@mail.lotus.com.tw)留下聯絡資料及欲投保之險種，本公司將派專員與您聯繫，如有不便，敬請見諒，謝謝。';
         alertService.custom3('系統提醒', defaultMsg);
         return;
       }
@@ -241,11 +241,17 @@ const InsuranceInfo: React.FC = () => {
       routerHistory.push(ROUTES.INSURE__FIRE_INSURANCE__INSURANCE_INFO__CLAUSES);
     }
   });
-  console.log(formik);
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   /**
    * @description 轉換各欄位的選項

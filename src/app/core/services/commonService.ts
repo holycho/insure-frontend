@@ -3,6 +3,7 @@ import { BaseResp } from 'app/bff/models/base';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 import alertService from './alertService';
+import $ from 'jquery';
 
 /**
  * @description 確認 Axios 回應是否為成功
@@ -76,9 +77,9 @@ const convertToADDate = (date: string) => {
  * @param date 民國日期字串 (YYY/MM/DD)
  */
 const displayTWYear = (date?: string) => {
- if (!date) return '';
- const dateSnippets = date.split('/');
- return `民國${+dateSnippets[0]}年`;
+  if (!date) return '';
+  const dateSnippets = date.split('/');
+  return `民國${+dateSnippets[0]}年`;
 };
 
 /**
@@ -152,6 +153,35 @@ const getImageUrl = (imageName: string) => {
   return `${environment.backend.domainName}${environment.backend.resources.images}/${imageName}`;
 };
 
+const chineseOrder = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+const chineseClsNames = [
+  '.article-paragraph-00__li--chinese-bold',
+  '.article-paragraph-00__li--chinese',
+  '.article-paragraph-00__li--parentheses-chinese',
+  '.article-paragraph-00__li--contract-chinese',
+  '.article-paragraph-00__li--contract-chinese-bold'
+];
+const convertChineseLi = (id: string) => {
+  chineseClsNames.forEach((clsName) => {
+    const chineseLi = $(id).find(clsName);
+    chineseLi.each((index, ele) => {
+      let chineseIndex = '';
+      if (index <= 9) {
+        chineseIndex = chineseOrder[index];
+      } else {
+        // 大於 9 的中文數字轉換
+        const quotient = Math.floor((index + 1) / 10);
+        const tens = quotient === 1 ? '' : chineseOrder[quotient - 1];
+        const ones = (index + 1) % 10 === 0 ? '' : chineseOrder[index % 10];
+        chineseIndex = `${tens}十${ones}`;
+      }
+      // 設定屬性，css 將會以偽元素呈現
+      $(ele).attr('data-order', `${chineseIndex}`);
+    });
+  });
+
+};
+
 export default {
   isHttpRespSuccess,
   // UI 處理
@@ -170,5 +200,6 @@ export default {
   // 其他
   convertToM2,
   displayTelephone,
-  getImageUrl
+  getImageUrl,
+  convertChineseLi
 };

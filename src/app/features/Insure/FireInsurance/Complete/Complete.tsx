@@ -7,9 +7,12 @@ import { RootState } from 'app/store/types';
 import commonService from 'app/core/services/commonService';
 import CollapseTable00Block01 from 'app/common/compoments/Collapse/CollapseTable00Block01';
 import { Plan } from 'app/bff/models/campaign';
+import { useDispatch } from 'react-redux';
+import { resetProcessAction } from 'app/store/insure/fireInsurance/actions';
 
 const Complete: React.FC = () => {
   const routerHistory = useHistory();
+  const reduxDispatch = useDispatch();
   const processState = useSelector((state: RootState) => state.insure.fireInsurance.process);
   // 建物保額
   const insuAmtState = processState.calculation.data?.insuAmt;
@@ -21,7 +24,14 @@ const Complete: React.FC = () => {
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   /**
    * @description 依 groupOrder 分類險種清單

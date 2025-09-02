@@ -1,17 +1,26 @@
 import { ROUTES } from 'app/core/router';
 import commonService from 'app/core/services/commonService';
+import { resetProcessAction } from 'app/store/insure/fireInsurance/actions';
 import { RootState } from 'app/store/types';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 const Payment: React.FC = () => {
   const routerHistory = useHistory();
+  const reduxDispatch = useDispatch();
   const paybyState = useSelector((state: RootState) =>state.insure.fireInsurance.static.payBy);
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   const handlePrevClick = () => {
     routerHistory.goBack();

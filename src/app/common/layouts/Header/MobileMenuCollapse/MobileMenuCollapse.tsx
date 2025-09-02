@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { MobileMenuCollapseProps } from './types';
 import MobileSubMenuCollapse from './MobilesSubMenuCollapse';
 import { LinkTypesEnum } from 'app/bff/enums/linkUrl';
+import { LinkInfo } from 'app/bff/models/linkUrl';
+import alertService from 'app/core/services/alertService';
+import { routerHistory as routerService } from 'app/core/router/service/routerService';
 
 // declare const $: any;
 import $ from 'jquery';
@@ -33,6 +36,25 @@ const MobileMenuCollapse: React.FC<MobileMenuCollapseProps> = (props) => {
     setIsActive(!isActive);
   };
 
+  const handleLinkClick = (linkInfo: LinkInfo) => {
+    if (linkInfo.disabled && linkInfo.message) {
+      alertService.base('系統提示', linkInfo.message);
+      return;
+    }
+    if (linkInfo.link) {
+      if (linkInfo.link.includes('http://') || linkInfo.link.includes('https://')) {
+        window.open(linkInfo.link, linkInfo.target === '1' ? '_blank' : '_self');
+      } else {
+        routerService.push(linkInfo.link);
+      }
+    }
+    if (props.onHamburgerClose) props.onHamburgerClose();
+  };
+
+  const handleHamburgerClose = () => {
+    if (props.onHamburgerClose) props.onHamburgerClose();
+  };
+
   return (
     <div className="mobile-menu-collapse collapse">
       <div className={'mobile-menu-collapse__title collapse__title' + (isActive ? ' active' : '')} onClick={handleClick}>{props.menuItem.text}</div>
@@ -42,7 +64,7 @@ const MobileMenuCollapse: React.FC<MobileMenuCollapseProps> = (props) => {
           if (child.type === LinkTypesEnum.Directory) {
             return (
               <div key={`${props.menuItem.id}-${index}`} className="mobile-menu-collapse-descendant-collapse__menu collapse__content">
-                <MobileSubMenuCollapse subMenuItem={child} />
+                <MobileSubMenuCollapse subMenuItem={child} onHamburgerClose={handleHamburgerClose} />
                 {/* <div className="mobile-menu-collapse__descendant-collapse mobile-menu-collapse-descendant-collapse collapse">
                   <div className="mobile-menu-collapse-descendant-collapse__title collapse__title">{child.text}</div>
                   <div className="mobile-menu-collapse-descendant-collapse__menu collapse__content">
@@ -59,7 +81,8 @@ const MobileMenuCollapse: React.FC<MobileMenuCollapseProps> = (props) => {
           // type 為 text (文字連結)
           return (
             <div key={`${props.menuItem.id}-${index}`} className="mobile-menu-collapse-descendant-collapse__menu collapse__content">
-              <a href={child.link} rel="noreferrer" target={child.target === '1' ? '_blank' : '_self'} className="mobile-menu-collapse__link">{child.text}</a>
+              {/* <a href={child.link} rel="noreferrer" target={child.target === '1' ? '_blank' : '_self'} className="mobile-menu-collapse__link">{child.text}</a> */}
+              <div className="mobile-menu-collapse__link" onClick={() => handleLinkClick(child)}>{child.text}</div>
             </div>
           );
         })}

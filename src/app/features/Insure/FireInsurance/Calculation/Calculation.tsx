@@ -22,7 +22,7 @@ import { OptionProps } from './types';
 import apiService from 'app/bff/services/apiService';
 import FormLayout01Group from 'app/common/compoments/FormLayout/FormLayout01Group';
 import dayjs from 'dayjs';
-import { saveCalcalationDataAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, saveCalcalationDataAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import { StepCodesEnum } from '../types';
 import alertService from 'app/core/services/alertService';
 import { setDialogVisibleAction } from 'app/store/ui/actions';
@@ -134,7 +134,7 @@ const Calculation: React.FC = () => {
     },
     validationSchema: yupSchema,
     onSubmit: async (values) => {
-      console.log('表單', values);
+      // console.log('表單', values);
       const { fireAmtPropose, movablePropertyAmtPropose } = values.insuAmt;
       if (!fireAmtPropose || !movablePropertyAmtPropose) {
         alertService.base('系統提醒', '請取得建議保額');
@@ -196,12 +196,16 @@ const Calculation: React.FC = () => {
     }
   });
 
-  /**
-   * @description 滾動到頁面頂部
-   */
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   /**
    * @description 轉換各欄位的選項
@@ -287,7 +291,7 @@ const Calculation: React.FC = () => {
       storeyTotal: +storeyTotal,
       usingArea: +area
     };
-    console.log(args);
+    // console.log(args);
     // 取得火險建議保額
     const response = await apiService.postBuildingInsuamtPropose(args);
     if (response) {
@@ -445,7 +449,7 @@ const Calculation: React.FC = () => {
                               </div>
                             </div>
                             <div className={'form-layout-00__cell form-layout-00__cell--mobile-response' + (formik.errors.insuAmt?.fireAmt && formik.touched.insuAmt?.fireAmt ? ' form-layout-00__cell--error' : '')}>
-                              <Text00Field name="insuAmt.fireAmt" />
+                              <Text00Field name="insuAmt.fireAmt" disabled={!formik.values.insuAmt.fireAmtPropose} />
                             </div>
                             <div className="form-layout-00__cell form-layout-00__cell--auto form-layout-00__cell--align-self-center">
                               <div className="form-layout-00__head-tag">
@@ -478,10 +482,10 @@ const Calculation: React.FC = () => {
                   <div className="form-layout-00__row form-layout-00__row--no-flex form-layout-00__row--smaller-gap">
                     <div className="form-layout-00__cell form-layout-00__cell--auto">
                       <div className="checkbox-01  checkbox-01--wrap-full">
-                        <CheckboxInnerField id="insuAmt.movablePropertyFlag" name="insuAmt.movablePropertyFlag">加保建築物內動產保險金額</CheckboxInnerField>
+                        <CheckboxInnerField id="insuAmt.movablePropertyFlag" name="insuAmt.movablePropertyFlag" disabled={!formik.values.insuAmt.fireAmtPropose}>加保建築物內動產保險金額</CheckboxInnerField>
                         <div className="checkbox-01__extension checkbox-01__extension--flex">
                           <div className={'checkbox-01__extension-cell' + (formik.errors.insuAmt?.movablePropertyAmt && formik.touched.insuAmt?.movablePropertyAmt ? ' form-layout-00__cell--error' : '')}>
-                            <Text00Field name="insuAmt.movablePropertyAmt" />
+                            <Text00Field name="insuAmt.movablePropertyAmt" disabled={!formik.values.insuAmt.fireAmtPropose} />
                           </div>
                           <div className="checkbox-01__extension-cell checkbox-01__extension-cell-shrink">
                             萬元

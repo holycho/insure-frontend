@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import FormikForm from 'app/common/compoments/Form/FormikForm';
 import CaptchaField from 'app/common/compoments/Field/CaptchaField';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLoginCaptchaAction, setLoginServiceStepAction, signinAction } from 'app/store/member/login/actions';
+import { sendLoginOTPAction, setLoginServiceStepAction, signinAction } from 'app/store/member/login/actions';
 import { LoginStepCodesEnum } from 'app/common/compoments/Dialog/LoginDialog/types';
 import { RootState } from 'app/store/types';
 import { ROUTES } from 'app/core/router';
@@ -50,10 +50,17 @@ const OTPAuth: React.FC = () => {
   };
 
   /**
-   * @description 重新發送圖形驗證碼
+   * @description 重新發送 OTP
    */
-  const handleResendCaptcha = () => {
-    reduxDispatch(fetchLoginCaptchaAction());
+  const handleResendOTP = () => {
+    if (!loginState.captcha || !loginState.data) return;
+    if (!loginState.data.memberId || !loginState.data.captchaCode) return;
+    // 執行發送 OTP
+    reduxDispatch(sendLoginOTPAction({
+      captchaSn: loginState.captcha.captchaSn, // 來自 API 下行電文
+      memberId: loginState.data.memberId, // 前端輸入
+      captchaCode: loginState.data.captchaCode // 前端輸入
+    }, true));
   };
 
   return (
@@ -65,7 +72,8 @@ const OTPAuth: React.FC = () => {
             <div className="form-layout-00">
               <div className="form-layout-00__title">會員登入</div>
               <div className="form-layout-00__body">
-                <CaptchaField name="otpCode" duration={30} onResend={handleResendCaptcha} />
+                <CaptchaField name="otpCode" duration={loginState.otp?.duration ?? 30} onResend={handleResendOTP} />
+                <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">{loginState.otp?.otpDemoTip ?? ''}</div>
               </div>
             </div>
             <div className="inside-page-01-layout__btn-wrapper inside-page-01-layout-extend-btn-wrapper">

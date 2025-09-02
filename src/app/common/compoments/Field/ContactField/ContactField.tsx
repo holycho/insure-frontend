@@ -6,7 +6,7 @@ import AddressFieldsGroup from '../AddressFieldsGroup';
 const ContactField: React.FC<ContactFieldProps> = (props) => {
   const [isSentToBankField, isSentToBankMeta] = useField(props.isSentToBankFName);
   const [recipientField, recipientMeta] = useField(props.recipientFName);
-  console.log(recipientMeta);
+  // console.log(recipientMeta);
 
   return (
     <>

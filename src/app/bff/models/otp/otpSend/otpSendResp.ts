@@ -1,4 +1,5 @@
 export interface OtpSendResp {
   sn: string;
-  expireTime: number;
+  duration: number;
+  demoTip?: string;
 }

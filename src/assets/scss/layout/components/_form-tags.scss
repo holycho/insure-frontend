@@ -41,4 +41,14 @@
       background-color: red;
     }
   }
+
+  // demo 版提示
+  &--demo {
+    color: #0084D8;
+    user-select: text;
+
+    &:before {
+      background-color: #0084D8;
+    }
+  }
 }

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDialogVisibleAction } from 'app/store/ui/actions';
 import { ROUTES } from 'app/core/router';
 import { RootState } from 'app/store/types';
-import { logoutAction, setLoginRedirectUrl } from 'app/store/member/login/actions';
+import { logoutAction, resetLoginCacheAction, setLoginRedirectUrl } from 'app/store/member/login/actions';
 import MobileMenuCollapse from './MobileMenuCollapse';
 import { LinkAuthenticationEnum, LinkTypesEnum } from 'app/bff/enums/linkUrl';
 import { routerHistory as routerService } from 'app/core/router/service/routerService';
@@ -18,10 +18,13 @@ import { HomeFilled } from '@ant-design/icons';
 
 // declare const $: any;
 import $ from 'jquery';
+import { LoginStepCodesEnum } from 'app/common/compoments/Dialog/LoginDialog/types';
+import alertService from 'app/core/services/alertService';
 
 const Header: React.FC = () => {
   const routerHistory = useHistory();
   const reduxDispatch = useDispatch();
+  const loginState = useSelector((state: RootState) => state.member.login);
   const authorizationState = useSelector((state: RootState) => state.system.member.authorization);
   const profileState = useSelector((state: RootState) => state.system.member.profile);
   const layoutHeaderState = useSelector((state: RootState) => state.layout.header);
@@ -65,6 +68,12 @@ const Header: React.FC = () => {
    * @description 處理登入按鈕 onClick 執行的事件
    */
   const handleLogin = () => {
+    if (loginState.serviceStep === LoginStepCodesEnum.OTP) {
+      alertService.base('系統提醒', '已在投保服務之登入流程中');
+      return;
+    }
+
+    reduxDispatch(resetLoginCacheAction());
     reduxDispatch(setDialogVisibleAction('loginDialog', true));
   };
 
@@ -94,6 +103,10 @@ const Header: React.FC = () => {
       if (linkInfo.link) {
         reduxDispatch(setLoginRedirectUrl(linkInfo.link as ROUTES));
       }
+      return;
+    }
+    if (linkInfo.disabled && linkInfo.message) {
+      alertService.base('系統提醒', linkInfo.message);
       return;
     }
     if (linkInfo.link) {
@@ -187,7 +200,9 @@ const Header: React.FC = () => {
         <div className="mobile-menu__collapse-group">
           {featureNavs && (
             featureNavs.map(it => (
-              <MobileMenuCollapse key={`${it.id}-mobile`} menuItem={it} />
+              <MobileMenuCollapse key={`${it.id}-mobile`} menuItem={it} onHamburgerClose={() => {
+                setIsHamActive(false);
+              }} />
             ))
           )}
           <div className="mobile-menu__link-group">

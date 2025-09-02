@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const originId = useRef<string>('');
 
   useEffect(() => {
-    console.log(originId.current, mobileId);
+    // console.log(originId.current, mobileId);
     if (originId.current) {
       $(`#${originId.current}`).slideUp(500);
     }

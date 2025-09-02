@@ -1,5 +1,5 @@
 import { FormValues } from 'app/features/Insure/FireInsurance/Calculation/types';
-import { FireActions, FireState, INSURE_FIRE_INSURANCE__INIT_PROCESS, INSURE_FIRE_INSURANCE__INIT_PROCESS_DONE, INSURE_FIRE_INSURANCE__SAVE_CALCULATION_DATA, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_CLAUSES_DATA, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_DATA, INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT, INSURE_FIRE_INSURANCE__SAVE_POLICY_INFO, INSURE_FIRE_INSURANCE__SEND_OTP_DONE, INSURE_FIRE_INSURANCE__SET_ACCESSIBLE_STEP, PolicyState } from './types';
+import { FireActions, FireState, INSURE_FIRE_INSURANCE__INIT_PROCESS, INSURE_FIRE_INSURANCE__INIT_PROCESS_DONE, INSURE_FIRE_INSURANCE__RESET_PROCESS, INSURE_FIRE_INSURANCE__SAVE_CALCULATION_DATA, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_CLAUSES_DATA, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_DATA, INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT, INSURE_FIRE_INSURANCE__SAVE_POLICY_INFO, INSURE_FIRE_INSURANCE__SEND_OTP_DONE, INSURE_FIRE_INSURANCE__SET_ACCESSIBLE_STEP, PolicyState } from './types';
 import { StepCodesEnum } from 'app/features/Insure/FireInsurance/types';
 import { InsuranceInfoFormValues } from 'app/features/Insure/FireInsurance/InsuranceInfo/types';
 import { ClausesFormValues } from 'app/features/Insure/FireInsurance/InsuranceInfo/Clauses/types';
@@ -48,4 +48,8 @@ export const savePolicyInfoAction = (policy: PolicyState): FireActions => ({
 export const savePaymentResultAction = (data: PaymentResp): FireActions => ({
   type: INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT,
   payload: { data }
+});
+
+export const resetProcessAction = (): FireActions => ({
+  type: INSURE_FIRE_INSURANCE__RESET_PROCESS
 });

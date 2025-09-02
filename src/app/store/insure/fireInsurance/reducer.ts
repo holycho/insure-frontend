@@ -1,5 +1,5 @@
 import { StepCodesEnum } from 'app/features/Insure/FireInsurance/types';
-import { FireActions, FireState, INSURE_FIRE_INSURANCE__INIT_PROCESS_DONE, INSURE_FIRE_INSURANCE__SAVE_CALCULATION_DATA, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_DATA, INSURE_FIRE_INSURANCE__SET_ACCESSIBLE_STEP, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_CLAUSES_DATA, INSURE_FIRE_INSURANCE__SEND_OTP_DONE, INSURE_FIRE_INSURANCE__SAVE_POLICY_INFO, INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT } from './types';
+import { FireActions, FireState, INSURE_FIRE_INSURANCE__INIT_PROCESS_DONE, INSURE_FIRE_INSURANCE__SAVE_CALCULATION_DATA, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_DATA, INSURE_FIRE_INSURANCE__SET_ACCESSIBLE_STEP, INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_CLAUSES_DATA, INSURE_FIRE_INSURANCE__SEND_OTP_DONE, INSURE_FIRE_INSURANCE__SAVE_POLICY_INFO, INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT, INSURE_FIRE_INSURANCE__RESET_PROCESS } from './types';
 // 注意! v5.0 的 redux 會有問題
 import { Reducer } from 'redux';
 
@@ -67,6 +67,10 @@ const fireReducer: Reducer<FireState, FireActions> = (state = initialState, acti
     // 緩存繳費結果
     case INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT: {
       return { ...state, process: { ...state.process, payment: { data: action.payload.data } } };
+    }
+    // 重置投保流程資料
+    case INSURE_FIRE_INSURANCE__RESET_PROCESS: {
+      return { ...state, process: { ...initialState.process }, policy: null };
     }
     default:
       return state;

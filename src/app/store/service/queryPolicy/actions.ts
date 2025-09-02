@@ -54,9 +54,9 @@ export const fetchApplyNoAction = (args: VerifyApplyNoReq): QueryPolicyActions =
   payload: { args }
 });
 
-export const fetchApplyNoDoneAction = (nextStep: ForgetStepCodesEnum, insuredId: string, vehicleLicense: string): QueryPolicyActions => ({
+export const fetchApplyNoDoneAction = (nextStep: ForgetStepCodesEnum, insuredId: string, vehicleLicense: string, demoTip?: string): QueryPolicyActions => ({
   type: SERVICE_QUERY_POLICY__FETCH_APPLY_NO_DONE,
-  payload: { nextStep, insuredId, vehicleLicense }
+  payload: { nextStep, insuredId, vehicleLicense, demoTip }
 });
 
 export const fetchPolicyDetailAction = (planType: string, applyNo: string, id?: string): QueryPolicyActions => ({

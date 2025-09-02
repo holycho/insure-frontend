@@ -14,28 +14,6 @@ import NonMemInquiry from './NonMemer/Forget/Inquiry';
 import NonMemAuth from './NonMemer/Forget/Auth';
 import { AuthTypeEnum, ForgetStepCodesEnum } from './types';
 
-const styles: { [key: string]: React.CSSProperties } = {
-  item: {
-    padding: 0
-  },
-  common: {
-    margin: 6,
-    padding: 8,
-    width: '100%',
-    backgroundColor: 'transparent',
-    color: 'white',
-    borderRadius: '5px'
-  },
-  active: {
-    margin: 6,
-    padding: 8,
-    width: '100%',
-    backgroundColor: 'white',
-    color: '#9D0246',
-    borderRadius: '5px'
-  }
-};
-
 const authOptions = [
   {
     text: '會員',
@@ -49,15 +27,23 @@ const authOptions = [
 
 const Auth: React.FC = () => {
   const reduxDispatch = useDispatch();
-  // 登入狀態
+  const authorizationState = useSelector((state: RootState) => state.system.member.authorization);
   const loginState = useSelector((state: RootState) => state.member.login);
-  // 繳費狀態
   const paymentState = useSelector((state: RootState) => state.service.payment);
   const [isTabActive, setIsActive] = useState<string>(AuthTypeEnum.Member);
 
+  /**
+   * @description 頁面初始
+   */
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    // 每次進到此頁，若未登入則清空資料
+    if (!authorizationState) {
+      reduxDispatch(resetLoginCacheAction());
+      reduxDispatch(resetNonMemberLoginCacheAction());
+    }
+  }, [reduxDispatch, authorizationState]);
 
   /**
    * @description 處理 Tab 頁籤 onClick 執行的事件

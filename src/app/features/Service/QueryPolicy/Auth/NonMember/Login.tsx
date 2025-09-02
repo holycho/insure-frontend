@@ -82,11 +82,11 @@ const Login: React.FC<IProps> = (props) => {
         <FormikProvider value={formik}>
           <FormikForm>
             <div className="form-layout-00">
-              <div className="form-layout-00__title">非會員及公司戶登入</div>
+              <div className="form-layout-00__title">非會員及公司戶查詢</div>
               <div className="form-layout-00__body">
                 {/* 被保險人身份證字號 / 統一編號 */}
                 <div className="form-layout-00__section">
-                  <div className="form-layout-00__title-tag">被保險人身份證字號 / 統一編號</div>
+                  <div className="form-layout-00__title-tag">被保險人身分證字號 / 統一編號</div>
                   <div className="form-layout-00__row form-layout-00__row--align-start">
                     <div className={'form-layout-00__cell form-layout-00__cell--mobile-response' + (formik.errors.id && formik.touched.id ? ' form-layout-00__cell--error' : '')}>
                       <Text00Field name="id" placeholder="請輸入" maxLength={10} />
@@ -95,6 +95,7 @@ const Login: React.FC<IProps> = (props) => {
                       )} />
                     </div>
                   </div>
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">內建測試帳號登入: A151273978</div>
                 </div>
                 {/* 受理編號 */}
                 <div className="form-layout-00__section">
@@ -107,12 +108,13 @@ const Login: React.FC<IProps> = (props) => {
                       )} />
                     </div>
                   </div>
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">內建可查詢受理編號: 3411F0713000110</div>
                 </div>
               </div>
             </div>
             <div className="inside-page-01-layout__btn-wrapper inside-page-01-layout__btn-wrapper--column">
               <button type="submit" className="inside-page-01-layout__btn btn-primary">
-                登入
+                查詢
               </button>
               <button type="button" className="inside-page-01-layout__btn btn-text" onClick={handleRedirectToForgetProcess}>
                 忘記受理編號？

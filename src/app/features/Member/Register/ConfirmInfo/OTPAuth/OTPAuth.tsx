@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FormikProvider, useFormik } from 'formik';
@@ -9,8 +9,10 @@ import { OTPAuthFormValues } from './types';
 import validationService from 'app/core/services/validationService';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/store/types';
-import { sendRegisterDataAction } from 'app/store/member/register/actions';
+import { sendRegisterDataAction, sendRegisterOTPAction } from 'app/store/member/register/actions';
 import { MemRegReq } from 'app/bff/models/memReg';
+import commonService from 'app/core/services/commonService';
+import { SignupOtpReq } from 'app/bff/models/signupOtp';
 
 const OTPAuth: React.FC = () => {
   const routerHistory = useHistory();
@@ -46,8 +48,22 @@ const OTPAuth: React.FC = () => {
     }
   });
 
-  const handleResendCaptcha = () => {
+  useEffect(() => {
+    commonService.windowScrollToTop();
+  }, []);
 
+  /**
+   * @description 重送 OTP
+   */
+  const handleResendOTP = () => {
+    if (!registerState.data) return;
+    const { mobile, emailAddr } = registerState.data;
+    const args: SignupOtpReq = {
+      mobile: mobile,
+      email: emailAddr,
+      action: '7'
+    };
+    reduxDispatch(sendRegisterOTPAction(args));
   };
 
   /**
@@ -65,7 +81,8 @@ const OTPAuth: React.FC = () => {
             <div className="inside-page-01-layout__form form-layout-00">
               <div className="form-layout-00__title">確認身份</div>
               <div className="form-layout-00__body">
-                <CaptchaField name="otpCode" duration={30} onResend={handleResendCaptcha} />
+                <CaptchaField name="otpCode" duration={registerState.otp?.duration ?? 30} onResend={handleResendOTP} />
+                <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">{registerState.otp?.otpDemoTip ?? ''}</div>
               </div>
             </div>
             <div className="inside-page-01-layout__btn-wrapper inside-page-01-layout-extend-btn-wrapper">

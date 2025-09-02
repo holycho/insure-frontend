@@ -9,12 +9,13 @@ import { FormikProvider, useFormik } from 'formik';
 import FormikForm from 'app/common/compoments/Form/FormikForm';
 import CaptchaField from 'app/common/compoments/Field/CaptchaField';
 import { StepCodesEnum } from '../../types';
-import { savePolicyInfoAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, savePolicyInfoAction, sendOtpDoneAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import apiService from 'app/bff/services/apiService';
 import { RootState } from 'app/store/types';
 import { PolicyFireReq, Product, Profit } from 'app/bff/models/policyFire';
 import { PolicyState } from 'app/store/insure/fireInsurance/types';
 import dayjs from 'dayjs';
+import { OtpSendReq } from 'app/bff/models/otp/otpSend';
 
 const OTPAuth: React.FC = () => {
   const routerHistory = useHistory();
@@ -71,7 +72,14 @@ const OTPAuth: React.FC = () => {
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   /**
    * @description 處理「上一步」執行的事件
@@ -290,6 +298,21 @@ const OTPAuth: React.FC = () => {
     return policy;
   };
 
+  const handleResendOTP = async () => {
+    if (!insuranceInfoState || !insuranceInfoState.insured) return;
+    const { insured } = insuranceInfoState;
+    const args: OtpSendReq = {
+      action: '4',
+      memberId: insured.id, // 應為登入會員身份證
+      mobile: insured.mobile,
+      email: insured.email
+    };
+    const response = await apiService.postOtpSend(args);
+    if (response) {
+      reduxDispatch(sendOtpDoneAction(response));
+    }
+  };
+
   return (
     <div className="inside-page-01-layout__latter">
       <FormikProvider value={formik}>
@@ -300,7 +323,8 @@ const OTPAuth: React.FC = () => {
             </div>
             <div className="form-layout-00__body">
               <div className="form-layout-00__section">
-                <CaptchaField name="otpCode" duration={30} />
+                <CaptchaField name="otpCode" duration={confirmInfoState.otpAuth.otp?.duration ?? 30} onResend={handleResendOTP} />
+                <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">{confirmInfoState.otpAuth.otp?.demoTip ?? ''}</div>
               </div>
             </div>
           </div>

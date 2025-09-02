@@ -13,7 +13,7 @@ import ArticleDisplayer00 from 'app/common/compoments/ArticleDisplayer/ArticleDi
 import InsuranceAndPersonalNoticeClause from 'app/common/compoments/Clauses/InsuranceAndPersonalNoticeClause';
 import InsuranceClause from 'app/common/compoments/Clauses/InsuranceClause';
 import AgreementField from 'app/common/compoments/Field/AgreementField/AgreementField';
-import { saveInsuranceInfoClausesDataAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, saveInsuranceInfoClausesDataAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import { StepCodesEnum } from '../../types';
 
 const Clauses: React.FC = () => {
@@ -64,7 +64,14 @@ const Clauses: React.FC = () => {
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   const handlePrevClick = () => {
     routerHistory.push(ROUTES.INSURE__FIRE_INSURANCE__INSURANCE_INFO);
