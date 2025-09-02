@@ -17,5 +17,7 @@ export interface OTP {
   mobile?: string; // 註冊用
   otpSn: string;
   otpCode: string;
+  expiredTime: number;
+  captchaSn?: string;
   changeMobileOrEmail?: boolean;
 }

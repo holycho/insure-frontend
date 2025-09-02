@@ -1,37 +1,37 @@
 [
   {
-    "position": "04",
-    "subject": "說走就走，安全交給我",
-    "subtitle": "所有細節，完整搞定",
-    "buttonText": "了解更多",
-    "linkUrl": "/insure/travel-insurance/policy-declaration",
-    "startTime": "2025-01-01 00:00:00",
-    "endTime": "2050-01-01 00:00:00",
-    "imgName": "bannerHome1.png",
-    "disabled": true,
-    "message": "投保流程建置中，敬請期待！"
-  },
-  {
-    "position": "07",
-    "subject": "住宅火災保險",
-    "subtitle": "線上投保享77折優惠",
+    "position": "01",
+    "subject": "居家防災，身家多重保障",
+    "subtitle": "現在投保，可享 8 折優惠",
     "buttonText": "立即投保",
     "linkUrl": "/insure/fire-insurance/calculation",
     "startTime": "2025-01-01 00:00:00",
     "endTime": "2050-01-01 00:00:00",
     "imgName": "bannerFire02.jpg",
     "disabled": false,
-    "message": "投保流程建置中，敬請期待！"
+    "message": ""
   },
   {
-    "position": "03",
-    "subject": "汽車保險",
-    "subtitle": "強制險優惠330元，任意險最高82折",
+    "position": "02",
+    "subject": "路上有我，保駕護航",
+    "subtitle": "強制險搭配任意險可享優惠 7 折起",
     "buttonText": "了解更多",
     "linkUrl": "/insure/auto-insurance/propose/registration-info",
     "startTime": "2025-01-01 00:00:00",
     "endTime": "2050-01-01 00:00:00",
     "imgName": "bannerCar03.jpg",
+    "disabled": true,
+    "message": "投保流程建置中，敬請期待！"
+  },
+  {
+    "position": "03",
+    "subject": "快樂旅遊，安全交給我",
+    "subtitle": "所有細節，簡單搞定",
+    "buttonText": "了解更多",
+    "linkUrl": "/insure/travel-insurance/policy-declaration",
+    "startTime": "2025-01-01 00:00:00",
+    "endTime": "2050-01-01 00:00:00",
+    "imgName": "bannerHome1.png",
     "disabled": true,
     "message": "投保流程建置中，敬請期待！"
   }
