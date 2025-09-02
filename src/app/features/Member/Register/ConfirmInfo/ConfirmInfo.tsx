@@ -86,7 +86,7 @@ const ConfirmInfo: React.FC = () => {
             {/* 出生年月日 */}
             <div className="form-layout-00__cell">
               <div className="form-layout-00__section">
-                <Readonly00 label="出生年月日" content={registerDataState?.birthday ? commonService.convertToTWDate(registerDataState.birthday) : ''} />
+                <Readonly00 label="出生年月日" content={registerDataState?.birthday ?? ''} />
               </div>
             </div>
             {/* 聯絡電話 */}

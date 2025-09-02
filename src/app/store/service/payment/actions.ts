@@ -66,7 +66,7 @@ export const fetchApplyNoAction = (args: VerifyApplyNoReq): PaymentActions => ({
   payload: { args }
 });
 
-export const fetchApplyNoDoneAction = (step: ForgetStepCodesEnum, insuredId: string, vehicleLicense: string): PaymentActions => ({
+export const fetchApplyNoDoneAction = (step: ForgetStepCodesEnum, insuredId: string, vehicleLicense: string, demoTip?: string): PaymentActions => ({
   type: SERVICE_PAYMENT__FETCH_APPLY_NO_DONE,
-  payload: { step, insuredId, vehicleLicense }
+  payload: { step, insuredId, vehicleLicense, demoTip }
 });

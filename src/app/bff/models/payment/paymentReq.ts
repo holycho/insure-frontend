@@ -1,5 +1,5 @@
 export interface PaymentReq {
-  payBy: string;
+  payBy: string; // 5: 信用卡, 6: 轉帳
   planType: string;
   applyNo: string; // 要保號碼
   amount: number; // 繳費金額

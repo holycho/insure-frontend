@@ -16,7 +16,7 @@ const CheckboxInnerField: React.FC<CheckboxInnerFieldProps> = (props) => {
   };
 
   return (
-    <CheckboxInner {...field} id={inputElemIdRef.current} onChange={handleChange}>
+    <CheckboxInner {...field} disabled={props.disabled} id={inputElemIdRef.current} onChange={handleChange}>
       {props.children}
     </CheckboxInner>
   );

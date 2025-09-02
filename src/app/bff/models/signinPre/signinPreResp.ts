@@ -1,5 +1,6 @@
 export interface SigninPreResp {
   memberSn: string;
   memberName: string;
-  expireTime: number;
+  duration: number; // 前端倒計時
+  otpDemoTip?: string;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormikProvider, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { OTPAuthFormValues } from './types';
@@ -10,8 +10,11 @@ import { RootState } from 'app/store/types';
 import { useSelector } from 'react-redux';
 import { MemReqUd } from 'app/bff/models/mem/memReqUd';
 import { useDispatch } from 'react-redux';
-import { savePersonalInfoChangesAction } from 'app/store/member/settings/actions';
+import { savePersonalInfoChangesAction, sendSettingsOTPAction } from 'app/store/member/settings/actions';
 import { ROUTES } from 'app/core/router';
+import { SignupOtpReq } from 'app/bff/models/signupOtp';
+import { OTPActionsEnum } from 'app/bff/enums/otp';
+import commonService from 'app/core/services/commonService';
 
 const OTPAuth: React.FC = () => {
   const routerHistory = useHistory();
@@ -43,10 +46,25 @@ const OTPAuth: React.FC = () => {
     }
   });
 
-  const handleResendCaptcha = () => {
+  useEffect(() => {
+    commonService.windowScrollToTop();
+  }, []);
 
+  /**
+   * @description 重送 OTP
+   */
+  const handleResendOTP = () => {
+    if (!settingsState.data) return;
+    const args: SignupOtpReq = { action: OTPActionsEnum.NonMemberAuthentication };
+    const { mobile, emailAddr } = settingsState.data;
+    if (settingsState.isMobileChanged) args.mobile = mobile;
+    if (settingsState.isEmailChanged) args.email = emailAddr;
+    reduxDispatch(sendSettingsOTPAction(args));
   };
 
+  /**
+   * @description 處理「取消修改」執行的事件
+   */
   const handlePrevStep = () => {
     routerHistory.goBack();
   };
@@ -59,7 +77,8 @@ const OTPAuth: React.FC = () => {
             <div className="inside-page-01-layout__form form-layout-00">
               <div className="form-layout-00__title">確認身份</div>
               <div className="form-layout-00__body">
-                <CaptchaField name="otpCode" duration={30} onResend={handleResendCaptcha} />
+                <CaptchaField name="otpCode" duration={settingsState.otp?.duration ?? 30} onResend={handleResendOTP} />
+                <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">{settingsState.otp?.otpDemoTip ?? ''}</div>
               </div>
             </div>
             <div className="inside-page-01-layout__btn-wrapper inside-page-01-layout-extend-btn-wrapper">

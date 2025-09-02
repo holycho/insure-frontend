@@ -27,6 +27,7 @@ const authOptions = [
 
 const Auth: React.FC = () => {
   const reduxDispatch = useDispatch();
+  const authorizationState = useSelector((state: RootState) => state.system.member.authorization);
   const loginState = useSelector((state: RootState) => state.member.login);
   const policyState = useSelector((state: RootState) => state.service.queryPolicy);
   const [isTabActive, setIsActive] = useState<string>(AuthTypeEnum.Member);
@@ -36,7 +37,12 @@ const Auth: React.FC = () => {
    */
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+    // 每次進到此頁，若未登入則清空資料
+    if (!authorizationState) {
+      reduxDispatch(resetLoginCacheAction());
+      reduxDispatch(resetNonMemberLoginCacheAction());
+    }
+  }, [reduxDispatch, authorizationState]);
 
   /**
    * @description 處理 Tab 頁籤 onClick 執行的事件

@@ -41,6 +41,9 @@ const Login: React.FC<IProps> = (props) => {
     }
   });
 
+  /**
+   * @description 頁面初始
+   */
   useEffect(() => {
     reduxDispatch(fetchLoginCaptchaAction());
   }, [reduxDispatch]);
@@ -74,6 +77,7 @@ const Login: React.FC<IProps> = (props) => {
                       )} />
                     </div>
                   </div>
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">內建測試帳號登入: A151273978</div>
                 </div>
                 {/* 圖形驗證碼 */}
                 <div className="form-layout-00__section">

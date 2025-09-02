@@ -96,7 +96,8 @@ const paymentReducer: Reducer<PaymentState, PaymentActions> = (state = initialSt
       const currentStep = action.payload.step;
       const insuredId = action.payload.insuredId;
       const vehicleLicense = action.payload.vehicleLicense;
-      return { ...state, authentication: { ...state.authentication, nonMember: { ...state.authentication.nonMember, login: { ...state.authentication.nonMember.login, forget: { ...state.authentication.nonMember.login.forget, currentStep, insuredId, vehicleLicense } } } } };
+      const demoTip = action.payload.demoTip;
+      return { ...state, authentication: { ...state.authentication, nonMember: { ...state.authentication.nonMember, login: { ...state.authentication.nonMember.login, forget: { ...state.authentication.nonMember.login.forget, currentStep, insuredId, vehicleLicense, demoTip } } } } };
     }
     default:
       return state;

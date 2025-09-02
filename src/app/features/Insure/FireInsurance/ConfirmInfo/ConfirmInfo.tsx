@@ -9,7 +9,7 @@ import CollapseTable00 from 'app/common/compoments/Collapse/CollapseTable00';
 import { useDispatch } from 'react-redux';
 import apiService from 'app/bff/services/apiService';
 import { OtpSendReq } from 'app/bff/models/otp/otpSend';
-import { sendOtpDoneAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
+import { resetProcessAction, sendOtpDoneAction, setAccessiableStepAction } from 'app/store/insure/fireInsurance/actions';
 import { StepCodesEnum } from '../types';
 
 const ConfirmInfo: React.FC = () => {
@@ -24,7 +24,14 @@ const ConfirmInfo: React.FC = () => {
 
   useEffect(() => {
     commonService.windowScrollToTop();
-  }, []);
+
+    return () => {
+      // 若不是投保流程路由則執行重置
+      if (!routerHistory.location.pathname.includes(ROUTES.INSURE__FIRE_INSURANCE)) {
+        reduxDispatch(resetProcessAction());
+      }
+    };
+  }, [reduxDispatch, routerHistory.location.pathname]);
 
   const handlePrevClick = () => {
     routerHistory.push(ROUTES.INSURE__FIRE_INSURANCE__INSURANCE_INFO__CLAUSES);

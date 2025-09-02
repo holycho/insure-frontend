@@ -76,8 +76,8 @@ const IndexShowcase: React.FC = () => {
                     {/* <div className="index-banner__bg" style={{ backgroundImage: 'url(assets/img/bannerHome1.png)' }} /> */}
                     <div className="index-banner__bg" style={{ backgroundImage: `url(${commonService.getImageUrl(banner.imgName)})` }} />
                     <div className="index-banner__inner">
-                      <div className="index-banner__title index-banner__title--main">{banner.subject}</div>
-                      <div className="index-banner__title index-banner__title--vice">{banner.subtitle}</div>
+                      <div style={{ color: '#FFFFFF', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }} className="index-banner__title index-banner__title--main">{banner.subject}</div>
+                      <div style={{ color: '#FFFFFF', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }} className="index-banner__title index-banner__title--vice">{banner.subtitle}</div>
                       <button className="index-banner__btn btn-primary" onClick={() => handleRedirect(banner)}>{banner.buttonText}</button>
                     </div>
                   </div>

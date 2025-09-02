@@ -23,7 +23,7 @@ const CollapseTable00Block: React.FC<CollapseTable00BlockProps> = (props) => {
         onClick={handleTitleClick}
       >
         {props.tagName && (
-          <div className="color-tag color-tag--purple margin-right-8">
+          <div className="color-tag color-tag--green margin-right-8">
             <div className="color-tag__text">{props.tagName}</div>
           </div>
         )}

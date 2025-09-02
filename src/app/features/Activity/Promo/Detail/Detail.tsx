@@ -2,11 +2,15 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import TextCollectionTable from 'app/common/compoments/TextCollectionTable';
 import commonService from 'app/core/services/commonService';
 import { RootState } from 'app/store/types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 const Detail: React.FC = () => {
   const detailState = useSelector((state: RootState) => state.activity.promo.detail);
+
+  useEffect(() => {
+    commonService.windowScrollToTop();
+  }, []);
 
   return (
     <>

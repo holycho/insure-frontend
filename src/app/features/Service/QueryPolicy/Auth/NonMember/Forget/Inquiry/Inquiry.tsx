@@ -44,6 +44,7 @@ const Inquiry: React.FC = () => {
       const { insuredId, _vehicleLicenseFront, _vehicleLicenseBack } = values;
       const carLicense = `${_vehicleLicenseFront}-${_vehicleLicenseBack}`;
       const args = {
+        service: 'policy',
         insuredId,
         carLicense
       };
@@ -76,7 +77,7 @@ const Inquiry: React.FC = () => {
               <div className="form-layout-00__body">
                 {/* 被保險人身份證字號 / 統一編號 */}
                 <div className="form-layout-00__section">
-                  <div className="form-layout-00__title-tag">被保險人身份證字號 / 統一編號</div>
+                  <div className="form-layout-00__title-tag">被保險人身分證字號 / 統一編號</div>
                   <div className="form-layout-00__row form-layout-00__row--align-start">
                     <div className={'form-layout-00__cell form-layout-00__cell--mobile-response' + (formik.errors.insuredId && formik.touched.insuredId ? ' form-layout-00__cell--error' : '')}>
                       <Text00Field name="insuredId" placeholder="請輸入" maxLength={10} />
@@ -85,6 +86,7 @@ const Inquiry: React.FC = () => {
                       )} />
                     </div>
                   </div>
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">內建測試帳號登入: A151273978</div>
                 </div>
                 {/* 車牌號碼 */}
                 <div className="form-layout-00__section">
@@ -92,6 +94,7 @@ const Inquiry: React.FC = () => {
                     name={['_vehicleLicenseFront', '_vehicleLicenseBack']}
                     mode={VehicleLicenseFieldModesEnum.Vehicle}
                   />
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">內建可查詢車牌號: AJF-3956</div>
                 </div>
               </div>
             </div>

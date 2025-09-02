@@ -17,7 +17,7 @@ function * initProcess () {
     cityArea: call(apiService.postCityArea, {}),
     morgageBank: call(apiService.postMorgage, {})
   });
-  console.log('static', response);
+  // console.log('static', response);
   yield put(initProcessDoneAction(response));
 }
 

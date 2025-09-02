@@ -2,6 +2,10 @@
   height: 585px;
   position: relative;
 
+  @include rwd($medium-screen-2) {
+    height: 474px;
+  }
+
   &__bg {
     background-size: cover;
     background-position: 45%;
@@ -23,25 +27,40 @@
     max-width: 1136px;
     padding-top: 156px;
     padding-left: 40px;
+
+    @include rwd($medium-screen-2) {
+      padding-top: 82px;
+      padding-left: 28px;
+    }
+
+    @include rwd($smaller-screen) {
+      padding-left: 15px;
+    }
   }
 
   &__title {
     br {
       display: none;
+
+      @include rwd($medium-screen-2) {
+        display: block;
+      }
     }
 
     &--main {
-      font-size: 2.25rem;
-      font-weight: 700;
-      line-height: 1.22;
-      letter-spacing: -1.1px;
+      @include Large-Tilte362-Bold1-Light2-Default-Color1-Left-Aligned();
+
+      @include rwd($medium-screen-2) {
+        @include Tilte242-Bold1-Light2-Default-Color1-Left-Aligned();
+      }
     }
 
     &--vice {
-      font-size: 1.125rem;
-      font-weight: 700;
-      line-height: 1.33;
-      letter-spacing: -.39px;
+      @include Tilte182-Bold1-Light2-Default-Color1-Left-Aligned();
+
+      @include rwd($medium-screen-2) {
+        @include Footnote142-Bold1-Light2-Default-Color1-Left-Aligned();
+      }
     }
   }
 
@@ -51,9 +70,17 @@
 
   &__btn {
     width: 180px;
+
+    @include rwd($medium-screen-2) {
+      height: 152px;
+    }
   }
 
   &__title+&__btn {
     margin-top: 48px;
+
+    @include rwd($medium-screen-2) {
+      height: 32px;
+    }
   }
 }

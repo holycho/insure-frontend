@@ -69,6 +69,7 @@ const Auth: React.FC = () => {
     const { insuredId, vehicleLicense } = forgetState;
     if (!insuredId || !vehicleLicense) return;
     const args: VerifyApplyNoReq = {
+      service: 'payment',
       insuredId,
       carLicense: vehicleLicense
     };
@@ -104,6 +105,7 @@ const Auth: React.FC = () => {
                     <button type="button" className="form-layout-00__verification-link verification-link-00" onClick={handleResend}>重新發送受理編號</button>
                   </div>
                   <div className="form-layout-00__hint-tag hint-tag">受理編號已發送至您的電子郵件信箱，請輸入受理編號以登入。</div>
+                  <div className="form-layout-00__hint-tag hint-tag hint-tag--demo">{forgetState.demoTip}</div>
                 </div>
               </div>
             </div>

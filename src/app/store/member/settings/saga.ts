@@ -41,7 +41,7 @@ function * savePersonalInfoChangesAction (action: SavePersonalInfoChangesAction)
     const memInfo = storageService.getItem(StorageKeysEnum.Authorization);
     if (memInfo) {
       const authorization: SigninResp = JSON.parse(memInfo);
-      console.log('已登入', authorization);
+      // console.log('已登入', authorization);
       if (authorization) {
         const newAuth = { ...authorization, member: { ...authorization.member, name: action.payload.args.name, needAttention: '' } };
         yield put(setMemberAuthorizationAction(newAuth));

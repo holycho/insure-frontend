@@ -14,4 +14,6 @@ export interface LinkInfo {
   target: string;
   icon?: string; // 屬於 文字: 1 (手機版呈現 icon)
   child?: LinkInfo[]; // 屬於 type = 0
+  disabled?: boolean;
+  message?: string;
 }

@@ -251,7 +251,7 @@ export default {
     const mergedConfig = combineConfig(config);
     const argsModel = combineBaseReq<PaymentReq>({}, args);
     return axios.post<BaseResp<PaymentResp>>(`${api.modules.insuserv}/payment`, argsModel, mergedConfig)
-      .then(response => response.data.transResp);
+      .then(response => commonService.isHttpRespSuccess(response) ? response.data.transResp : null);
   },
   /**
    * @description 會員登入前置動作（比對 Captcha）

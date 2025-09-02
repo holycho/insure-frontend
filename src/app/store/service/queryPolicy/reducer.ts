@@ -135,7 +135,8 @@ const queryPolicyReducer: Reducer<QueryPolicyState, QueryPolicyActions> = (state
       const currentStep = action.payload.nextStep;
       const insuredId = action.payload.insuredId;
       const vehicleLicense = action.payload.vehicleLicense;
-      return { ...state, authentication: { ...state.authentication, nonMember: { ...state.authentication.nonMember, login: { ...state.authentication.nonMember.login, forget: { ...state.authentication.nonMember.login.forget, currentStep, insuredId, vehicleLicense } } } } };
+      const demoTip = action.payload.demoTip;
+      return { ...state, authentication: { ...state.authentication, nonMember: { ...state.authentication.nonMember, login: { ...state.authentication.nonMember.login, forget: { ...state.authentication.nonMember.login.forget, currentStep, insuredId, vehicleLicense, demoTip } } } } };
     }
     case SERVICE_QUERY_POLICY__FETCH_POLICY_DETAIL_DONE: {
       const currentDetail = { ...initialState.detail };

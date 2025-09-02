@@ -29,7 +29,7 @@ function * fetchApplyNo (action: FetchApplyNoAction) {
   const response: VerifyApplyNoResp = yield call(apiService.postVerifyApplyNo, action.payload.args);
   if (response) {
     alertService.base('系統提醒', response.resultMsg);
-    yield put(fetchApplyNoDoneAction(ForgetStepCodesEnum.Auth, action.payload.args.insuredId, action.payload.args.carLicense));
+    yield put(fetchApplyNoDoneAction(ForgetStepCodesEnum.Auth, action.payload.args.insuredId, action.payload.args.carLicense, response.demoTip));
   }
 }
 

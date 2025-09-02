@@ -1,4 +1,5 @@
 export interface SignupOtpResp {
   sn: string;
-  expireTime: number;
+  duration: number;
+  otpDemoTip?: string;
 }

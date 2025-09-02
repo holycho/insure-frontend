@@ -69,6 +69,7 @@ export const INSURE_FIRE_INSURANCE__SAVE_INSURANCE_INFO_CLAUSES_DATA = 'INSURE_F
 export const INSURE_FIRE_INSURANCE__SEND_OTP_DONE = 'INSURE_FIRE_INSURANCE__SEND_OTP_DONE';
 export const INSURE_FIRE_INSURANCE__SAVE_POLICY_INFO = 'INSURE_FIRE_INSURANCE__SAVE_POLICY_INFO';
 export const INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT = 'INSURE_FIRE_INSURANCE__SAVE_PAYMENT_RESULT';
+export const INSURE_FIRE_INSURANCE__RESET_PROCESS = 'INSURE_FIRE_INSURANCE__RESET_PROCESS';
 
 export interface SetAccessiableStep {
   type: typeof INSURE_FIRE_INSURANCE__SET_ACCESSIBLE_STEP;
@@ -130,6 +131,10 @@ export interface SavePaymentResultAction {
   }
 }
 
+export interface ResetProcessAction {
+  type: typeof INSURE_FIRE_INSURANCE__RESET_PROCESS;
+}
+
 export type FireActions =
   SetAccessiableStep |
   InitProcessAction |
@@ -139,4 +144,5 @@ export type FireActions =
   SaveInsuranceInfoClausesDataAction |
   SendOtpDoneAction |
   SavePolicyInfoAction |
-  SavePaymentResultAction;
+  SavePaymentResultAction |
+  ResetProcessAction;
