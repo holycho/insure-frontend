@@ -1,8 +1,13 @@
-import React from 'react';
+import commonService from 'app/core/services/commonService';
+import React, { useEffect } from 'react';
 
 const PaymentTransferNotice: React.FC = () => {
+  useEffect(() => {
+    commonService.convertChineseLi('#PaymentTransferNotice');
+  }, []);
+
   return (
-    <div className="article-paragraph-00">
+    <div id="PaymentTransferNotice" className="article-paragraph-00">
       <div className="article-paragraph-00__text article-paragraph-00__text--single">
         「全國繳費網」係提供即時自您的轉出帳戶繳付多張帳單之代收費用服務平台(以下稱本服務)。為了保障您的權益，請於使用本服務前，詳細閱讀下列注意事項，若您對本服務尚有不瞭解或不同意注意事項之內容者，請勿執行相關交易。
       </div>
@@ -26,6 +31,10 @@ const PaymentTransferNotice: React.FC = () => {
           </div>
         </li>
       </ul>
+      <br />
+      <div className="article-paragraph-00__text article-paragraph-00__text--single">
+        <b>上述條款僅作為作品集展示，無任何法律效力。</b>
+      </div>
     </div>
   );
 };
