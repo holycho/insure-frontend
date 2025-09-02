@@ -23,5 +23,10 @@
     "sn": "5",
     "bankCode": "008",
     "bankName": "華南銀行"
+  },
+  {
+    "sn": "6",
+    "bankCode": "000",
+    "bankName": "測試銀行"
   }
 ]

@@ -21,6 +21,7 @@ import morgageData from './json/mortgage.json';
 import bankData from './json/bank.json';
 import memberData from './json/member.json';
 import headerData from './json/header.json';
+import headerDemo from './json/headerDemo.json';
 import paymentPropose from './json/payment/propose.json';
 import paymentOnline from './json/payment/online.json';
 import paymentDetails from './json/payment/details.json';
@@ -42,17 +43,17 @@ import promoList from './json/promo/list.json';
 import promoMoreUrl from './json/promo/moreUrl.json';
 import promoDetail from './json/promo/detail.json';
 
-import { PaymentReq, PaymentResp } from 'app/bff/models/payment';
+import { CaData, CcData, PaymentReq, PaymentResp } from 'app/bff/models/payment';
 import { SigninPreReq, SigninPreResp } from 'app/bff/models/signinPre';
 import { SigninReq, SigninResp } from 'app/bff/models/signin';
 import { CaptchaGetReq, CaptchaGetResp } from 'app/bff/models/captchaGet';
-import { OtpSendReq } from 'app/bff/models/otp/otpSend';
+import { OtpSendReq, OtpSendResp } from 'app/bff/models/otp/otpSend';
 import { SignoutResp } from 'app/bff/models/signout';
 import { Mem, MemDetailReq, MemDetailResp } from 'app/bff/models/memDetail';
 import { LinkUrlReq, LinkUrlResp } from 'app/bff/models/linkUrl';
 import { PaymentListMemResp, Policy as PaymentPolicy } from 'app/bff/models/service/paymentListMem';
 import { PaymentListReq, PaymentListResp } from 'app/bff/models/service/paymentList';
-import { VerifyApplyNoResp } from 'app/bff/models/verifyApplyNo';
+import { VerifyApplyNoReq, VerifyApplyNoResp } from 'app/bff/models/verifyApplyNo';
 import { PaymentDetailReq, PaymentDetailResp } from 'app/bff/models/service/paymentDetail';
 import { PolicyListReq, PolicyListResp, Policy } from 'app/bff/models/service/policyList';
 import { ProdIdEnum } from 'app/bff/enums/prod';
@@ -79,13 +80,22 @@ import { PromoDetailReq, PromoDetailResp } from 'app/bff/models/promo/detail';
 let captchaList: CaptchaGetResp[] = [];
 let otpList: OTP[] = [];
 let memList: MemData[] = [];
+const TIMEOUT = 60;
 
+// 初始 IndexedDB
 async function loadFromIDB() {
   await dbService.initDB();
   await dbService.connect();
   memList = await dbService.getAll('member');
 }
 loadFromIDB();
+
+// 定期清除逾期資料
+setInterval(() => {
+  const timestamp = Date.now() / 1000;
+  captchaList = captchaList.filter(it => it.expiredTime > timestamp);
+  otpList = otpList.filter(it => it.expiredTime > timestamp);
+}, 10000);
 
 // 使用前端環境配置模擬後台
 const { resources, api } = environment.backend;
@@ -96,7 +106,7 @@ export const handlers = [
     const body: BaseReq<LinkUrlReq> = await request.json() as BaseReq<LinkUrlReq>;
     const transResp: LinkUrlResp = {};
     if (body.transReq) {
-      if (body.transReq.page.includes('header')) transResp['header'] = headerData;
+      if (body.transReq.page.includes('header')) transResp['header'] = headerDemo;
     }
     const resp = createSuccessResp<LinkUrlResp>(transResp);
     return HttpResponse.json(resp);
@@ -366,17 +376,20 @@ export const handlers = [
     if (body && body.transReq && body.transReq.action && body.transReq.memberId) {
       const newSn = Math.floor(1000 + Math.random() * 9000);
       const newCode = Math.floor(100000 + Math.random() * 900000);
-      const timestamp = dayjs().add(5, 'm').unix();
+      const otpTimeout = TIMEOUT;
+      const timestamp = Date.now();
       const otpItem = {
         memberId: body.transReq.memberId,
         otpSn: `${newSn}`,
-        otpCode: `${newCode}`
+        otpCode: `${newCode}`,
+        expiredTime: timestamp + otpTimeout
       };
       otpList.push(otpItem);
       console.log('%c生成 OTP(服務、繳費): ', 'background: #26bfa5; color: white; padding: 2px 4px;', otpItem);
-      const transResp = {
-        sn: newSn,
-        expireTime: timestamp
+      const transResp: OtpSendResp = {
+        sn: newSn.toString(),
+        duration: otpTimeout, // 前端倒計時
+        demoTip: `OTP ${newCode} 已送出`
       };
       const resp = createSuccessResp(transResp);
       return HttpResponse.json(resp);
@@ -415,14 +428,45 @@ export const handlers = [
   // 繳費
   http.post(`${resources.api}${api.modules.insuserv}/payment`, async ({ request }) => {
     const body: BaseReq<PaymentReq> = await request.json() as BaseReq<PaymentReq>;
-    const resp = createSuccessResp<PaymentResp>({
-      payBy: body.transReq.payBy,
-      planType: body.transReq.planType,
-      applyNo: '3421F071300003',
-      policyNo: 'FIRE122338831',
-      amount: body.transReq.amount
-    });
-    return HttpResponse.json(resp);
+    let errCode = '9999';
+    let errMsg = '未知錯誤';
+    // 信用卡
+    if (body.transReq.payBy === '5') {
+      const creditData = body.transReq.paymentData as CcData;
+      if (creditData) {
+        if (creditData.ccNo === '4532593200251836' && creditData.ccExpire === '0926' && creditData.ccScode === '322') {
+          const resp = createSuccessResp<PaymentResp>({
+            payBy: body.transReq.payBy,
+            planType: body.transReq.planType,
+            applyNo: '3421F071300003',
+            policyNo: 'FIRE122338831',
+            amount: body.transReq.amount
+          });
+          return HttpResponse.json(resp);
+        }
+        errCode = '2005';
+        errMsg = '信用卡授權失敗';
+      }
+    }
+    // 活期帳戶
+    if (body.transReq.payBy === '6') {
+      const accountData = body.transReq.paymentData as CaData;
+      if (accountData) {
+        if (accountData.caBankCode === '000' && accountData.caAccountNo === '00000000000000') {
+          const resp = createSuccessResp<PaymentResp>({
+            payBy: body.transReq.payBy,
+            planType: body.transReq.planType,
+            applyNo: '3421F071300003',
+            policyNo: 'FIRE122338831',
+            amount: body.transReq.amount
+          });
+          return HttpResponse.json(resp);
+        }
+        errCode = '2006';
+        errMsg = '活期帳戶扣款失敗';
+      }
+    }
+    return HttpResponse.json(createFailResp(errCode, errMsg));
   }),
   // 會員登入前置動作
   http.post(`${resources.api}${api.modules.femem}/signin/pre`, async ({ request }) => {
@@ -438,7 +482,7 @@ export const handlers = [
       errMsg = '查無資料。';
       return HttpResponse.json(createFailResp(errCode, errMsg));
     }
-    // 驗證碼已過期
+    // 圖形驗證碼已過期
     const captchaExisted = captchaList.find(it => it.captchaSn === body.transReq.captchaSn);
     console.log(captchaExisted);
     if (!captchaExisted) {
@@ -452,25 +496,30 @@ export const handlers = [
       errMsg = '驗證碼錯誤。';
       return HttpResponse.json(createFailResp(errCode, errMsg));
     }
-    // 成功
+    // 圖形驗證成功，開始驗身流程
     const memId = body.transReq.memberId;
     if (captchaExisted && body && body.transReq.captchaCode === captchaExisted.captchaCode) {
-      captchaList = captchaList.filter(it => it.captchaSn !== body.transReq.captchaSn);
+      // captchaList = captchaList.filter(it => it.captchaSn !== body.transReq.captchaSn);
       // 生成欲發送的 OTP，於登入時驗證
       const newSn = Math.floor(1000 + Math.random() * 9000);
       const newCode = Math.floor(100000 + Math.random() * 900000);
+      const otpTimeout = TIMEOUT;
+      const timestamp = Date.now() / 1000;
       otpList = otpList.filter(it => it.memberId !== body.transReq.memberId);
       const otpItem = {
         memberId: body.transReq.memberId,
         otpSn: `${newSn}`,
-        otpCode: body.transReq.mode === 'e2e' ? '000000' : `${newCode}` // 測試 OTP: 000000
+        otpCode: body.transReq.mode === 'e2e' ? '000000' : `${newCode}`, // 測試 OTP: 000000
+        expiredTime: timestamp + otpTimeout,
+        captchaSn: body.transReq.captchaSn, // 與圖形驗證關聯，以利驗身完成後刪除
       };
       otpList.push(otpItem);
       console.log(`%c生成 OTP(登入驗證-${memId}): `, 'background: #26bfa5; color: white; padding: 2px 4px;', otpItem);
       const resp = createSuccessResp<SigninPreResp>({
         memberSn: memExisted.sn,
         memberName: memExisted.name,
-        expireTime: 300
+        duration: otpTimeout, // 前端倒計時
+        otpDemoTip: `OTP: ${newCode} 已送出`
       });
       return HttpResponse.json(resp);
     }
@@ -489,7 +538,7 @@ export const handlers = [
       errMsg = '查無資料';
       return HttpResponse.json(createFailResp(errCode, errMsg));
     }
-    // 驗證碼已過期
+    // OTP 驗證碼已過期
     const otpExisted = otpList.find(it => it.memberId === body.transReq.memberId);
     if (!otpExisted) {
       errCode = '8005';
@@ -499,6 +548,7 @@ export const handlers = [
     // 成功
     if (otpExisted && body.transReq && body.transReq.otpCode === otpExisted.otpCode) {
       otpList = otpList.filter(it => it.otpCode);
+      captchaList = captchaList.filter(it => it.captchaSn !== otpExisted.captchaSn);
       const resp = createSuccessResp<SigninResp>({
         member: {
           sn: memExisted.sn,
@@ -528,11 +578,14 @@ export const handlers = [
       // 生成欲發送的 OTP，於變更手機或信箱時驗證
       const newSn = Math.floor(1000 + Math.random() * 9000);
       const newCode = Math.floor(100000 + Math.random() * 900000);
+      const otpTimeout = TIMEOUT;
+      const timestamp = Date.now() / 1000;
       otpList = otpList.filter(it => it.memberId !== memExisted.id);
       const otpItem: OTP = {
         memberId: memExisted.id,
         otpSn: `${newSn}`,
-        otpCode: `${newCode}`
+        otpCode: `${newCode}`,
+        expiredTime: timestamp + otpTimeout
       };
       if (body.transReq.action === '4') {
         if (body.transReq.mobile || body.transReq.email) otpItem.changeMobileOrEmail = true;
@@ -541,23 +594,28 @@ export const handlers = [
       otpList.push(otpItem);
       const resp = createSuccessResp<SignupOtpResp>({
         sn: newSn.toString(),
-        expireTime: 300 // 5 分鐘
+        duration: otpTimeout, // 前端倒計時
+        otpDemoTip: `OTP: ${newCode} 已送出`
       });
       return HttpResponse.json(resp);
     } else {
       const newSn = Math.floor(1000 + Math.random() * 9000);
       const newCode = Math.floor(100000 + Math.random() * 900000);
+      const otpTimeout = TIMEOUT;
+      const timestamp = Date.now() / 1000;
       otpList = otpList.filter(it => it.mobile !== body.transReq.mobile);
       const otpItem: OTP = {
         mobile: body.transReq.mobile,
         otpSn: `${newSn}`,
-        otpCode: `${newCode}`
+        otpCode: `${newCode}`,
+        expiredTime: timestamp + otpTimeout
       };
       console.log('%c生成 OTP(註冊):', 'background: #26bfa5; color: white; padding: 2px 4px;', otpItem);
       otpList.push(otpItem);
       const resp = createSuccessResp<SignupOtpResp>({
         sn: newSn.toString(),
-        expireTime: 300 // 5 分鐘
+        duration: otpTimeout, // 前端倒計時
+        otpDemoTip: `OTP: ${newCode} 已送出`
       });
       return HttpResponse.json(resp);
     }
@@ -567,10 +625,12 @@ export const handlers = [
     const body: BaseReq<CaptchaGetReq> = await request.json() as BaseReq<CaptchaGetReq>;
     const newSn = Math.floor(1000 + Math.random() * 9000); // 4 碼
     const newCode = Math.floor(100000 + Math.random() * 900000); // 6 碼
+    const captchaTimeout = 3600;
+    const timestamp = Date.now() / 1000;
     const data = {
       captchaSn: `${newSn}`,
       captchaCode: body.transReq.mode === 'e2e' ? '123456' : `${newCode}`, // 測試圖形驗證碼: 123456
-      expireTime: 120
+      expiredTime: timestamp + captchaTimeout // 1 小時後圖形驗證失效
     };
     captchaList.push(data);
     console.log('CAPTCHA QUEUE:', captchaList);
@@ -751,7 +811,7 @@ export const handlers = [
     return HttpResponse.json(resp);
   }),
   // 查詢可繳費之保單列表 (非會員-單筆)
-  http.post(`${resources.api}${api.modules.insuserv}/payment/single`,async ({ request }) => {
+  http.post(`${resources.api}${api.modules.insuserv}/payment/single`, async ({ request }) => {
     let errCode = '9999';
     let errMsg = '未知錯誤';
     const body: BaseReq<PaymentSingleReq> = await request.json() as BaseReq<PaymentSingleReq>;
@@ -788,8 +848,37 @@ export const handlers = [
   }),
   // 查詢受理編號
   http.post(`${resources.api}${api.modules.insuserv}/verify/applyno`, async ({ request }) => {
+    let errCode = '9999';
+    let errMsg = '未知錯誤';
+    const body: BaseReq<VerifyApplyNoReq> = await request.json() as BaseReq<VerifyApplyNoReq>;
+    const license = body.transReq.carLicense;
+    let policy: any;
+    if (body.transReq.service === 'policy') {
+      policy = policyCarOnline.find(it => it.remark === license);
+      if (!policy) {
+        policy = policyCarPropose.find(it => it.remark === license);
+      }
+      if (!policy) {
+        errCode = '1003';
+        errMsg = '查無資料';
+        return HttpResponse.json(createFailResp(errCode, errMsg));
+      }
+    }
+    // 僅有汽、機車險才有待繳費單
+    if (body.transReq.service === 'payment') {
+      policy = paymentOnline.find(it => it.carLicense === license);
+      if (!policy) {
+        policy = paymentPropose.find(it => it.carLicense === license);
+      }
+      if (!policy) {
+        errCode = '1003';
+        errMsg = '查無資料';
+        return HttpResponse.json(createFailResp(errCode, errMsg));
+      }
+    }
     const resp = createSuccessResp<VerifyApplyNoResp>({
-      resultMsg: '受理編號已發送至您的信箱'
+      resultMsg: '受理編號已發送至您的信箱',
+      demoTip: `${policy.applyNo} 已送出`
     });
     return HttpResponse.json(resp);
   }),
